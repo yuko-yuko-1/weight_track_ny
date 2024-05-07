@@ -4,4 +4,14 @@
 
 @section('content')
 
+
+<div>
+    @include('what-is-bmi')
+</div>
+
+<div>
+    @include('footer')
+</div>
+
+
 @endsection
