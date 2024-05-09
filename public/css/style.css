@@ -1,0 +1,26 @@
+.navbar-brand img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+
+.footer {
+    width: 100%;
+    background-color: #A8D2A2; 
+    color: #FFFFFF;
+    border-top: 1px solid #dee2e6; 
+}
+
+.nav-profile-image {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.nav-user-info{
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
