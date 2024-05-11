@@ -1,0 +1,53 @@
+/* index.blade */
+
+.landing_image_area {
+    background-image: url('/images/landing-page-big-image.png');
+    background-color:rgba(0,0,0,0.1);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.landing_title {
+    font-family: 'Pompiere', 'Poppins';
+}
+
+.btn_landing1 {
+    background-color: #FF8500;
+    font-size: 1.3em
+}
+
+.btn_landing1:hover {
+    background: #B4AEF9;
+}
+
+.btn_landing2 {
+    background-color: #39D86F;
+    font-size: 1.3em
+}
+
+.btn_landing2:hover {
+    background: #88B0D8;
+}
+
+.btn_calc_bmi {
+    background-color: #A8D2A2;
+    font-size: 1.3em
+}
+
+.btn_calc_bmi:hover {
+    background: #FE6D73;
+}
+
+.bmi_calc_bg_color {
+    background-color: rgba(217, 217, 217, 0.3);
+}
+
+.bmi_calc_area {
+    background-image: url('/images/bmi-measure-and-apple.png');
+    background-repeat: no-repeat;
+    background-size: 17%;
+    background-position-x: left;
+    background-position-y: bottom;
+}
