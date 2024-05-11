@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('css')
+<link rel="stylesheet" href="{{ asset('css/register.css')}}">
+@endpush
+
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
