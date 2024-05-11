@@ -1,0 +1,95 @@
+/* register.blade */
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Poetsen+One&display=swap');
+
+/* RegisterPage Img */
+.img_register{
+   width: 80%;
+   height: 100%;
+   object-fit: contain;
+}
+ .register1{
+    position: relative;
+ }
+ .register2{
+    position: relative;
+ }
+ .img_reg{
+    max-width: 100%;  
+    width: 80%;
+    height: 90%;
+    object-fit: contain;
+    padding-top: 40px;
+    padding-bottom: 40px;
+ }
+
+
+ /* RegisterPage Purpose */
+ .checkbox label {
+    position: relative;
+    display: block;
+
+  }
+  
+  .radio label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+
+  }
+  .radio label input[type="radio"] + span {
+    display: block;
+    color: black;
+    border: 0.5px solid gray;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    height: 40px;
+    width: 180px;
+    background-color: white;
+    margin-top: 20px;
+
+  }
+  .radio label input[type="radio"]:checked + span {
+    background-color: #CEE3F9;
+    color: black;
+  }
+
+
+  /* RegisterPage Register */
+  .register-text{
+    color: #EA9941;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-size: 65px;
+    font-style: normal;
+  }
+
+  /* RegisterPage Background */
+  .register1{
+    background-color: rgba(225,  243, 212, 0.7);
+    border-radius: 0 120px 120px 0;
+    margin-right: 60px;
+    padding-left: 60px;
+
+  }
+  .register2{
+    background-color: 	rgba(225,  243, 212, 0.7);
+    border-radius: 120px 0 0 120px;
+    margin-left: 80px;
+    padding-right: 60px;
+
+  }
+  /* Register Button */
+  .btn_register{
+    background-color: orange;
+    margin-top: 40px;
+    justify-content: center;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    height: 40px;
+    width: 180px;
+  }
+  .btn_reg{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+  }
+
