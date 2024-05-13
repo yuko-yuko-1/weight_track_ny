@@ -13,12 +13,26 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('username');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->enum('gender', ['male', 'female'])->nullable();
+
+            $table->integer('height_cm');
+            $table->integer('weight_kg');
+            $table->integer('goalweight');
+            $table->date('date_of_goal');
+            $table->string('selected_purpose'); //purpose(radio)
+
+            $table->integer('role_id')->default(2)->comment('1:admin 2:user');
+            $table->longText('avatar')->nullable(); 
             $table->timestamps();
+
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
+
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
