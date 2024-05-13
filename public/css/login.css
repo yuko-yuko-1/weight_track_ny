@@ -1,0 +1,99 @@
+/* login.blade */
+
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Poetsen+One&display=swap');
+
+
+
+.login-card{
+
+    padding: 20px;
+    flex-direction: row;
+    display: inline-flex;
+
+}
+
+.image-container {
+    width: 100%;
+}
+
+.image-container img {
+    width: 100%;
+    border-radius: 10px;
+
+}
+
+.form-container{
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    width: 40%;
+    padding: 20px;
+    margin: auto;
+
+}
+
+
+
+.login-text{
+
+    color: #85C6E1;
+    font-style: italic;
+    font-weight: bold;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-size: 65px;
+    font-style: normal;
+
+}
+
+.login-text-p
+ {
+    color:  #85C6E1;
+ }
+
+ 
+
+.btn-login{
+    width: 200px;
+    height: 40px;
+    background-color: #85C6E1;
+    color:  #fff;
+    border: none;
+    border-radius: 20px;
+
+ }
+
+ .btn-login:hover{
+    background-color: #85C6E1;
+    color:  #fff;
+ }
+
+.login-input{
+    border: 1px solid #85C6E1;
+    border-radius: 10px;
+    display: inline-block;
+
+}
+
+.body{
+    background-color: #DDEAFB;
+}
+
+.label {
+    display: block;
+
+}
+
+.input {
+    border: 1px solid #000;
+    padding: 5px;
+    display: inline-block;
+  }
+
+
+
+.form-rem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
