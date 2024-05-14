@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="{{ asset('css/register.css')}}">
 @endpush
 
+@section('title', 'Register')
+
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
