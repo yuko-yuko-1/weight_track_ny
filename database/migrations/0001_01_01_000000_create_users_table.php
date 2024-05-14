@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('password');
             $table->enum('gender', ['male', 'female'])->nullable();
 
-            $table->integer('height_cm');
-            $table->integer('weight_kg');
-            $table->integer('goalweight');
+            $table->double('height_cm');
+            $table->double('weight_kg');
+            $table->double('goalweight');
             $table->date('date_of_goal');
             $table->string('selected_purpose'); //purpose(radio)
 
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->softDeletes(); 
             $table->timestamps();
 
-            $table->timestamp('email_verified_at')->nullable();
+            $table->longText('email_verified_at')->nullable();
             $table->rememberToken();
 
         });
