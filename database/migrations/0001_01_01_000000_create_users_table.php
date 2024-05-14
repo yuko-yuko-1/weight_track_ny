@@ -27,7 +27,8 @@ return new class extends Migration
             $table->string('selected_purpose'); //purpose(radio)
 
             $table->integer('role_id')->default(2)->comment('1:admin 2:user');
-            $table->longText('avatar')->nullable(); 
+            $table->longText('avatar')->nullable();
+            $table->softDeletes(); 
             $table->timestamps();
 
             $table->timestamp('email_verified_at')->nullable();
