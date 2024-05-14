@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->double('height_cm');
             $table->double('weight_kg');
-            $table->double('goalweight');
+            $table->double('weight_goal');
             $table->date('date_of_goal');
             $table->string('selected_purpose'); //purpose(radio)
 
