@@ -8,7 +8,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container mt-5 mb-4">
     <div class="row">
         <div class="col what-is-bmi1"></div>
         <div class="col what-is-bmi2"><h1 class="what-is-bmi-title pt-2">What's BMI?</h1></div>
@@ -108,7 +108,7 @@
                   <ul>
                       <div>
                         <span> - </span>
-                        <span>Underweight . </span>
+                        <span>Underweight </span>
                         <span>: BMI less than 18.5</span>
                       </div>
                       <div>
@@ -134,5 +134,5 @@
         </div>
     </div>
 </div>
-{{-- @include('footer') --}}
+
 @endsection

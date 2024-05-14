@@ -51,3 +51,41 @@
     background-position-x: left;
     background-position-y: bottom;
 }
+
+
+/*what-is-bmi.blade*/
+.what-is-bmi1 {
+    flex-grow:1;
+    background-color: #f6be93;
+  }
+.what-is-bmi2 {
+    flex-grow:100;
+    background-color: #f3f2e8;
+}
+.what-is-bmi-title {
+    font-size: 35px;
+    font-weight: bold;
+}
+.what-is-bmi-description{
+    font-size: 20px;  
+}
+.bmi-explanation1 {
+    flex-grow:1;
+    background-color: #8cc533;
+}
+.bmi-explanation2 {
+    flex-grow:30;
+    background-color: #f4f4f4;
+}
+.bmi-explanation3 {
+    font-size: 25px;
+}
+.bmi-explanation4 {
+    font-size: 20px;
+}
+.explanation-of-bmi-numbers{
+    background-color: #fdccce; 
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
