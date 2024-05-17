@@ -2,12 +2,22 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 d-flex justify-content-start align-items-center">
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            <div class="navbar-brand d-flex align-items-center">
-                                <img src="{{ asset('images/logo.png') }}" alt="Logo">
-                                <h1 class="h5 mb-0 ms-2">{{ config('app.name') }}</h1>
-                            </div>
-                        </a>
+                        @guest
+                            <a class="navbar-brand" href="{{ url('/') }}">
+                                <div class="navbar-brand d-flex align-items-center">
+                                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
+                                    <h1 class="h5 mb-0 ms-2">{{ config('app.name') }}</h1>
+                                </div>
+                            </a>  
+                        @endguest
+                        @auth
+                            <a class="navbar-brand" href="{{ url('/weight_and_meals/today') }}">
+                                <div class="navbar-brand d-flex align-items-center">
+                                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
+                                    <h1 class="h5 mb-0 ms-2">{{ config('app.name') }}</h1>
+                                </div>
+                            </a>   
+                        @endauth
                     </div>
                     <div class="col-md-6">
                         <ul class="navbar-nav ms-auto d-flex flex-row mb-0 justify-content-end">

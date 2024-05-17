@@ -20,16 +20,16 @@ return new class extends Migration
             $table->string('password');
             $table->enum('gender', ['male', 'female'])->nullable();
 
-            $table->double('height_cm');
-            $table->double('weight_kg');
-            $table->double('weight_goal');
-            $table->date('date_of_goal');
-            $table->string('selected_purpose'); //purpose(radio)
+            $table->double('height');
+            $table->double('prime_weight');
+            $table->double('goal_weight');
+            $table->date('goal_date');
+            $table->string('purpose'); //purpose(radio)
 
             $table->integer('role_id')->default(2)->comment('1:admin 2:user');
             $table->longText('avatar')->nullable();
-            $table->softDeletes(); 
             $table->timestamps();
+            $table->softDeletes(); 
 
             $table->longText('email_verified_at')->nullable();
             $table->rememberToken();

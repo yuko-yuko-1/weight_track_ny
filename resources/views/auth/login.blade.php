@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Login')
+
 @push('css')
 <link rel="stylesheet" href="{{ asset('css/login.css')}}">
 @endpush
@@ -83,8 +85,8 @@
                                     </a>
                                 @endif
                                 <br>
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link login-text-p" href="{{ route('password.request') }}">
+                                @if (Route::has('register'))
+                                    <a class="btn btn-link login-text-p" href="{{ route('register') }}">
                                         {{ __('Create an account') }}
                                     </a>
                                 @endif

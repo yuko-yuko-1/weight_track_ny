@@ -27,12 +27,23 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-0">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <div class="navbar-brand d-flex align-items-center">
-                        <img src="{{ asset('images/logo.png') }}" alt="Logo">
-                        <h1 class="h5 mb-0 ms-2">{{ config('app.name') }}</h1>
-                    </div>
-                </a>
+                @guest
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <div class="navbar-brand d-flex align-items-center">
+                            <img src="{{ asset('images/logo.png') }}" alt="Logo">
+                            <h1 class="h5 mb-0 ms-2">{{ config('app.name') }}</h1>
+                        </div>
+                    </a>
+                @endguest
+                @auth
+                    <a class="navbar-brand" href="{{ url('/weight_and_meals/today') }}">
+                        <div class="navbar-brand d-flex align-items-center">
+                            <img src="{{ asset('images/logo.png') }}" alt="Logo">
+                            <h1 class="h5 mb-0 ms-2">{{ config('app.name') }}</h1>
+                        </div>
+                    </a>
+                @endauth
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -65,7 +76,7 @@
                     @else
                         <!-- If Authenticated -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('What\'s BMI') }}</a>
+                            <a class="nav-link" href="{{ route('what-is-bmi')}}">{{ __('What\'s BMI') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{ __('About us') }}</a>
@@ -76,11 +87,11 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle nav-user-info" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @if(Auth::user()->profile_photo_path)
-                                    <img src="{{ Auth::user()->profile_photo_path }}" alt="{{ Auth::user()->name }}" class="nav-profile-image">
+                                    <img src="{{ Auth::user()->profile_photo_path }}" alt="{{ Auth::user()->username }}" class="nav-profile-image">
                                 @else
                                    <i class="fas fa-user-circle" style="font-size: 30px; border-radius: 50%;"></i>
                                 @endif
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->username }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#"><i class="fa-regular fa-address-card"></i> {{ __('Profile') }}</a>
@@ -89,6 +100,9 @@
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
                                 </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
                     @endguest
@@ -122,12 +136,41 @@
               </div>
             </div> --}}
 
+        {{-- Header after log-in --}}
+        @auth
+            @if (request()->is('weight_and_meals/*') || request()->is('community/*') || request()->is('suggestion/*'))
+                <header class="my-0">
+                    <div class="container-fluid">
+                        <div class="row text-center">
+                            <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('weight_and_meals/*') ? 'tab-action-color' : '' }}">
+                                <a href="{{ url('/weight_and_meals/today') }}" class=" h5 text-decoration-none text-dark">
+                                    Weight & Meals
+                                </a>
+                            </div>
+                            <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('community/*') ? 'tab-action-color' : '' }}">
+                                <a href="" class=" h5 text-decoration-none text-dark">
+                                    Community
+                                </a>
+                            </div>
+                            <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('suggestion/*') ? 'tab-action-color' : '' }}">
+                                <a href="" class=" h5 text-decoration-none text-dark">
+                                    Suggestion
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header> 
+            @endif
+        @endauth
+
         <main>
             @yield('content')
         </main>
+    
+        @include('footer')
+
     </div>
 
-    @include('footer')
 </body>
 </html>
 
