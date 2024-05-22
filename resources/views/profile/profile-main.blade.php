@@ -4,6 +4,9 @@
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('css/Profile/profile.css')}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pridi:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -21,10 +24,9 @@
         <h4 class="user-name">User name</h4>
 
         <div class="action-buttons">
-          <button class="edit-button">Edit</button>
-          <button type="button" class="btn delete-button" data-toggle="modal" data-target="#deleteAccountModal">Delete</button>
-
-        </div>
+          <button class="edit-button" onclick="window.location.href = '{{ route('profile-edit') }}'">Edit</button>
+          <button type="button" class="btn delete-button" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Delete</button>
+       </div>
      </div>
 
   <div class="user-display-container col-12">
@@ -125,8 +127,8 @@
                     <label class="col-6" for="currentbmi">Current BMI</label>
                     <input type="number" id="currentbmi" name="currentbmi">
                 </div>
-                <button class="log-weight-history-button">
-                  <i class="fas fa-check-circle"></i> Log Weight History
+                <button class="log-weight-history-button" onclick="window.location='{{ route('logweight-history') }}'">
+                    <i class="fas fa-check-circle"></i> Log Weight History
                 </button>
             </div>
         </div>
@@ -141,7 +143,7 @@
         <div class="meal-item"></div>
       </div>
       <div class="view-meals-button">
-        <button>
+        <button onclick="window.location.href='{{ route('all-meal-posts') }}'">
             <i class="fas fa-check-circle"></i> View all of your meals
         </button>
       </div> 
