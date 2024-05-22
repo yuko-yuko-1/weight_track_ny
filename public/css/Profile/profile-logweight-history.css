@@ -1,0 +1,288 @@
+.profile-wrapper {
+    background-color: rgb(248, 244, 237); 
+    position: relative;
+}
+
+main {
+  background-color: rgb(248, 244, 237);
+}
+
+.background-photo {
+    background-image: url("/images/Profile/profile-background.png");
+    background-size: cover;
+    background-position: top;
+    z-index: -1;
+    width: 100%;
+    height: 150px; 
+}
+
+.profile-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    padding-left: 13rem;
+    padding-right: 13rem;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.profile-picture {
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.default-profile-picture {
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ccc;
+    justify-content: center;
+    align-items: center;
+}
+
+.default-profile-picture i {
+    font-size: 100px; 
+    color: #fff;
+}
+
+    .log-weight-container {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        gap: 1rem;
+    }
+
+    .log-weight-text {
+        font-size: 50px;
+        color: rgb(18, 16, 59);
+        font-family: "Pridi", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+ .add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    margin-top: 30px;
+    background-color: #9ddeb15a;
+    color: rgb(72, 94, 83);
+    border-radius: 50px;
+    cursor: pointer;
+    width: 100px;
+    border: 2px solid orange; /* Add an orange border */
+}
+
+    .add-button i {
+        margin-right: 5px;
+        color: rgb(63, 158, 63);
+    }
+
+    .add-button:hover {
+        background-color: #00b31e;
+    }
+
+
+/* Table  */
+.table-wrapper {
+    margin: 0 auto;
+    width: 80%; 
+    padding-left: 13rem; 
+    padding-right: 13rem; 
+    padding-bottom: 3rem;
+}
+
+.log-weight-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.log-weight-table th, .log-weight-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.log-weight-table th {
+    background-color: rgba(176, 213, 251, 0.644);
+}
+.log-weight-table td {
+    background-color: #ffffff;
+}
+
+
+/* Button */
+.edit-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-button i {
+    color: orange;
+    font-size: large;
+}
+
+.delete-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-button i {
+    color: red;
+    font-size: large;
+}
+
+/* Modal */
+/* 共通のモーダルのスタイル */
+.modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.modal-content {
+    background-color: white;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-header {
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* 編集モーダル専用のスタイル */
+.edit-modal .modal-header {
+    background-color: rgb(248, 223, 136);
+    border-radius: 10px;
+    font-family: "Pridi", serif;
+    font-weight: 400;
+    font-style: normal;
+    justify-content: center;
+}
+
+.edit-modal .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-modal .edit-modal-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.edit-modal-field label {
+  color: orange;
+}
+
+.edit-modal-field input {
+  text-align: center;
+}
+
+.edit-modal .modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    border-top: none;
+}
+
+.edit-modal button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 150px;
+}
+
+.edit-modal button.cancel-button {
+    background-color: white;
+    color: rgb(248, 223, 136);
+    border: 1px solid rgb(248, 223, 136); /* 枠線の色を設定 */
+}
+
+.edit-modal button.update-button {
+    background-color: rgb(248, 223, 136);
+    color: white;
+    border: 1px solid rgb(248, 223, 136); /* 枠線の色を設定 */
+}
+
+/* 削除モーダル専用のスタイル */
+.delete-modal .modal-header {
+    background-color: #FF6F61;
+    color: black;
+    border-radius: 10px;
+    font-family: "Pridi", serif;
+    font-weight: 400;
+    font-style: normal;
+    justify-content: center;
+}
+
+
+.delete-modal .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.delete-modal .modal-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.delete-modal .modal-row .delete-modal-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 中央揃えにするためのスタイル */
+}
+
+.delete-modal-field label {
+  color: #FF6F61;
+}
+
+.delete-modal .modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    border-top: none;
+}
+
+.delete-modal button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 150px;
+}
+
+.delete-modal button.cancel-button {
+    background-color: white;
+    color: #FF6F61;
+    border: 1px solid #FF6F61;
+}
+
+.delete-modal button.delete-button {
+    background-color: #FF6F61;
+    color: white;
+    border: 1px solid #FF6F61;
+}

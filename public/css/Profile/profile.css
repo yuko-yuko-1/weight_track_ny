@@ -47,10 +47,10 @@
     color: #fff; /* 絵文字の色 */
 }
 
-.username {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.user-name {
+    font-family: "Pridi", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 /* Profile Edit & Delete button */
@@ -122,6 +122,9 @@
     color: white;
     font-size: 16px;
     padding: 5px 10px;
+    font-family: "Pridi", serif;
+    font-weight: 400;
+    font-style: normal;
  }
     
    .user-posts-count{
@@ -227,7 +230,11 @@
 
 .latest-meal-container p{
     text-align: center;
-    margin: 1rem;
+    margin-top: 1rem;
+    font-family: "Pridi", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: large;
   }
 
 .latest-meal-list{
@@ -284,47 +291,68 @@
     }
 
 
- /* Delete Modal */
-.modal-title.text-danger {
-    color: #FF6F61; /* サーモンピンク */
+/* Delete Modal */
+.delete-account-modal-title {
+    color: #FF6F61;
+    text-align: center; /* Center the title text */
 }
 
 /* Cancel button */
 .btn-cancel-delete {
-    border-color: #FF6F61; /* サーモンピンクの枠線 */
-    color: #FF6F61; /* サーモンピンクの文字色 */
+    border-color: #FF6F61;
+    color: #FF6F61;
     border-radius: 20px;
-    border: none;
 }
 
-.btn-cancel-delete:hover {
-    background-color: #FF6F61; /* ホバー時の背景色をサーモンピンクに */
-    color: white; /* ホバー時の文字色を白に */
+/* Cancel button hover state */
+#deleteAccountModal .btn-cancel-delete:hover {
+    background-color: #FF6F61;
+    color: white;
 }
 
 /* Delete button */
 .btn-delete-account {
-    background-color: #FF6F61; /* サーモンピンクの背景色 */
-    color: white; /* 白の文字色 */
-    border: none;
+    background-color: #FF6F61;
+    color: white;
     border-radius: 20px;
 }
 
-.btn-delete-account:hover {
+/* Delete button hover state */
+#deleteAccountModal .btn-delete-account:hover {
     background-color: white;
     color: #FF5A4C;
 }
 
-/* モーダルのヘッダー、ボディ、フッターの境界線を削除 */
-.modal-header.border-danger, .modal-footer.border-0 {
+.delete-account-modal-header,
+.delete-account-modal-footer.border-0 {
     border: none;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
 }
 
-/* モーダルのコンテンツ全体のスタイル */
-.modal-content {
-    border-radius: 10px; 
+/* Modal content */
+.delete-account-modal-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.modal-body p {
+.delete-account-modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.delete-account-modal-body p {
     margin-bottom: 10px;
+}
+
+/* Center footer buttons */
+.delete-account-modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }

@@ -106,7 +106,7 @@
       </div>
 
     <div class="row profile-edit-button">
-            <button type="button" id="cancel-button" class="btn edit-cancel-button">Cancel</button>
+            <button type="button" id="cancel-button" class="btn edit-cancel-button" onclick="window.location.href = '{{ route('profile-main') }}'">Cancel</button>
             <button type="button" id="save-button" class="btn edit-save-button">Save</button>
     </div>
 

@@ -1,15 +1,15 @@
-<div class="modal fade" id="delete-account-#">
-    <div class="modal-dialog justify-content-center">
-        <div class="modal-content border-danger">
-            <div class="modal-header border-danger">
-                <h3 class="h5 modal-title text-danger">
-                    <i class="fa-solid fa-circle-exclamation"></i> Delete my account
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="delete-account-modal-content">
+            <div class="delete-account-modal-header">
+                <h3 class="h5 delete-account-modal-title" id="deleteAccountModalLabel">
+                    Delete my account
                 </h3>
             </div>
-            <div class="modal-body">
+            <div class="delete-account-modal-body">
                 <p>Are you sure you want to delete your account?</p>
             </div>
-            <div class="modal-footer border-0">
+            <div class="delete-account-modal-footer border-0">
                 <form action="#" method="POST">
                     @csrf
                     @method('DELETE')
