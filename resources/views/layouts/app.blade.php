@@ -94,7 +94,7 @@
                                 {{ Auth::user()->username }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('profile-main') }}"><i class="fa-regular fa-address-card"></i> {{ __('Profile') }}</a>
+                                <a class="dropdown-item" href="#"><i class="fa-regular fa-address-card"></i> {{ __('Profile') }}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -148,7 +148,7 @@
                                 </a>
                             </div>
                             <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('community/*') ? 'tab-action-color' : '' }}">
-                                <a href="" class=" h5 text-decoration-none text-dark">
+                                <a href="{{ route('community') }}" class=" h5 text-decoration-none text-dark">
                                     Community
                                 </a>
                             </div>
