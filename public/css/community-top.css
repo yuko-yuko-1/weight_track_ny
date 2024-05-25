@@ -1,6 +1,6 @@
 /* community-top.blade.php */
 .community-top-bg {
-    background-image: url("/images/community-top-bg.png");
+    background-image: url("/images/community/community-top-bg.png");
     background-size: cover;
     background-position: top;
     width: 100%;

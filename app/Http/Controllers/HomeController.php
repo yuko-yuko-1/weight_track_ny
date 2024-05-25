@@ -57,4 +57,9 @@ class HomeController extends Controller
         return view('profile.all-meal-posts');
     }
 
+    public function community()
+    {
+        return view('community.community-top');
+    }
+
 }
