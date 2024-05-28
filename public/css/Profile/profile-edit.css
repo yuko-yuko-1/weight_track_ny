@@ -3,6 +3,10 @@
     position: relative;
 }
 
+main {
+  background-color: rgb(248, 244, 237);
+}
+
 .background-photo {
     background-image: url("/images/Profile/profile-background.png");
     background-size: cover;

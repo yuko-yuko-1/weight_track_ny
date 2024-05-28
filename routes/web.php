@@ -14,6 +14,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/weight_and_meals/today', [HomeController::class, 'weight_and_meals'])->name('weight_and_meals');
     Route::get('/what-is-bmi', [HomeController::class, 'what_is_bmi'])->name('what-is-bmi');
 
+    Route::get('/community/top', [HomeController::class, 'community'])->name('community');
+
     ### ADMIN
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function(){
         #USERS
@@ -21,6 +23,5 @@ Route::group(['middleware' => 'auth'], function(){
         Route::delete('/users/{id}/deactivate', [UsersController::class, 'deactivate'])->name('users.deactivate');
         Route::patch('/users/{id}/activate', [UsersController::class, 'activate'])->name('users.activate');
         Route::delete('/user/{id}/destroy', [UsersController::class, 'destroy'])->name('users.destroy');
-
     });
 });

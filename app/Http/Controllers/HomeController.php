@@ -37,4 +37,29 @@ class HomeController extends Controller
     {
         return view('weight_and_meals.weight_and_meals');
     }
+
+    public function profile_main()
+    {
+        return view('profile.profile-main');
+    }
+    public function profile_edit()
+    {
+        return view('profile.profile-edit');
+    }
+
+    public function logweight_history()
+    {
+        return view('profile.logweight-history');
+    }
+
+    public function all_meal_posts()
+    {
+        return view('profile.all-meal-posts');
+    }
+
+    public function community()
+    {
+        return view('community.community-top');
+    }
+
 }

@@ -1,0 +1,119 @@
+/* community-top.blade.php */
+.community-top-bg {
+    background-image: url("/images/community/community-top-bg.png");
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    height: 200px; 
+    position: relative;/*相対配置*/
+}
+
+.community-top-title {
+  position: absolute;/*絶対配置*/
+  font-family: 'Pompiere';
+  font-size: 100px;
+  font-weight: bold;
+  text-shadow: 0px 3px 3px #808080;
+  color: white;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  }
+
+  /* All below community-top-title */
+.community-main{
+  padding-left: 250px;  
+  padding-right: 250px;
+}
+
+/* left top user location */
+a {
+  text-decoration: none; /* delete underline from user location list (left top) */
+}
+
+/*  ALL Community letter decoration　*/
+.all-community-title {
+    font-family: 'Righteous';
+    font-size: 45px;
+    color:#ff8500;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+}
+
+.community-search-form {
+  display: flex;  
+  justify-content: center; 
+}
+
+.form-control {
+  border: none;
+  margin-left: -20px;
+}
+
+.community-search-bar {
+  border: 0.5px solid #ff8500;
+  display: inline-block; 
+  position: relative;    
+  width: 60%;
+  padding: 3px 0 3px 2em;
+  align-items: end;
+}
+
+/*  search bar magnifying glass */
+.magnifying-glass {
+  background-color: #ff8500;
+  text-align:center;
+  color: white;
+  height: 50x;
+  width: 70px;
+}
+
+.all-community {
+  justify-content: center;
+}
+
+/* each community border */
+.each-community {
+  display: block;
+  border: 5px solid #ff8500;
+  margin: 40px;
+  border-radius: 2rem;
+  width: 250px;
+  height: 350px;
+}
+
+/* category name */
+.community-categories {
+  font-family: 'Righteous';
+  color:#a8d2a2;
+  font-size: 40px;
+  text-align: center;
+  margin:0 auto;
+  width: 100%;
+}
+
+/* category images */
+.categories-images {
+  display: block;
+  justify-content: center; 
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  margin: auto;
+}
+
+.navcom {
+  display: flex;
+}
+
+.user-location {
+  color:#9e9e9e;
+}
+
+.user-location::after {
+  content: " > ";
+}
+
+
+  

@@ -156,7 +156,7 @@
                                 </a>
                             </div>
                             <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('community/*') ? 'tab-action-color' : '' }}">
-                                <a href="" class=" h5 text-decoration-none text-dark">
+                                <a href="{{ route('community') }}" class=" h5 text-decoration-none text-dark">
                                     Community
                                 </a>
                             </div>
