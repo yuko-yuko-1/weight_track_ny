@@ -126,9 +126,9 @@
                                 <i class="fa-solid fa-users"></i> Users
                             </a>
 
-                            {{-- <a href="{{ route('admin.community') }}" class="list-group-item {{ request()->is('admin/community') ? 'active' : '' }}">
-                                <i class="fa-solid fa-newspaper"></i> Community
-                            </a> --}}
+                            <a href="{{ route('admin.communities') }}" class="list-group-item {{ request()->is('admin/communities') ? 'active' : '' }}">
+                                <i class="fa-solid fa-newspaper"></i> Communities
+                            </a>
 
                             {{-- <a href="{{ route('admin.posts') }}" class="list-group-item {{ request()->is('admin/posts') ? 'active' : '' }}">
                                 <i class="fa-solid fa-tags"></i> Community Posts
