@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\CommunitiesController;
 
 Auth::routes();
 
@@ -23,5 +24,10 @@ Route::group(['middleware' => 'auth'], function(){
         Route::delete('/users/{id}/deactivate', [UsersController::class, 'deactivate'])->name('users.deactivate');
         Route::patch('/users/{id}/activate', [UsersController::class, 'activate'])->name('users.activate');
         Route::delete('/user/{id}/destroy', [UsersController::class, 'destroy'])->name('users.destroy');
+        #COMMUNIIES
+        Route::get('/communities', [CommunitiesController::class, 'index'])->name('communities');
+        Route::post('/categproes/store', [CommunitiesController::class, 'store'])->name('communities.store');
+        Route::patch('/communities/{id}/update', [CommunitiesController::class, 'update'])->name('communities.update');
+        Route::delete('/communities/{id}/destroy', [CommunitiesController::class, 'destroy'])->name('communities.destroy');
     });
 });

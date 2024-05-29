@@ -48,3 +48,15 @@ main {
   .tab-action-color {
     background-color: #E7EEF5;
   }
+
+
+/* Admin */
+.icon-md {
+    font-size: 3.5rem;
+}
+
+.avatar-md {
+    width: 3.5rem;
+    height: 3.5rem;
+    object-fit: cover;
+}
