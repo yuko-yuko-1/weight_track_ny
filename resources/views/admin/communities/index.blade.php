@@ -55,7 +55,7 @@
                         {{-- イメージ --}}
                         <td>
                             @if ($community->image)
-                                <img src="{{ $community->image }}" alt="{{ $community->name }}" class="rounded-circle d-block mx-auto avatar-md">
+                                <img src="{{ asset('images/community/' . $community->image) }}" alt="{{ $community->name }}" class="rounded-circle d-block mx-auto avatar-md">
                             @else
                                 <i class="fa-solid fa-circle-user d-block text-center icon-md"></i>
                             @endif

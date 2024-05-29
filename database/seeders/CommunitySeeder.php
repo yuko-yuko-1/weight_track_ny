@@ -23,49 +23,49 @@ class CommunitySeeder extends Seeder
         [
             [
                 'name'       => 'Healty Food',
-                'image'      => '/images/community/community-healthyfood.png',
+                'image'      => 'community-healthyfood.png',
                 'created_at' => Now(),
                 'updated_at' => Now()
             ],
             [
                 'name'       => 'Excercise',
-                'image'      => '/images/community/community-excercise.png',
+                'image'      => 'community-excercise.png',
                 'created_at' => Now(),
                 'updated_at' => Now()
             ],
             [
                 'name'       => 'Yoga',
-                'image'      => '/images/community/community-yoga.png',
+                'image'      => 'community-yoga.png',
                 'created_at' => Now(),
                 'updated_at' => Now()
             ],
             [
                 'name'       => 'Build Muscle',
-                'image'      => '/images/community/community-muscle.png',
+                'image'      => 'community-muscle.png',
                 'created_at' => Now(),
                 'updated_at' => Now()
             ],
             [
                 'name'       => 'Sleep',
-                'image'      => '/images/community/community-sleep.png',
+                'image'      => 'community-sleep.png',
                 'created_at' => Now(),
                 'updated_at' => Now()
             ],
             [
                 'name'       => 'Hobby',
-                'image'      => '/images/community/community-hobby.png',
+                'image'      => 'community-hobby.png',
                 'created_at' => Now(),
                 'updated_at' => Now()
             ],
             [
                 'name'       => 'Pets',
-                'image'      => '/images/community/community-pets.png',
+                'image'      => 'community-pets.png',
                 'created_at' => Now(),
                 'updated_at' => Now()
             ],
             [
                 'name'       => 'Stress Management',
-                'image'      => '/images/community/community-stressmanagement.png',
+                'image'      => 'community-stressmanagement.png',
                 'created_at' => Now(),
                 'updated_at' => Now()
             ]

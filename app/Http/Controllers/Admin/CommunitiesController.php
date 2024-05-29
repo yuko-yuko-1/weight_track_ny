@@ -30,10 +30,15 @@ class CommunitiesController extends Controller
             'name' => 'required|min:1|max:50|unique:communities,name',
             'image' => 'mimes:jpeg,jpg,png,gif|max:1048',
         ]); 
-
+        $file = $request->file('image');
         $this->community->name  = ucwords(strtolower($request->name));
-        // coOKing -> cooking -> Cooking
-        $this->community->image = 'data:image/' . $request->image->extension() . ';base64,' . base64_encode(file_get_contents($request->image));
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('/images/community'), $filename);
+        // $this->community->image = 'data:image/' . $request->image->extension() . ';base64,' . base64_encode(file_get_contents($request->image));
+        // $this->community->save();
+
+        // Save the filename to the database
+        $this->community->image = $filename;
         $this->community->save();
 
         return redirect()->back();
