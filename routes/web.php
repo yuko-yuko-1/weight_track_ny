@@ -10,3 +10,23 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 Route::get('/what-is-bmi', function () {
     return view('what-is-bmi');
 });
+
+Route::get('/community-all-posts', function(){
+     return view('community.community-all-posts');
+});
+
+Route::get('/create-new-posts', function(){
+    return view('community.modals.create-new-posts');
+});
+
+Route::get('/edit', function(){
+    return view('community.modals.edit');
+});
+
+// Route::get('/delete', function(){
+//     return view('community.modals.delete');
+// });
+
+
+
+
