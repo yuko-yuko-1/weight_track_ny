@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\ChartController;
 
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CommunitiesController;
@@ -9,6 +11,7 @@ use App\Http\Controllers\Admin\CommunitiesController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+Route::get('/weight-and-meals', [CalendarController::class, 'show']);
 
 // Middleware
 Route::group(['middleware' => 'auth'], function(){
