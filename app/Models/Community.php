@@ -8,6 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Community extends Model
 {
     use HasFactory;
-
-
 }
