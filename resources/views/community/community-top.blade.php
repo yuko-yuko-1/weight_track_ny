@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-4 mt-5 navcom">  
             <a href="{{ route('index')}}"><h5 class="user-location"><i class="fa-solid fa-house"></i>&ensp; Home &ensp;</h5></a>
-            <a href="#"><h5 class="user-location">&ensp; COMMUNITY &ensp;</h5></a>
+            <a href="{{ route('community')}}"><h5 class="user-location">&ensp; COMMUNITY &ensp;</h5></a>
             <a href="#"><h5 class="user-location">&ensp; Healthy food &ensp;</h5></a>          
         </div>
         <div class="col-4">
@@ -35,6 +35,24 @@
         </div>
 
     </div>
+
+    <div class="all-community">
+        <div class="row">
+            @forelse($all_communities as $community)
+            <div class="col-lg-3 col-md-6 each-community">
+                <a href="#">
+                    <h3 class="community-categories mt-3 py-2">{{ $community->name }}</h3> 
+                    <img src="{{ $community->image }}" class="categories-images">
+                </a> 
+            </div>
+            @empty 
+            <tr>
+                <td colspan="5">No communities found.</td>
+            </tr>
+            @endforelse
+        </div>
+    </div>
+
     <div class="all-community">
         <div class="row">
             <div class="col each-community">
