@@ -36,8 +36,8 @@
         </div>
           <div class="modal-footer mx-auto mb-3">
 
-            <button type="button" class="btn-cancel btn-sm" data-bs-dismiss="modal" style="background-color: #fff; border-color: #A8D2A2; color: #A8D2A2">Cancel</button>
-            <button type="submit" class="btn-post btn-sm" style="background-color: #A8D2A2; border-color: #A8D2A2; color: #fff;">Post</button>
+            <button type="button" class="newposts-btn-cancel btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="newposts-btn-post btn-sm">Post</button>
 
           </div>
         </div>

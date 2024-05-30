@@ -311,11 +311,59 @@
     margin-left: -40px;
 }
 
+/* Create New Posts Modal */
+.newposts-btn-cancel{
+    background-color: #fff;
+    border-color: #A8D2A2;
+    color: #A8D2A2;
+    border-radius: 110px;
+    width: 100;
+}
+
+.newposts-btn-post{
+    background-color: #A8D2A2;
+    border-color: #A8D2A2;
+    color: #fff;
+    border-radius: 110px;
+    width: 100;
+}
+
+
+/* Edit Modal */
+.edit-btn-cancel{
+    background-color: white;
+    border-radius: 110px;
+    border-color: #F8DF88;
+    width: 100;
+    margin-right: 10px;
+    color: #F8DF88;
+}
+
+.edit-btn-post{
+    background-color: #F8DF88;
+    border-color: #F8DF88;
+    color: #fff;
+    width: 100;
+    border-radius: 110px;
+}
+
+
 
 /* Delete Modal */
 
-.btn-delete{
+.delete-btn-delete{
     width: 100;
+    background-color: #FD7168;
+    border-color: #FD7168;
+    color: #fff;
+    border-radius: 110px;
 
 }
 
+.delete-btn-cancel{
+    background-color: #fff;
+    border-color: #FD7168;
+    color: #FD7168;
+    width: 100;
+    border-radius: 110px;
+}

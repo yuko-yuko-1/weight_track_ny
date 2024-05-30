@@ -16,8 +16,8 @@
 
             <div class="modal-footer mx-auto mb-3">
 
-            <button type="button" class="btn-cancel btn-sm" data-bs-dismiss="modal" style="background-color: #fff; border-color: #FD7168; color: #FD7168">Cancel</button>
-            <button type="submit" class="btn-delete rounded-pill" style="background-color: #FD7168; border-color: #FD7168; color: #fff; widthwidth: 70px;">Delete</button>
+            <button type="button" class="delete-btn-cancel btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="delete-btn-delete">Delete</button>
 
             </div>
         </div>

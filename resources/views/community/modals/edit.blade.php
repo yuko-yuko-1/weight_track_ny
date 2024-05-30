@@ -35,8 +35,8 @@
 
         </div>
           <div class="modal-footer mx-auto">
-            <button type="button" class="modalClose btn-cancel btn-sm" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn-post btn-sm" >Post</button>
+            <button type="button" class="modalClose edit-btn-cancel btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="edit-btn-post btn-sm" >Post</button>
           </div>
         </div>
 </div>
