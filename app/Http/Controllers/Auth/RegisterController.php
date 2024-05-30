@@ -28,17 +28,17 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/weight_and_meals/today';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('guest');
-    // }
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -49,9 +49,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:100'],
+            'lastname' => ['required', 'string', 'max:100'],
+            'username' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'gender' => ['required'],
+            'height' => ['required', 'numeric', 'min:100', 'max:250'],
+            'prime_weight' => ['required', 'numeric', 'min:0', 'max:200'],
+            'goal_weight' => ['required', 'numeric', 'min:0', 'max:200'],
+            'goal_date' => ['required', 'date', 'date_format:Y-m-d', 'after:today'],
+            'purpose' => ['required',],
         ]);
     }
 
@@ -64,9 +72,17 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'gender' => $data['gender'],
+            'height' => $data['height'],
+            'prime_weight' => $data['prime_weight'],
+            'goal_weight' => $data['goal_weight'],
+            'goal_date' => $data['goal_date'],
+            'purpose' => $data['purpose'],
         ]);
     }
 }

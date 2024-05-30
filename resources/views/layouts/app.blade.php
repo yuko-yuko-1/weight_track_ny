@@ -27,12 +27,23 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-0">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <div class="navbar-brand d-flex align-items-center">
-                        <img src="{{ asset('images/logo.png') }}" alt="Logo">
-                        <h1 class="h5 mb-0 ms-2">{{ config('app.name') }}</h1>
-                    </div>
-                </a>
+                @guest
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <div class="navbar-brand d-flex align-items-center">
+                            <img src="{{ asset('images/logo.png') }}" alt="Logo">
+                            <h1 class="h5 mb-0 ms-2">{{ config('app.name') }}</h1>
+                        </div>
+                    </a>
+                @endguest
+                @auth
+                    <a class="navbar-brand" href="{{ url('/weight_and_meals/today') }}">
+                        <div class="navbar-brand d-flex align-items-center">
+                            <img src="{{ asset('images/logo.png') }}" alt="Logo">
+                            <h1 class="h5 mb-0 ms-2">{{ config('app.name') }}</h1>
+                        </div>
+                    </a>
+                @endauth
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -65,7 +76,7 @@
                     @else
                         <!-- If Authenticated -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('What\'s BMI') }}</a>
+                            <a class="nav-link" href="{{ route('what-is-bmi')}}">{{ __('What\'s BMI') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{ __('About us') }}</a>
@@ -75,20 +86,29 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle nav-user-info" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @if(Auth::user()->profile_photo_path)
-                                    <img src="{{ Auth::user()->profile_photo_path }}" alt="{{ Auth::user()->name }}" class="nav-profile-image">
+                                @if(Auth::user()->avatar)
+                                    <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }}" class="nav-profile-image">
                                 @else
                                    <i class="fas fa-user-circle" style="font-size: 30px; border-radius: 50%;"></i>
                                 @endif
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->username }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                @can('admin')
+                                    <a href="{{ route('admin.users') }}" class="dropdown-item">
+                                        <i class="fa-solid fa-user-gear"></i> Admin
+                                    </a>
+                                    <hr class="dropdown-divider">
+                                @endcan
                                 <a class="dropdown-item" href="#"><i class="fa-regular fa-address-card"></i> {{ __('Profile') }}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
                                 </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
                     @endguest
@@ -97,37 +117,67 @@
             </div>
         </nav>
 
-
-          {{-- <div class="container">
+        @if (request()->is('admin/*'))
+            <div class="container mt-4">
                 <div class="row justify-content-center">
-                    Admin Controls 下記はアドミン準備できたらコメントから戻す
-                    @if (request()->is('admin/*'))
-                        <div class="col-3">
-                            <div class="list-group">
-                                <a href="{{ route('admin.users') }}" class="list-group-item {{ request()->is('admin/users') ? 'active' : '' }}">
-                                    <i class="fa-solid fa-users"></i> Users
+                    <div class="col-3">
+                        <div class="list-group">
+                            <a href="{{ route('admin.users') }}" class="list-group-item {{ request()->is('admin/users') ? 'active' : '' }}">
+                                <i class="fa-solid fa-users"></i> Users
+                            </a>
+
+                            <a href="{{ route('admin.communities') }}" class="list-group-item {{ request()->is('admin/communities') ? 'active' : '' }}">
+                                <i class="fa-solid fa-newspaper"></i> Communities
+                            </a>
+
+                            {{-- <a href="{{ route('admin.posts') }}" class="list-group-item {{ request()->is('admin/posts') ? 'active' : '' }}">
+                                <i class="fa-solid fa-tags"></i> Community Posts
+                            </a> --}}
+
+                            {{-- <a href="{{ route('admin.suggestions') }}" class="list-group-item {{ request()->is('admin/suggestions') ? 'active' : '' }}">
+                                <i class="fa-solid fa-tags"></i> Suggestions
+                            </a> --}}
+                        </div>
+                    </div> 
+                    <main class="col-9">
+                        @yield('content')
+                    </main>                
+                </div>
+            </div>
+        @else
+            {{-- Header after log-in --}}
+            @if (request()->is('weight_and_meals/*') || request()->is('community/*') || request()->is('suggestion/*'))
+                <header class="my-0">
+                    <div class="container-fluid">
+                        <div class="row text-center">
+                            <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('weight_and_meals/*') ? 'tab-action-color' : '' }}">
+                                <a href="{{ url('/weight_and_meals/today') }}" class=" h5 text-decoration-none text-dark">
+                                    Weight & Meals
                                 </a>
-                                <a href="{{ route('admin.community') }}" class="list-group-item {{ request()->is('admin/community') ? 'active' : '' }}">
-                                    <i class="fa-solid fa-newspaper"></i> Community
+                            </div>
+                            <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('community/*') ? 'tab-action-color' : '' }}">
+                                <a href="{{ route('community') }}" class=" h5 text-decoration-none text-dark">
+                                    Community
                                 </a>
-                                <a href="{{ route('admin.posts') }}" class="list-group-item {{ request()->is('admin/posts') ? 'active' : '' }}">
-                                    <i class="fa-solid fa-tags"></i> Community Posts
-                                </a>
-                                <a href="{{ route('admin.suggestions') }}" class="list-group-item {{ request()->is('admin/suggestions') ? 'active' : '' }}">
-                                    <i class="fa-solid fa-tags"></i> Suggestions
+                            </div>
+                            <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('suggestion/*') ? 'tab-action-color' : '' }}">
+                                <a href="" class=" h5 text-decoration-none text-dark">
+                                    Suggestion
                                 </a>
                             </div>
                         </div>
-                    @endif
-              </div>
-            </div> --}}
+                    </div>
+                </header> 
+            @endif
+            <main>
+                @yield('content')
+            </main>
+        @endif   
+    
+        @include('footer')
 
-        <main>
-            @yield('content')
-        </main>
     </div>
 
-    @include('footer')
 </body>
 </html>
 

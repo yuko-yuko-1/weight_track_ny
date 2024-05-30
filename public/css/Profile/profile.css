@@ -1,0 +1,358 @@
+/* Profile */
+.profile-wrapper {
+    background-color: rgb(248, 244, 237); 
+    position: relative;
+}
+
+.background-photo {
+    background-image: url("/images/Profile/profile-background.png");
+    background-size: cover;
+    background-position: top;
+    z-index: -1; /* プロフィール写真よりも後ろに配置 */
+    width: 100%;
+    height: 150px; 
+}
+
+.profile-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    padding-left: 13rem;
+    padding-right: 13rem;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: end; 
+    gap: 5px;
+}
+
+.profile-picture {
+    width: 100px; /* プロフィール写真の幅 */
+    height: 100px; /* プロフィール写真の高さ */
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.default-profile-picture {
+    width: 100px; /* プロフィール写真の幅 */
+    height: 100px; /* プロフィール写真の高さ */
+    border-radius: 50%;
+    background-color: #ccc; /* 仮のプロフィール写真の背景色 */
+    justify-content: center;
+    align-items: center;
+}
+
+.default-profile-picture i {
+    font-size: 100px; /* 絵文字のサイズ */
+    color: #fff; /* 絵文字の色 */
+}
+
+.user-name {
+    font-family: "Pridi", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Profile Edit & Delete button */
+.action-buttons {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 13rem;
+}
+
+.edit-button,
+.delete-button {
+    width: 100px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px; 
+    cursor: pointer;
+    margin-left: 10px; /* ボタン間の余白 */
+    text-align: center; /* ボタンのテキストを中央揃えにする */
+}
+
+.edit-button {
+    background-color: #0e93c8;
+    color: #fff; 
+}
+
+.delete-button {
+    background-color: #fff;
+    color: #0e93c8; 
+}
+
+.edit-button:hover,
+.delete-button:hover {
+    opacity: 0.6;
+}
+
+/* Profile Left & Right */
+.user-display-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* Profile Left */
+.user-basic-info{
+  background-color: #fff;
+  padding: 1rem;
+  height: 23rem;
+  width: 35rem;
+}
+  .user-basic-info input[type="text"],
+  .user-basic-info input[type="email"],
+  .user-basic-info input[type="number"],
+  .user-basic-info input[type="date"],
+  .user-basic-info textarea {
+    border: none;
+    border-bottom: 1px solid; 
+    padding: 5px;
+    width: 100%; /* 入力フィールドの幅を100%に設定 */
+    box-sizing: border-box; /* paddingとborderを要素の幅に含める */
+    margin-bottom: 5px;
+  }
+
+.goal_date{
+    text-align: center;
+    border-radius: 50%;
+    background-color: #b87eeb;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    font-family: "Pridi", serif;
+    font-weight: 400;
+    font-style: normal;
+ }
+    
+   .user-posts-count{
+      display: flex;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+.check-posts-button {
+    display: block; /* ブロック要素に変更 */
+    margin: 0 auto; /* 左右のマージンを自動調整して中央に配置 */
+    padding: 5px 20px;
+    border: none;
+    border-radius: 10px; 
+    background-color: rgb(254,109,115);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.check-posts-button:hover {
+    opacity: 0.6;
+}
+
+  /* Profile Right */
+  .user-measurements{
+  background-color: #fff;
+  padding: 1rem;
+  height: 23rem;
+  width: 35rem;
+  }
+
+  .user-measurements input[type="text"],
+  .user-measurements input[type="number"] {
+    border: none;
+    border-bottom: 1px solid;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .log-weight-history-button {
+        display: inline-block;
+        padding: 5px 20px;
+        border: none;
+        border-radius: 10px;
+        background-color: rgb(52, 203, 103);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 30px;
+    }
+
+  .log-weight-history-button:hover {
+    opacity: 0.6;
+   }
+
+  .input-with-unit{
+      display: flex;
+      margin-bottom: 5px;
+    }
+
+  .tarcking-goal {
+    text-align: center; 
+    margin-top: 15px;
+  }
+
+  /* .tarcking-goal img {
+    max-width: 100%; 
+    height: auto;
+    max-height: 200px; 
+} */
+
+/* Tracking meter */
+.tracking-goal-meter {
+  width: 250px; 
+  height: 20px; 
+  background-color: #c2f1fa; /* メーターの背景色 */
+  border-radius: 10px; /* メーターの角丸 */
+  overflow: hidden; /* メーター内の進捗バーがはみ出さないようにする */
+  margin-top: 30px;
+  border: 2px solid #b0c3f7;
+}
+
+.tracking-goal {
+  height: 100%; /* 進捗バーの高さ */
+  background-color: #007bff; /* 進捗バーの色 */
+  width: 0%; /* 初期状態では幅0 */
+  transition: width 0.5s ease; /* 幅の変化をアニメーション化 */
+}
+
+/* Latest Meal Container */
+  .latest-meal-container{
+  background-color: #fff;
+  height: 23rem;
+  width: 73rem;
+  margin: 3rem auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  }
+
+.latest-meal-container p{
+    text-align: center;
+    margin-top: 1rem;
+    font-family: "Pridi", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: large;
+  }
+
+.latest-meal-list{
+  display: flex;
+}
+
+.meal-item {
+    width: calc(33.33% - 10px); /* コンテナ幅の1/3、間隔分の10pxを除く */
+    margin: 2rem; /* 写真間の間隔 */
+    height: 12rem; /* 画像の高さ */
+    border-radius: 20px;
+    background-color:rgb(248, 244, 237); /* 仮の背景色 */
+}
+
+.view-meals-button {
+   text-align: center;
+   margin-bottom: 1rem;
+}
+
+.view-meals-button button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(255,174,86);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.view-meals-button:hover {
+    opacity: 0.6;
+}
+
+/* BMI barometer */
+.chartMenu {
+        width: 100vw;
+        height: 40px;
+        background: #1A1A1A;
+        color: rgba(54, 162, 235, 1);
+    }
+
+    .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+    }
+    
+    /* Inner Box */
+    .chartBox {
+        width: 280px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+/* Delete Modal */
+.delete-account-modal-title {
+    color: #FF6F61;
+    text-align: center; /* Center the title text */
+}
+
+/* Cancel button */
+.btn-cancel-delete {
+    border-color: #FF6F61;
+    color: #FF6F61;
+    border-radius: 20px;
+}
+
+/* Cancel button hover state */
+#deleteAccountModal .btn-cancel-delete:hover {
+    background-color: #FF6F61;
+    color: white;
+}
+
+/* Delete button */
+.btn-delete-account {
+    background-color: #FF6F61;
+    color: white;
+    border-radius: 20px;
+}
+
+/* Delete button hover state */
+#deleteAccountModal .btn-delete-account:hover {
+    background-color: white;
+    color: #FF5A4C;
+}
+
+.delete-account-modal-header,
+.delete-account-modal-footer.border-0 {
+    border: none;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+/* Modal content */
+.delete-account-modal-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.delete-account-modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.delete-account-modal-body p {
+    margin-bottom: 10px;
+}
+
+/* Center footer buttons */
+.delete-account-modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}

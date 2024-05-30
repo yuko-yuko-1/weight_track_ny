@@ -1,0 +1,146 @@
+.profile-wrapper {
+    background-color: rgb(248, 244, 237); 
+    position: relative;
+}
+
+main {
+  background-color: rgb(248, 244, 237);
+}
+
+.background-photo {
+    background-image: url("/images/Profile/profile-background.png");
+    background-size: cover;
+    background-position: top;
+    z-index: -1; /* プロフィール写真よりも後ろに配置 */
+    width: 100%;
+    height: 150px; 
+}
+
+.profile-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    padding-left: 13rem;
+    padding-right: 13rem;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: end;
+}
+
+.profile-picture-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-picture, .default-profile-picture {
+    width: 100px; /* プロフィール写真の幅 */
+    height: 100px; /* プロフィール写真の高さ */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.default-profile-picture {
+    background-color: #ccc; /* 仮のプロフィール写真の背景色 */
+}
+
+.default-profile-picture i {
+    font-size: 100px; /* 絵文字のサイズ */
+    color: #fff; /* 絵文字の色 */
+}
+
+.camera-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 20px; /* アイコンのサイズ */
+    background-color: white;
+    border-radius: 50%;
+    padding: 4px;
+    border: 1px solid #ccc; /* アイコンの周りの枠線 */
+    color: #808080;
+}
+
+/* Profile edit area */
+label {
+  display: block;
+  transform: translate(0, -250%);
+}
+
+input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 5px;
+  border-radius: 20px; 
+  border: 1px solid #ccc;
+  transform: translate(0, -150%);
+}
+
+/* Select Puropose Button */
+.custom-radio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-radio .radio-button {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 20px; 
+    width: 95%;
+    text-align: center;
+    margin-bottom: 15px;
+    transform: translate(0, -120%);
+    border: 1px solid #49884b85; /* 緑色の枠線 */
+}
+
+.custom-radio .radio-button:hover {
+    background-color: #7ccce962;
+}
+
+.custom-radio input[type="radio"] {
+    display: none;
+}
+
+.custom-radio input[type="radio"]:checked + .radio-button {
+    background-color: #23964ac0;
+    color: #fff;
+}
+
+.select-options {
+    display: flex;
+}
+
+/* Cancel Save button */
+.profile-edit-button{
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  gap: 10px;
+}
+
+.btn {
+    width: 200px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px; 
+    cursor: pointer;
+    text-align: center; /* ボタンのテキストを中央揃えにする */
+    margin-bottom: 15px; /* ボタン間の余白 */
+}
+
+.edit-cancel-button {
+    background-color: #fff;
+    color: #0e93c8; 
+}
+
+.edit-save-button {
+    background-color: #0e93c8;
+    color: #fff; 
+}
+
+.btn:hover {
+    opacity: 0.6;
+}
