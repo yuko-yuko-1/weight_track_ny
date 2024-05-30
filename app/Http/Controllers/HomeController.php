@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Community;
 
 class HomeController extends Controller
 {
@@ -57,9 +58,17 @@ class HomeController extends Controller
         return view('profile.all-meal-posts');
     }
 
-    public function community()
-    {
-        return view('community.community-top');
+    private $community;
+
+    public function __construct(Community $community){
+        $this->community = $community;
     }
 
+    public function community()
+    {
+        $all_communities = $this->community->orderBy('id')->get();
+
+        return view('community.community-top')->with('all_communities', $all_communities);
+    }
+    
 }
