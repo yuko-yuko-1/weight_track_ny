@@ -42,8 +42,8 @@ $achievementPercentage = $user->achievement_percentage;
                </div>
         </div> 
         
-        @include('weight-and-meals.modals.record')
-        @include('weight-and-meals.modals.post_meals')
+        @include('weight_and_meals.modals.record')
+        @include('weight_and_meals.modals.post_meals')
 
     </div>
     
@@ -113,7 +113,7 @@ $achievementPercentage = $user->achievement_percentage;
                                     <div class="col-6">
                                         <button type="button" class="btn dropdown-item text-end" data-bs-toggle="modal" data-bs-target="#meals_delete"><i class="fa-regular fa-trash-can"></i></button>
                                     </div>
-                                    @include('weight-and-meals.modals.meals_delete')
+                                    @include('weight_and_meals.modals.meals_delete')
                                 </div>
                                 <div class="row-7">
                                     <div class="post_meal">
