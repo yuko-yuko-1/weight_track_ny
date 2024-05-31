@@ -11,11 +11,10 @@ use App\Http\Controllers\Admin\CommunitiesController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-Route::get('/weight-and-meals', [CalendarController::class, 'show']);
 
 // Middleware
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/weight_and_meals/today', [HomeController::class, 'weight_and_meals'])->name('weight_and_meals');
+    Route::get('/weight_and_meals/today', [CalendarController::class, 'show'])->name('weight_and_meals');
     Route::get('/what-is-bmi', [HomeController::class, 'what_is_bmi'])->name('what-is-bmi');
 
     Route::get('/community/top', [HomeController::class, 'community'])->name('community');
