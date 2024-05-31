@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class ChartController extends Controller
@@ -13,7 +13,7 @@ class ChartController extends Controller
         // $labels = ['18','19','20','21'];
         // $data = [40,45,50,60];
 
-        return view('weight-and-meals/weight-and-meals');
+        return view('weight_and_meals/weight_and_meals');
        
     }
 }

@@ -151,7 +151,7 @@
                     <div class="container-fluid">
                         <div class="row text-center">
                             <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('weight_and_meals/*') ? 'tab-action-color' : '' }}">
-                                <a href="{{ url('/weight_and_meals/today') }}" class=" h5 text-decoration-none text-dark">
+                                <a href="{{ route('weight_and_meals')  }}" class=" h5 text-decoration-none text-dark">
                                     Weight & Meals
                                 </a>
                             </div>
