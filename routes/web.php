@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\WeightController;
+use App\Http\Controllers\MealController;
+
 
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CommunitiesController;
@@ -14,7 +17,17 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 
 // Middleware
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/weight_and_meals/today', [CalendarController::class, 'show'])->name('weight_and_meals');
+    Route::get('/weight_and_meals/today', [CalendarController::class, 'show'])->name('meal.today');
+
+    // Route::get('/weight_and_meals/today/create', [MealController::class, 'create'])->name('meal.today');
+    Route::post('/weight_and_meals/today/meal_store', [MealController::class, 'store'])->name('meal.store');
+
+    
+    Route::post('/weight_and_meals/today/weight_store', [WeightController::class, 'store'])->name('weight.store');
+
+
+
+
     Route::get('/what-is-bmi', [HomeController::class, 'what_is_bmi'])->name('what-is-bmi');
 
     Route::get('/community/top', [HomeController::class, 'community'])->name('community');
@@ -49,7 +62,5 @@ Route::get('/edit', function(){
 // Route::get('/delete', function(){
 //     return view('community.modals.delete');
 // });
-
-
 
 
