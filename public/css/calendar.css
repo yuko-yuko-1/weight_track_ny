@@ -72,6 +72,7 @@ header .icons span:last-child{
 }
 .days{
     padding: 0px ;
+    margin-bottom: -16px;
 }
 .calender .weeks li{
     font-weight: 500;

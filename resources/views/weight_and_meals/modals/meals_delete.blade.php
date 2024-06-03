@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="modal-footer border-0 modal_btn">
-            <form action="" method="post">
+            <form action="{" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="button" data-bs-dismiss="modal" class="btn btn-sm btn-outline-danger">Cancel</button>

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('meals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id'); //foreign key ; owner of the post
+            $table->date('record_date');
             $table->longText('image');
             $table->text('description'); //Memo
             $table->timestamps();

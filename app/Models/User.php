@@ -58,4 +58,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //user has many weights records
+    public function weights(){
+        return $this->hasmany(Weight::class);
+    }
+
+    //user has many weights records
+    public function meals(){
+         return $this->hasmany(Meal::class);
+    }
 }
