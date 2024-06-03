@@ -9,6 +9,11 @@ use App\Models\Community;
 
 class HomeController extends Controller
 {
+    private $community;
+
+    public function __construct(Community $community){
+        $this->community = $community;
+    }
     /**
      * Create a new controller instance.
      *
@@ -56,12 +61,6 @@ class HomeController extends Controller
     public function all_meal_posts()
     {
         return view('profile.all-meal-posts');
-    }
-
-    private $community;
-
-    public function __construct(Community $community){
-        $this->community = $community;
     }
 
     public function community()
