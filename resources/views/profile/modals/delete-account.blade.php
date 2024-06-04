@@ -1,4 +1,4 @@
-<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteAccountModal-{{ $user->id }}" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="delete-account-modal-content">
             <div class="delete-account-modal-header">
@@ -7,10 +7,10 @@
                 </h3>
             </div>
             <div class="delete-account-modal-body">
-                <p>Are you sure you want to delete your account?</p>
+                <p>Are you sure you want to delete your account? {{ $user->username }}</p>
             </div>
             <div class="delete-account-modal-footer border-0">
-                <form action="#" method="POST">
+                <form id="deleteAccountForm" action="{{ route('profile-destroy',['id' => auth()->user()->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn-cancel-delete btn-sm" data-bs-dismiss="modal">Cancel</button>

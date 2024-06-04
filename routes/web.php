@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LogWeightHistoryController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\WeightController;
@@ -29,6 +32,17 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::get('/what-is-bmi', [HomeController::class, 'what_is_bmi'])->name('what-is-bmi');
+
+
+
+   #Profile
+    Route::get('/profile/{id}/show',[ProfileController::class,'show'])->name('profile-main');
+    Route::get('/profile/edit',[ProfileController::class,'edit'])->name('profile-edit');
+    Route::patch('/profile/update',[ProfileController::class,'update'])->name('profile-update');
+    Route::delete('/profile/{id}/delete', [ProfileController::class, 'destroy'])->name('profile-destroy');
+
+    // Profile Log weight history
+    Route::get('/log-weight-history/{id}/show', [LogWeightHistoryController::class,'show'])->name('log-weight-history');
 
     Route::get('/community/top', [HomeController::class, 'community'])->name('community');
 

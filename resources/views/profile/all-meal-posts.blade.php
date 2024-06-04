@@ -14,9 +14,9 @@
     <div class="background-photo"></div>
     <div class="profile-container">
         <a href="{{ route('profile-main') }}">
-            @if(isset($profile_picture))
+            @if($user->avatar)
             <div class="profile-picture">
-                <img src="{{ $profile_picture }}" alt="profile pic">
+                <img src="{{ $user->avatar }}" alt="{{ $user->username }}">
             </div>
             @else
             <div class="default-profile-picture">

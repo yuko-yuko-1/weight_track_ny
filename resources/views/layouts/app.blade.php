@@ -87,7 +87,7 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle nav-user-info" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @if(Auth::user()->avatar)
-                                    <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->username }}" class="nav-profile-image">
+                                    <img src="{{ asset('images/Profile/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->username }}" class="nav-profile-image">
                                 @else
                                    <i class="fas fa-user-circle" style="font-size: 30px; border-radius: 50%;"></i>
                                 @endif
@@ -100,7 +100,7 @@
                                     </a>
                                     <hr class="dropdown-divider">
                                 @endcan
-                                <a class="dropdown-item" href="#"><i class="fa-regular fa-address-card"></i> {{ __('Profile') }}</a>
+                                <a class="dropdown-item" href="{{ route('profile-main', Auth::user()->id) }}" ><i class="fa-regular fa-address-card"></i> {{ __('Profile') }}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

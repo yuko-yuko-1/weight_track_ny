@@ -63,6 +63,11 @@ class HomeController extends Controller
         return view('profile.all-meal-posts');
     }
 
+    public function all_your_posts()
+    {
+        return view('profile.all-your-posts');
+    }
+
     public function community()
     {
         $all_communities = $this->community->orderBy('id')->get();
