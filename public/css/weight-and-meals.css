@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Pompiere&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Poppins';
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    padding: 0;
+}
+
+.hashboard_image{
+    background-image: url('/images/dashboard.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.btn_record,.btn_post{
+    border: 3px solid #FDC268;
+    border-radius: 2rem;
+    font-size: 0.5rem;
+    background-color: white;
+    padding: 0.5rem;
+    height: 40px;
+    width: 50px;
+}
+
+.btn_record:hover {
+    border: 3px solid #FDC268;
+    background-color: white;
+}
+.btn_post:hover {
+    border: 3px solid #FDC268;
+    background-color: white;
+}
+
+.record_btn{
+    display: flex;
+    justify-content: flex-end;
+
+}
+.post_btn{
+    display: flex;
+    justify-content: flex-start;
+    
+}
+.day_count{
+    display: flex;
+    justify-content: flex-start;
+}
+.icon1{
+    color: #3FC12D;
+}
+.icon2{
+    color: #FF8500;
+}
+.img1,.img2,.img3{
+    height: 300px;
+    width: 300px;
+   object-fit: contain;
+}
+.dashboard_main{
+    border: 3px solid #FDC268;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    height: 400px;
+    width: 380px;
+    margin: 16px;
+}
+.weightandmeals{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+/*  */
+.calendar-day {
+    width: 100px;
+    height: 100px;
+    float: left;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Middle */
+.wrapper2{
+    width: 450px;
+    background: #fff;
+    border-radius: 10px;
+}
+.wrapper2 header{
+    width: auto;
+    font-size: 1rem;
+    font-weight: 350;
+    display: flex;
+    align-items: center;
+    background-color: #F4F4F4;
+    margin: 20px 20px 0 20px;
+    justify-content: center;
+}
+
+.post_meal{
+    height: 250px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F4F4F4;
+    margin: 0 20px 0 20px;
+
+}
+.dashboard_post{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Bar */
+.goalbar{
+    height: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+/* Modal */
+.record_weight{
+    display: flex;
+    background-position: center;
+    background-size: cover;
+}
+.modal_record_letters{
+    font-family: 'Poppins';
+    color: #FD9F0F;
+    font-size: medium;
+    font-weight: 500;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+}
+.modal_meals_letters{
+    font-family: 'Poppins';
+    color: #FD9F0F;
+    font-size: medium;
+    font-weight: 500;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+}
+.modal-meal{
+    display: flex;
+    background-image: url('/images/onigiri.png');
+    background-position: center;
+    background-size: cover;
+}
+.modal_btn{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.modal-content{
+   margin: 20px;
+}
+.modal-body{
+    padding: 70px;
+} 
+.post_time, .post_memo{
+    margin: 0 20px 0 20px;
+}
+.modal-delete{
+    display: flex;
+    background-position: center;
+    background-size: cover;
+}
+.delete-body{
+    margin: -40px;
+}
+
+
+
+
+

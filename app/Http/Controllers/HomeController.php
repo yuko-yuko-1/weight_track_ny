@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Community;
 
 class HomeController extends Controller
 {
+    private $community;
+
+    public function __construct(Community $community){
+        $this->community = $community;
+    }
     /**
      * Create a new controller instance.
      *
@@ -33,10 +39,10 @@ class HomeController extends Controller
         return view('what-is-bmi');
     }
 
-    public function weight_and_meals()
-    {
-        return view('weight_and_meals.weight_and_meals');
-    }
+    // public function weight_and_meals()
+    // {
+    //     return view('weight_and_meals.weight_and_meals');
+    // }
 
     public function profile_main()
     {
@@ -62,4 +68,11 @@ class HomeController extends Controller
         return view('profile.all-your-posts');
     }
 
+    public function community()
+    {
+        $all_communities = $this->community->orderBy('id')->get();
+
+        return view('community.community-top')->with('all_communities', $all_communities);
+    }
+    
 }

@@ -1,0 +1,26 @@
+.wrapper3 header{
+    font-size: 0.5rem;
+    font-weight: 200;
+    display: flex;
+    align-items: left;
+    margin: 20px;
+    justify-content: left;
+}
+.mychart{
+    width: 350px;
+    height: 350px;
+    background: #fff;
+    border-radius: 10px;
+    margin: 16px;
+}
+.myfirstchart{
+    height: auto;
+    width: 100%;
+}
+
+.circle{
+    color: #FF2650;
+}
+.goalline{
+    color: #F67F96;
+}
