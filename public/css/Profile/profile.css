@@ -26,25 +26,26 @@
 }
 
 .profile-picture {
-    width: 100px; /* プロフィール写真の幅 */
-    height: 100px; /* プロフィール写真の高さ */
+    width: 100px; 
+    height: 100px; 
     border-radius: 50%;
+    object-fit: cover;
     justify-content: center;
     align-items: center;
 }
 
 .default-profile-picture {
-    width: 100px; /* プロフィール写真の幅 */
-    height: 100px; /* プロフィール写真の高さ */
+    width: 100px; 
+    height: 100px; 
     border-radius: 50%;
-    background-color: #ccc; /* 仮のプロフィール写真の背景色 */
+    background-color: #ccc;
     justify-content: center;
     align-items: center;
 }
 
 .default-profile-picture i {
-    font-size: 100px; /* 絵文字のサイズ */
-    color: #fff; /* 絵文字の色 */
+    font-size: 100px;
+    color: #fff;
 }
 
 .user-name {
@@ -110,12 +111,22 @@
     border: none;
     border-bottom: 1px solid; 
     padding: 5px;
-    width: 100%; /* 入力フィールドの幅を100%に設定 */
-    box-sizing: border-box; /* paddingとborderを要素の幅に含める */
-    margin-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    flex: 1;
   }
 
-.goal_date{
+.input-with-unit {
+    display: flex;
+    align-items: center;
+}
+
+.user-unit {
+    margin-left: 5px;
+}
+
+.goal_date_icon{
     text-align: center;
     border-radius: 50%;
     background-color: #b87eeb;
@@ -165,6 +176,12 @@
     padding: 5px;
     width: 100%;
     box-sizing: border-box;
+    text-align: center;
+  }
+
+  .weight-kg{
+    display: flex;
+    align-items: center;
   }
 
   .log-weight-history-button {
@@ -177,6 +194,7 @@
         font-size: 16px;
         cursor: pointer;
         margin-top: 30px;
+        text-decoration: none;
     }
 
   .log-weight-history-button:hover {

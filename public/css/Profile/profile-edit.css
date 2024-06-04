@@ -32,17 +32,18 @@ main {
     display: inline-block;
 }
 
-.profile-picture, .default-profile-picture {
-    width: 100px; /* プロフィール写真の幅 */
-    height: 100px; /* プロフィール写真の高さ */
+.profile-picture {
+    width: 100px; 
+    height: 100px; 
     border-radius: 50%;
-    display: flex;
+    object-fit: cover;
     justify-content: center;
     align-items: center;
 }
 
 .default-profile-picture {
-    background-color: #ccc; /* 仮のプロフィール写真の背景色 */
+    background-color: #ccc;
+    border-radius: 50%;
 }
 
 .default-profile-picture i {
@@ -144,3 +145,13 @@ input {
 .btn:hover {
     opacity: 0.6;
 }
+
+.password-error{
+    position: relative;
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 15px;
+    color: red;
+    bottom: 70px;
+}
+

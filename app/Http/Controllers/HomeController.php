@@ -57,4 +57,9 @@ class HomeController extends Controller
         return view('profile.all-meal-posts');
     }
 
+    public function all_your_posts()
+    {
+        return view('profile.all-your-posts');
+    }
+
 }

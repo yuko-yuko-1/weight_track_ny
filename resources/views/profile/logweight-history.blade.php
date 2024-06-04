@@ -13,21 +13,19 @@
 <div class="profile-wrapper">
    <div class="background-photo"></div>
     <div class="profile-container">
-          <a href="{{ route('profile-main') }}">
-            @if(isset($profile_picture))
-            <div class="profile-picture">
-                <img src="{{ $profile_picture }}" alt="profile pic">
-            </div>
+          <a href="{{ route('profile-main', ['id' => Auth::id()]) }}">
+           @if ($user->avatar)
+           <img src="{{ asset('images/Profile/' . $user->avatar) }}" alt="{{ $user->username }}" class="img-thumbnail rounded-circle profile-picture">
             @else
-            <div class="default-profile-picture">
-                <i class="fas fa-user-circle"></i>
-            </div>
+           <div class="default-profile-picture fa-solid text-secondary icon-lg">
+             <i class="fas fa-user-circle"></i>
+           </div>
             @endif
           </a>
           
           <div class="log-weight-container">
               <span class="log-weight-text">Log Weight History</span>
-              <button class="add-button" onclick="window.location.href = '# '">
+              <button class="add-button" onclick="window.location.href = '#'">
                   <i class="fas fa-pencil-alt"></i> Add
               </button>
           </div>
@@ -44,33 +42,33 @@
                 </tr>
             </thead>
             <tbody>
-            <tr>
-    <td class="col-3">2024/04/06</td>
-    <td class="col-3">45.7 Kg</td>
-    <td class="weight-change col-3"></td>
-    <td class="col-3">
-        <button class="edit-button" data-date="2024/04/06" data-weight="45.7"><i class="fas fa-pencil-alt"></i></button>
-        <button class="delete-button" onclick="openDeleteModal('2024/04/06', '45.7', this)"><i class="fas fa-trash-alt"></i></button>
-    </td>
-</tr>
-<tr>
-    <td class="col-3">2024/04/05</td>
-    <td class="col-3">46.5 Kg</td>
-    <td class="weight-change col-3"></td>
-    <td class="col-3">
-        <button class="edit-button" data-date="2024/04/05" data-weight="46.5"><i class="fas fa-pencil-alt"></i></button>
-        <button class="delete-button" onclick="openDeleteModal('2024/04/05', '46.5', this)"><i class="fas fa-trash-alt"></i></button>
-    </td>
-</tr>
-<tr>
-    <td class="col-3">2024/04/04</td>
-    <td class="col-3">45.5 Kg</td>
-    <td class="weight-change col-3"></td>
-    <td class="col-3">
-        <button class="edit-button" data-date="2024/04/04" data-weight="45.5"><i class="fas fa-pencil-alt"></i></button>
-        <button class="delete-button" onclick="openDeleteModal('2024/04/04', '45.5', this)"><i class="fas fa-trash-alt"></i></button>
-    </td>
-</tr>
+                <tr>
+                    <td class="col-3">2024/04/06</td>
+                    <td class="col-3">45.7 Kg</td>
+                    <td class="weight-change col-3"></td>
+                    <td class="col-3">
+                        <button class="edit-button" data-date="2024/04/06" data-weight="45.7"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="delete-button" onclick="openDeleteModal('2024/04/06', '45.7', this)"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-3">2024/04/05</td>
+                    <td class="col-3">46.5 Kg</td>
+                    <td class="weight-change col-3"></td>
+                    <td class="col-3">
+                        <button class="edit-button" data-date="2024/04/05" data-weight="46.5"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="delete-button" onclick="openDeleteModal('2024/04/05', '46.5', this)"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-3">{{ date('Y/m/d') }}</td>
+                    <td class="col-3">{{ $primeWeight }} Kg</td>
+                    <td class="weight-change col-3"></td>
+                    <td class="col-3">
+                        <button class="edit-button" data-date="{{ date('Y/m/d') }}" data-weight="{{ $primeWeight }}"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="delete-button" onclick="openDeleteModal('{{ date('Y/m/d') }}', '{{ $primeWeight }}', this)"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
