@@ -9,8 +9,22 @@ class Weight extends Model
 {
     use HasFactory;
 
-    //weights belongs user
-    public function user(){
+    // テーブル名を指定
+    protected $table = 'weights';
+
+    protected $fillable = [
+        'user_id',
+        'record_date',
+        'current_weight',
+    ];
+
+    protected $casts = [
+        'record_date' => 'datetime:Y-m-d',
+    ];
+
+    // ユーザーとのリレーションシップ
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

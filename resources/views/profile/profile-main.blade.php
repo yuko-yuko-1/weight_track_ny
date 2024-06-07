@@ -96,9 +96,9 @@
         <div class="row">
                 <div class="input-with-unit">
                     <label class="col-6" for="current_weight">Current Weight</label>
-                    <input type="number" id="current_weight" name="current_weight" value="{{ $user->prime_weight }}" disabled> 
+                    <input type="number" id="current_weight" name="current_weight" value="{{ $current_weight != 0 ? $current_weight : $user->prime_weight }}" disabled> 
+                    {{-- <input type="number" id="current_weight" name="current_weight" value="{{ $user->weight->current_weight }}" disabled>  --}}
                     <span>Kg</span>
-                    {{-- 今はprime_weight(スタート)と同じデータだが、後で直近のデータを入れる --}}
                 </div>
         </div>
         <div class="row">
@@ -109,18 +109,20 @@
                 </div>
         </div>
         <div class="row">
-            <div class="tarcking-goal weight-kg col-3">
+            <div class="tracking-goal weight-kg col-3">
                 <span>Start</span>
-                <input type="number" value="{{ $user->prime_weight }}" disabled>
-                 <span class="unit-label">Kg</span>
+                <input type="number" id="startWeight" value="{{ $user->prime_weight }}" disabled>
+                <span class="unit-label">Kg</span>
             </div>
-            <div class="tracking-goal-meter col-6">
-                 <div class="tracking-goal"></div>
+            <div class="tracking-goal goalbar col-6">
+                <span class="bar">
+                    <span id="tracking-goal-bar" class="tracking-goal-bar"></span>
+                </span>
             </div>
-            <div class="tarcking-goal weight-kg col-3">
+            <div class="tracking-goal weight-kg col-3">
                 <span>Goal</span>
-                <input type="number" value="{{ $user->goal_weight }}" disabled>
-                 <span class="unit-label">Kg</span>
+                <input type="number" id="goalWeight" value="{{ $user->goal_weight }}" disabled>
+                <span class="unit-label">Kg</span>
             </div>
         </div>
         <div class="row">
@@ -237,6 +239,12 @@ var x = setInterval(function() {
 <script>
     // ページが読み込まれたときにBMIとアチーブメントを計算
     window.onload = function() {
+        // 現在の体重を取得
+        var currentWeight = parseFloat(document.getElementById("current_weight").value);
+        // 0の場合は代わりにprime_weightを使用
+        if (currentWeight === 0) {
+            document.getElementById("current_weight").value = parseFloat("{{ $user->prime_weight }}");
+        }
         calculateAchievementAndBMI();
     };
 
@@ -244,6 +252,40 @@ var x = setInterval(function() {
     document.getElementById("current_weight").addEventListener("input", calculateAchievementAndBMI);
     document.getElementById("height").addEventListener("input", calculateAchievementAndBMI);
     document.getElementById("goal_weight").addEventListener("input", calculateAchievementAndBMI);
+
 </script>
+
+    {{-- Goal Tracking Bar --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    // スタートとゴールの重量を取得
+    var startWeight = parseFloat(document.getElementById('startWeight').value);
+    var goalWeight = parseFloat(document.getElementById('goalWeight').value);
+    
+    // 現在の重量
+    var currentWeight = parseFloat("{{ $current_weight }}");
+
+    // デバッグ用に取得した値を出力
+    console.log("Start Weight: " + startWeight);
+    console.log("Goal Weight: " + goalWeight);
+    console.log("Current Weight: " + currentWeight);
+
+    // 進捗を計算
+    var progress;
+    if (currentWeight !== 0) {
+        progress = (currentWeight - startWeight) / (goalWeight - startWeight) * 100;
+    } else {
+        progress = 0; // 現在の重量が0の場合は進捗を0に設定
+    }
+    
+    // 進捗が0%未満や100%を超えないようにする
+    progress = Math.max(0, Math.min(100, progress));
+
+    // バロメーターの幅を更新
+    console.log("Progress: " + progress);
+    document.getElementById('tracking-goal-bar').style.width = progress + '%';
+});
+
+    </script>
 
 @endsection

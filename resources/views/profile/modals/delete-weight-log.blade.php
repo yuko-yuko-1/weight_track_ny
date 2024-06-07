@@ -1,3 +1,6 @@
+<form action="{{ route('weight-destroy', ['id' => $weight->id]) }}" method="POST">
+    @csrf
+    @method('DELETE')
 <div id="deleteWeightModal" class="modal delete-modal">
     <div class="modal-content">
         <div class="modal-header">Delete Weight Log</div>
@@ -18,7 +21,8 @@
         </div>
         <div class="modal-footer">
             <button class="cancel-button" onclick="closeDeleteModal()">Cancel</button>
-            <button class="delete-button" onclick="deleteWeight()">Delete</button>
+            <button type="submit" class="delete-button" onclick="deleteWeight()">Delete</button>
         </div>
     </div>
 </div>
+</form>
