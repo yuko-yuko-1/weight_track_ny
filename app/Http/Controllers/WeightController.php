@@ -34,6 +34,5 @@ class WeightController extends Controller
 
         return redirect()->route('meal.today');
     }
-    
 }
 
