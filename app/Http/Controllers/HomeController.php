@@ -19,6 +19,7 @@ class HomeController extends Controller
      *
      * @return void
      */
+
     // public function __construct()
     // {
     //     $this->middleware('auth');
@@ -61,6 +62,11 @@ class HomeController extends Controller
     public function all_meal_posts()
     {
         return view('profile.all-meal-posts');
+    }
+
+    public function all_your_posts()
+    {
+        return view('profile.all-your-posts');
     }
 
     public function community()

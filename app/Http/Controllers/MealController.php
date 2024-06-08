@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Meal;
+use App\Models\User;
+
 
 class MealController extends Controller
 {
     private $meal;
+    private $user;
 
-    public function __construct(Meal $meal){
+
+    public function __construct(Meal $meal, User $user){
         $this->meal = $meal;
+        $this->user = $user;
     }
 
     // public function create(){
@@ -41,4 +46,13 @@ class MealController extends Controller
 
         return redirect()->route('meal.today');
     }
+
+    public function destroy($id){
+        $meal = $this->meal->findOrFail($id);
+        // $meal = Meal::findOrFail($id);
+        $meal->Delete();  //--forces a permanent delete
+
+        return redirect()->back();
+    }
+
 }

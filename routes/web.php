@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LogWeightHistoryController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\WeightController;
@@ -22,8 +25,10 @@ Route::group(['middleware' => 'auth'], function(){
 
     // Route::get('/weight_and_meals/today/create', [MealController::class, 'create'])->name('meal.today');
     Route::post('/weight_and_meals/today/meal_store', [MealController::class, 'store'])->name('meal.store');
+    Route::delete('/weight_and_meals/today/meal_destroy/{id}', [MealController::class, 'destroy'])->name('meal.destroy');
 
-    
+
+
     Route::post('/weight_and_meals/today/weight_store', [WeightController::class, 'store'])->name('weight.store');
 
 
@@ -31,7 +36,22 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/what-is-bmi', [HomeController::class, 'what_is_bmi'])->name('what-is-bmi');
 
-    ### COMMUNITY
+
+
+   #Profile
+    Route::get('/profile/{id}/show',[ProfileController::class,'show'])->name('profile-main');
+    Route::get('/profile/edit',[ProfileController::class,'edit'])->name('profile-edit');
+    Route::patch('/profile/update',[ProfileController::class,'update'])->name('profile-update');
+    Route::delete('/profile/{id}/delete', [ProfileController::class, 'destroy'])->name('profile-destroy');
+
+    // Profile Log weight history
+    Route::get('/log-weight-history/{id}/show', [LogWeightHistoryController::class,'show'])->name('log-weight-history');
+    Route::get('/log-weight-history/{id}/edit', [LogWeightHistoryController::class, 'edit'])->name('weight-edit');
+    Route::patch('/log-weight-history/{id}/update', [LogWeightHistoryController::class, 'update'])->name('weight-update');
+    Route::delete('/log-weight-history/{id}/delete', [LogWeightHistoryController::class, 'destroy'])->name('weight-destroy');
+
+
+
     Route::get('/community/top', [HomeController::class, 'community'])->name('community');
     Route::get('/community/{id}/all_posts', [PostController::class, 'community_all_posts'])->name('community_all_posts');
 
@@ -76,6 +96,28 @@ Route::group(['middleware' => 'auth'], function(){
     });
 });
 
+<<<<<<< HEAD
 
+=======
+Route::get('/community-all-posts', function(){
+     return view('community.community-all-posts');
+});
+
+Route::get('/show-post', function(){
+    return view('community.post.contents.show-post');
+});
+
+Route::get('/create-new-posts', function(){
+    return view('community.modals.create-new-posts');
+});
+
+Route::get('/edit', function(){
+    return view('community.modals.edit');
+});
+
+// Route::get('/delete', function(){
+//     return view('community.modals.delete');
+// });
+>>>>>>> main
 
 

@@ -61,11 +61,11 @@ class User extends Authenticatable
 
     //user has many weights records
     public function weights(){
-        return $this->hasmany(Weight::class);
+        return $this->hasMany(Weight::class);
     }
 
     //user has many weights records
     public function meals(){
-         return $this->hasmany(Meal::class);
+         return $this->hasMany(Meal::class);
     }
 }
