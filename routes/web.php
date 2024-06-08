@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('/weight_and_meals/today/meal_destroy/{id}', [MealController::class, 'destroy'])->name('meal.destroy');
 
 
-    
+
     Route::post('/weight_and_meals/today/weight_store', [WeightController::class, 'store'])->name('weight.store');
 
 
@@ -65,6 +65,10 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/community-all-posts', function(){
      return view('community.community-all-posts');
+});
+
+Route::get('/show-post', function(){
+    return view('community.post.contents.show-post');
 });
 
 Route::get('/create-new-posts', function(){
