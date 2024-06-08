@@ -96,9 +96,6 @@ Route::group(['middleware' => 'auth'], function(){
     });
 });
 
-<<<<<<< HEAD
-
-=======
 Route::get('/community-all-posts', function(){
      return view('community.community-all-posts');
 });
@@ -118,6 +115,5 @@ Route::get('/edit', function(){
 // Route::get('/delete', function(){
 //     return view('community.modals.delete');
 // });
->>>>>>> main
 
 
