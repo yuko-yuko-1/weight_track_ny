@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function(){
     // Route::get('/weight_and_meals/today/create', [MealController::class, 'create'])->name('meal.today');
     Route::post('/weight_and_meals/today/meal_store', [MealController::class, 'store'])->name('meal.store');
 
-    
+
     Route::post('/weight_and_meals/today/weight_store', [WeightController::class, 'store'])->name('weight.store');
 
 
@@ -49,6 +49,10 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/community-all-posts', function(){
      return view('community.community-all-posts');
+});
+
+Route::get('/show-post', function(){
+    return view('community.post.contents.show-post');
 });
 
 Route::get('/create-new-posts', function(){
