@@ -1,4 +1,6 @@
+
 .wrapper3 header{
+    /* width: auto; */
     font-size: 0.5rem;
     font-weight: 200;
     display: flex;
@@ -7,8 +9,8 @@
     justify-content: left;
 }
 .mychart{
-    width: 350px;
-    height: 350px;
+    width: 400px;
+    height: 400px;
     background: #fff;
     border-radius: 10px;
     margin: 16px;

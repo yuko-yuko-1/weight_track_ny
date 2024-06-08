@@ -6,9 +6,12 @@
 }
 .dashboard_main{
     height: fit-content;
+    width: fit-content;
    padding: 0;
 }
 .dashboard_cal{
+    width:400px;
+    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,7 +28,7 @@
     align-items: center;
     padding: 25px 25px 10px;
     justify-content: space-between;
-    margin: 20px 20px 0 20px;
+    margin: 5px 20px 0 20px;
 }
 header .current-date{
     font-size: 1rem;
@@ -62,7 +65,6 @@ header .icons span:last-child{
 }
 .calendar{
     padding:0;
-    
 }
 .calendar ul{
     display: flex;
@@ -71,8 +73,8 @@ header .icons span:last-child{
     text-align: center;
 }
 .days{
+    margin-top: -10px;
     padding: 0px ;
-    margin-bottom: -16px;
 }
 .calender .weeks li{
     font-weight: 500;
