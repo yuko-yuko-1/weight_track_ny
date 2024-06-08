@@ -136,20 +136,20 @@
 
 }
 
-.card h6{
-    width: 100%;
+/* .card h6{
+    width: 100%; */
     /* white-space: nowrap; */
-    overflow: hidden;
+    /* overflow: hidden; */
     /* text-overflow: ellipsis; */
-    padding-left: 188px;
+    /* padding-left: 188px;
     font-size: 20px;
     margin: 0%;
     display: -webkit-box;
     text-overflow: ellipsis;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 3; */
 
-}
+/* } */
 
 .edit{
     color: #F8DF88;
@@ -366,4 +366,9 @@
     color: #FD7168;
     width: 100;
     border-radius: 110px;
+}
+
+.icon-md {
+    height: 100px;
+    width: 100px;
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\WeightController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\PostController;
 
 
 use App\Http\Controllers\Admin\UsersController;
@@ -30,7 +31,35 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/what-is-bmi', [HomeController::class, 'what_is_bmi'])->name('what-is-bmi');
 
+    ### COMMUNITY
     Route::get('/community/top', [HomeController::class, 'community'])->name('community');
+    Route::get('/community/{id}/all_posts', [PostController::class, 'community_all_posts'])->name('community_all_posts');
+
+    ### POST
+    // Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+    Route::post('/post/{id}/store', [PostController::class, 'store'])->name('post.store');
+    Route::get('/post/{id}/show', [PostController::class, 'show'])->name('post.show');
+    Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
+    Route::patch('/post/{id}/update', [PostController::class, 'update'])->name('post.update');
+    Route::delete('/post/{id}/destroy', [PostController::class, 'destroy'])->name('post.destroy');
+
+    // minami-san code
+//     Route::get('/community-all-posts', function(){
+//         return view('community.community-all-posts');
+//    });
+   
+   Route::get('/create-new-posts', function(){
+       return view('community.modals.create-new-posts');
+   });
+   
+   Route::get('/edit', function(){
+       return view('community.modals.edit');
+   });
+   
+   Route::get('/delete', function(){
+       return view('community.modals.delete');
+   });
+
 
     ### ADMIN
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function(){
@@ -47,20 +76,6 @@ Route::group(['middleware' => 'auth'], function(){
     });
 });
 
-Route::get('/community-all-posts', function(){
-     return view('community.community-all-posts');
-});
 
-Route::get('/create-new-posts', function(){
-    return view('community.modals.create-new-posts');
-});
-
-Route::get('/edit', function(){
-    return view('community.modals.edit');
-});
-
-// Route::get('/delete', function(){
-//     return view('community.modals.delete');
-// });
 
 
