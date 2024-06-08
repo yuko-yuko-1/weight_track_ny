@@ -41,5 +41,3 @@ series:{
                   
  chart.draw(data, options);
 }
-
-                        

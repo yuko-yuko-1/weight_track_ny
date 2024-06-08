@@ -116,7 +116,7 @@ $achievementPercentage = $user->achievement_percentage;
                                     </div>
                                     <div class="col-6 text-end">
                                         @if($meal)
-                                        <button type="button" class="btn text-end" data-bs-toggle="modal" data-bs-target="#meals_delete_{{$meal->id}}"><i class="fa-regular fa-trash-can text-end"></i></button>
+                                        <button type="button" class="btn text-end" data-bs-toggle="modal" data-bs-target="#meals_delete_{{$meal->id}}"><i class="fa-regular fa-trash-can"></i></button>
                                         @endif
                                     </div>
                                     @include('weight_and_meals.modals.meals_delete')
