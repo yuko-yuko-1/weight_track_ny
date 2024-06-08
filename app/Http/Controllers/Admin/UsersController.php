@@ -17,7 +17,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $all_users = $this->user->withTrashed()->latest()->paginate(5);
+        $all_users = $this->user->withTrashed()->latest()->paginate(10);
         // paginateでページ割り付けできる！
         // ->withTrashed()でソフトデリートしたユーザーも表示できる。
 

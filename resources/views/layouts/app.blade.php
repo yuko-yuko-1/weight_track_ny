@@ -118,9 +118,9 @@
         </nav>
 
         @if (request()->is('admin/*'))
-            <div class="container mt-4">
+            <div class="container-fluid py-4 admin_image">
                 <div class="row justify-content-center">
-                    <div class="col-3">
+                    <div class="col-2">
                         <div class="list-group">
                             <a href="{{ route('admin.users') }}" class="list-group-item {{ request()->is('admin/users') ? 'active' : '' }}">
                                 <i class="fa-solid fa-users"></i> Users
@@ -139,7 +139,7 @@
                             </a> --}}
                         </div>
                     </div> 
-                    <main class="col-9">
+                    <main class="col-7">
                         @yield('content')
                     </main>                
                 </div>
