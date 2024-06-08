@@ -42,6 +42,7 @@
                     <th>NAME</th>
                     <th>IMAGE</th>
                     <th>LAST UPDATED</th>
+                    <th>COUNT</th>
                     <th></th>
                 </tr>
             </thead>
@@ -62,6 +63,8 @@
                         </td>
                         {{-- 最終更新日 --}}
                         <td>{{ $community->updated_at }}</td>
+                        {{-- ポスト数のカウント --}}
+                        <td></td>
                         {{-- 編集モーダルへと削除モーダルへのボタン--}}
                         <td>
                             {{-- Edit Button モーダル開く--}}
@@ -78,7 +81,7 @@
                     @include('admin.communities.modal.action')
                 @empty  {{-- コミュニティがまだ１つもなければ... --}}
                     <tr>
-                        <td colspan="5" class="lead text-muted text-center">No communities found.</td>
+                        <td colspan="6" class="lead text-muted text-center">No communities found.</td>
                     </tr> 
                 @endforelse
             </tbody>
