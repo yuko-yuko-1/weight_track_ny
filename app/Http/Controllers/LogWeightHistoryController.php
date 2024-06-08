@@ -38,17 +38,15 @@ class LogWeightHistoryController extends Controller
         ]);
     }
     
-     public function edit($id)
+    public function edit($id)
     {
         $weight = $this->weight->findOrFail($id);
-
         // Ensure the authenticated user is the owner of the weight record
         if (Auth::id() != $weight->user_id) {
             return redirect()->route('index');
         }
 
-        return view('profile.logweight-history')
-                    ->with('weight', $weight);
+        return view('profile.edit-weight-log', compact('weight'));
     }
 
 public function update(Request $request, $id)

@@ -59,8 +59,8 @@
                         @endif
                     </td>
                     <td class="col-3">
-                        <button href="{{ route('weight-edit', $weight->id) }}" class="edit-button" data-date="{{ $weight->record_date->format('Y/m/d') }}" data-weight="{{ $weight->current_weight }}" data-weight-id="{{ $weight->id }}"><i class="fas fa-pencil-alt"></i></button>
-                        <button class="delete-button" onclick="openDeleteModal('{{ $weight->record_date->format('Y/m/d') }}', '{{ $weight->current_weight }}', this)"><i class="fas fa-trash-alt"></i></button>
+                        <button type="button" class="edit-button" data-date="{{ $weight->record_date->format('Y/m/d') }}" data-weight="{{ $weight->current_weight }}" data-weight-id="{{ $weight->id }}" onclick="openEditModal(this)"><i class="fas fa-pencil-alt"></i></button>
+                        <button type="button" class="delete-button" data-date="{{ $weight->record_date->format('Y/m/d') }}" data-weight="{{ $weight->current_weight }}" data-weight-id="{{ $weight->id }}" onclick="openDeleteModal(this)"><i class="fas fa-trash-alt"></i></button>
                     </td>
                 </tr>
             @endforeach
@@ -74,98 +74,46 @@
 
 <script>
 // Edit modal button
-let rowToEdit;
+function openEditModal(element) {
+    const date = element.getAttribute('data-date');
+    const weight = element.getAttribute('data-weight');
+    const weightId = element.getAttribute('data-weight-id');
 
-// モーダルを開く関数
-function openModal(date, weight, element) {
     document.getElementById('editDate').textContent = date;
     document.getElementById('editWeight').value = weight;
-    rowToEdit = element.closest('tr');
+    document.getElementById('editWeightId').value = weightId;
+
+    const form = document.getElementById('editWeightForm');
+    form.action = `/log-weight-history/${weightId}/update`;
+
     document.getElementById('editWeightModal').style.display = "block";
 }
 
-// モーダルを閉じる関数
 function closeModal() {
     document.getElementById('editWeightModal').style.display = "none";
 }
 
-// 体重を更新する関数
-function updateWeight() {
-    const date = document.getElementById('editDate').textContent;
-    const newWeight = document.getElementById('editWeight').value;
-    const weightId = document.getElementById('editWeightId').value; // weightId を取得
-
-    // バックエンドに新しいデータを送信
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-    fetch(`/log-weight-history/${weightId}/update`, { // エンドポイントを修正
-        method: 'PATCH', // PATCH メソッドを使用
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrfToken
-        },
-        body: JSON.stringify({
-            editWeight: newWeight // バックエンドでのパラメータ名を修正
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // 行を更新
-            const rowToEdit = document.querySelector('.edit-modal').parentNode.parentNode;
-            rowToEdit.cells[1].textContent = `${newWeight} Kg`;
-            rowToEdit.querySelector('.edit-button').setAttribute('data-weight', newWeight);
-            rowToEdit.querySelector('.delete-button').setAttribute('onclick', `openDeleteModal('${date}', '${newWeight}', this)`);
-
-            // モーダルを閉じる
-            closeModal();
-        } else {
-            // 更新に失敗した場合のエラーメッセージ
-            alert('error');
-        }
-    })
-    .catch(error => console.error('Error:', error));
-}
-
-// 編集ボタンにイベントリスナーを追加
-document.querySelectorAll('.edit-button').forEach(button => {
-    button.addEventListener('click', function() {
-        const date = this.getAttribute('data-date');
-        const weight = this.getAttribute('data-weight');
-        const weightId = this.getAttribute('data-weight-id'); // weightId を取得
-        openModal(date, weight, this, weightId); // openModal に weightId を渡す
-    });
-});
-
 // Delete modal button
-let rowToDelete; // 削除対象の行を保持する変数
+function openDeleteModal(element) {
+    const date = element.getAttribute('data-date');
+    const weight = element.getAttribute('data-weight');
+    const weightId = element.getAttribute('data-weight-id');
 
-function openDeleteModal(date, weight, element) {
-    // モーダル内のデータを設定
-    document.getElementById('deleteDate').innerText = date;
-    document.getElementById('deleteWeight').innerText = weight;
-    // 削除対象の行をグローバル変数に保存
-    rowToDelete = element.closest('tr');
-    // モーダルを表示
-    document.getElementById('deleteWeightModal').style.display = 'block';
+    document.getElementById('deleteDate').textContent = date;
+    document.getElementById('deleteWeight').textContent = weight;
+
+    const form = document.getElementById('deleteWeightForm');
+    form.action = `/log-weight-history/${weightId}/delete`;
+
+    document.getElementById('deleteWeightModal').style.display = "block";
 }
 
 function closeDeleteModal() {
-    // モーダルを非表示にする
-    document.getElementById('deleteWeightModal').style.display = 'none';
+    document.getElementById('deleteWeightModal').style.display = "none";
 }
-
-function deleteWeight() {
-    // ここで削除リクエストをサーバーに送信して削除処理を行う
-    // 削除対象の行を削除
-    rowToDelete.remove();
-    // モーダルを閉じる
-    closeDeleteModal();
-}
-
 
 document.addEventListener("DOMContentLoaded", function() {
-    // テーブル内の各行を取得
+    // 各行に対して処理を実行
     var rows = document.querySelectorAll(".log-weight-table tbody tr");
 
     // 各行に対して処理を実行
@@ -192,7 +140,5 @@ document.addEventListener("DOMContentLoaded", function() {
         rows[i].querySelector(".weight-change").innerHTML = iconHTML;
     }
 });
-
-
 </script>
 @endsection

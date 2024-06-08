@@ -339,9 +339,8 @@
 
 
 /* Delete Modal */
-.delete-account-modal-title {
+.modal-header {
     color: #FF6F61;
-    text-align: center; /* Center the title text */
 }
 
 /* Cancel button */
@@ -351,12 +350,6 @@
     border-radius: 20px;
 }
 
-/* Cancel button hover state */
-#deleteAccountModal .btn-cancel-delete:hover {
-    background-color: #FF6F61;
-    color: white;
-}
-
 /* Delete button */
 .btn-delete-account {
     background-color: #FF6F61;
@@ -364,42 +357,6 @@
     border-radius: 20px;
 }
 
-/* Delete button hover state */
-#deleteAccountModal .btn-delete-account:hover {
-    background-color: white;
-    color: #FF5A4C;
-}
-
-.delete-account-modal-header,
-.delete-account-modal-footer.border-0 {
-    border: none;
-    display: flex;
-    justify-content: center; 
+.modal-content {
     align-items: center;
-}
-
-/* Modal content */
-.delete-account-modal-content {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.delete-account-modal-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.delete-account-modal-body p {
-    margin-bottom: 10px;
-}
-
-/* Center footer buttons */
-.delete-account-modal-footer {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
 }

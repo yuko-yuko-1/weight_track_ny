@@ -111,7 +111,7 @@
         <div class="row">
             <div class="tracking-goal weight-kg col-3">
                 <span>Start</span>
-                <input type="number" id="startWeight" value="{{ $user->prime_weight }}" disabled>
+                <input type="number" id="start_weight" value="{{ $user->prime_weight }}" disabled>
                 <span class="unit-label">Kg</span>
             </div>
             <div class="tracking-goal goalbar col-6">
@@ -121,7 +121,7 @@
             </div>
             <div class="tracking-goal weight-kg col-3">
                 <span>Goal</span>
-                <input type="number" id="goalWeight" value="{{ $user->goal_weight }}" disabled>
+                <input type="number" id="goal_weight" value="{{ $user->goal_weight }}" disabled>
                 <span class="unit-label">Kg</span>
             </div>
         </div>
@@ -206,17 +206,21 @@ var x = setInterval(function() {
 <script>
     // アチーブメントとBMIを計算する関数
     function calculateAchievementAndBMI() {
-        // 現在の体重を取得
         var currentWeight = parseFloat(document.getElementById("current_weight").value);
-        // ゴール目標の体重を取得
+        var startWeight = parseFloat(document.getElementById("start_weight").value);
         var goalWeight = parseFloat(document.getElementById("goal_weight").value);
 
-        // 現在の体重が0以外であり、ゴール目標の体重が0以外であることを確認
-        if (currentWeight !== 0 && goalWeight !== 0) {
-            // アチーブメントを計算（（現在の体重 - ゴール目標の体重）/ ゴール目標の体重 * 100）
-            var achievement = ((currentWeight - goalWeight) / goalWeight) * 100;
+        if (currentWeight !== 0 && startWeight !== 0 && goalWeight !== 0) {
+            var achievement;
+            if (startWeight > goalWeight) {
+                // 減量の場合
+                achievement = ((startWeight - currentWeight) / (startWeight - goalWeight)) * 100;
+            } else if (startWeight < goalWeight) {
+                // 増量の場合
+                achievement = ((currentWeight - startWeight) / (goalWeight - startWeight)) * 100;
+            }
             // アチーブメントを表示
-            document.getElementById("achievement").value = achievement.toFixed(2); 
+            document.getElementById("achievement").value = achievement.toFixed(2);
         } else {
             // どちらかの体重が0の場合は、アチーブメントを0とする
             document.getElementById("achievement").value = 0;
@@ -256,36 +260,34 @@ var x = setInterval(function() {
 </script>
 
     {{-- Goal Tracking Bar --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    // スタートとゴールの重量を取得
-    var startWeight = parseFloat(document.getElementById('startWeight').value);
-    var goalWeight = parseFloat(document.getElementById('goalWeight').value);
-    
-    // 現在の重量
-    var currentWeight = parseFloat("{{ $current_weight }}");
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // スタートとゴールの重量を取得
+        var startWeight = parseFloat(document.getElementById('start_weight').value);
+        var goalWeight = parseFloat(document.getElementById('goal_weight').value);
+        
+        // 現在の重量
+        var currentWeight = parseFloat("{{ $current_weight }}");
 
-    // デバッグ用に取得した値を出力
-    console.log("Start Weight: " + startWeight);
-    console.log("Goal Weight: " + goalWeight);
-    console.log("Current Weight: " + currentWeight);
+        // 進捗を計算
+        var progress;
+        if (startWeight > goalWeight) {
+            // 減量の場合
+            progress = (currentWeight - startWeight) / (goalWeight - startWeight) * 100;
+        } else if (startWeight < goalWeight) {
+            // 増量の場合
+            progress = (currentWeight - startWeight) / (goalWeight - startWeight) * 100;
+        } else {
+            // スタートとゴールの重量が同じ場合は進捗を0に設定
+            progress = 0;
+        }
+        
+        // 進捗が0%未満や100%を超えないようにする
+        progress = Math.max(0, Math.min(100, progress));
 
-    // 進捗を計算
-    var progress;
-    if (currentWeight !== 0) {
-        progress = (currentWeight - startWeight) / (goalWeight - startWeight) * 100;
-    } else {
-        progress = 0; // 現在の重量が0の場合は進捗を0に設定
-    }
-    
-    // 進捗が0%未満や100%を超えないようにする
-    progress = Math.max(0, Math.min(100, progress));
-
-    // バロメーターの幅を更新
-    console.log("Progress: " + progress);
-    document.getElementById('tracking-goal-bar').style.width = progress + '%';
-});
-
-    </script>
+        // バロメーターの幅を更新
+        document.getElementById('tracking-goal-bar').style.width = progress + '%';
+    });
+</script>
 
 @endsection

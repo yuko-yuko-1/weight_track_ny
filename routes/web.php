@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/log-weight-history/{id}/show', [LogWeightHistoryController::class,'show'])->name('log-weight-history');
     Route::get('/log-weight-history/{id}/edit', [LogWeightHistoryController::class, 'edit'])->name('weight-edit');
     Route::patch('/log-weight-history/{id}/update', [LogWeightHistoryController::class, 'update'])->name('weight-update');
-    Route::delete('/delete-weight/{id}/delete', [LogWeightHistoryController::class, 'destroy'])->name('weight-destroy');
+    Route::delete('/log-weight-history/{id}/delete', [LogWeightHistoryController::class, 'destroy'])->name('weight-destroy');
 
 
 
