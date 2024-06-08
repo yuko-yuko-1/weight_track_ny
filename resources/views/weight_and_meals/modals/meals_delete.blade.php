@@ -1,4 +1,6 @@
-<div class="modal fade" id="meals_delete">
+@if($meal)
+<div class="modal fade" id="meals_delete_{{$meal->id}}">
+  
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-danger modal-delete">
             <div class="modal-header border-danger">
@@ -7,13 +9,13 @@
                 </h4>
             </div>
             <div class="modal-body delete-body text-center">
-                Are you sure you want to delete this post?
-                <div class="post_meal">
-                    <p class="">No Post Yet</p>
+                Are you sure you want to delete this picture?
+                <div>
+                    <img src="{{ asset('images/meal/' . $meal->image) }}" alt="Latest Meal" class="image-delete">    
                 </div>
             </div>
             <div class="modal-footer border-0 modal_btn">
-            <form action="{" method="post">
+            <form action="{{route('meal.destroy', $meal->id)}}" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="button" data-bs-dismiss="modal" class="btn btn-sm btn-outline-danger">Cancel</button>
@@ -22,4 +24,5 @@
         </div>
         </div>
     </div>
-</div>
+</div> 
+@endif
