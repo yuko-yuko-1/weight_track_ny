@@ -23,21 +23,23 @@
                 <p class="text-danger small">{{ $message }}</p>
             @enderror
             <div class="row">
-             <div class="col-6">
+             <div class="col">
                 <div class="add-content">
                     <label for="content">Content</label><br>
-                    <input type="text" name="content" id="content" width="">
+                    <textarea name="content" id="content" cols="50" rows="10"></textarea>
                 </div>
             {{-- Error --}}
             @error('content')
                 <p class="text-danger small">{{ $message }}</p>
             @enderror
              </div>
-             <div class="add-image col-6">
+            <div class="row">
+             <div class="add-image col-auto">
                 {{-- <i class="fa-regular fa-image icon-md fa-image-new">
                     <span>Add Image</span>
                 </i> --}}
-                <input type="file" name="image" id="image" class="form-control form-control-sm">
+                <br>
+                <input type="file" name="image" id="image" class="form-control">
                     {{-- <div class="img-new">
                         <img src="{{asset('images/new-posts.png')}}" width="190px" height="90px" alt="new_posts" >
                     </div> --}}
@@ -46,6 +48,7 @@
             @error('image')
                 <p class="text-danger small">{{ $message }}</p>
             @enderror
+            </div>
         </div>
         </div>
           <div class="modal-footer mx-auto mb-3">

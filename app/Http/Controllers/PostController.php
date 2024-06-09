@@ -62,19 +62,19 @@ class PostController extends Controller
     }
 
     public function show($id){
-        $post_a = $this->post->findOrFail($id);
+        $post = $this->post->findOrFail($id);
 
-        return view('posts.show')->with('post', $post_a);
+        return view('community.post.contents.show-post')->with('post', $post);
     }
 
-    public function edit($id){
-        $post_a = $this->post->findOrFail($id);
-        $all_communities = $this->community->all();
+    // public function edit($id){
+    //     $post_a = $this->post->findOrFail($id);
+    //     $all_communities = $this->community->all();
 
-        return view('posts.contents.modals.edit')->with('post', $post_a)
-                                    ->with('all_communities', $all_communities)
-                                    ->with('selected_community', $post_a->community_id);
-    }
+    //     return view('posts.contents.modals.edit')->with('post', $post_a)
+    //                                 ->with('all_communities', $all_communities)
+    //                                 ->with('selected_community', $post_a->community_id);
+    // }
 
     public function update(Request $request, $id){
         $request->validate([

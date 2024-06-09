@@ -1,6 +1,6 @@
 
 
-<div class="modal fade delete-comment" id="delete">
+<div class="modal fade delete-comment" id="delete-comment">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
