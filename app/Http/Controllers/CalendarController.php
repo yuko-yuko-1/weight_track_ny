@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Meal;
-
-
+use App\Models\Weight;
 
 
 class CalendarController extends Controller
@@ -32,6 +31,8 @@ class CalendarController extends Controller
         $year = $currentDate->format('Y'); 
         $day = $currentDate->day; 
 
+        $weightChartData = $this->displayWeightChart();
+
         $latestMeal = Meal::latest()->first();
         // $meal = $this->meal->findOrFail($latestMeal->id);
 
@@ -43,10 +44,31 @@ class CalendarController extends Controller
     
 
         if (!$user) { Log::error('Unable to find user'); }
-        return view('weight_and_meals.weight_and_meals', compact('month', 'year', 'day', 'user','meal'));
+        return view('weight_and_meals.weight_and_meals', compact('month', 'year', 'day', 'user','meal','weightChartData'));
 
     }
 
+    public function displayWeightChart()
+    {
+        $userId = Auth::id();
+        $goalWeight = User::find($userId)->goal_weight;
+        $weights = Weight::selectRaw('MONTH(record_date) as month, AVG(current_weight) as avg_weight')
+            ->where('user_id', $userId)
+            ->groupBy('month')
+            ->get();
+        $chartData = [['MONTH', 'Average Weight', 'Goal Weight']];
+        foreach ($weights as $weight) {
+            $monthName = Carbon::createFromFormat('!m', $weight->month)->format('F');
+            $chartData[] = [
+                $monthName,
+                $weight->avg_weight,
+                $goalWeight
+            ];
+        }
+        return $chartData;
+    }
+
+   
 }
   
     
