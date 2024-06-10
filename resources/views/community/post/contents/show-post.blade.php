@@ -12,7 +12,7 @@
 
 @section('content')
 <div class="community-top">
-    <h1>HEALTHY FOOD</h1>
+    <h1 class="text-uppercase">{{$post->community->name}}</h1>
 </div>
 
 <div class="container">
@@ -29,30 +29,43 @@
 
     <div class="card mt-3">
         <div class="row post-top">
-            <ul class="col-1 user-img mt-3">
-                <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-sm"></i>
+            <ul class="col-1 user-img mt-3 mx-auto mt-auto">
+                @if($post->user->avatar)
+                    <img src="{{ asset('images/Profile/' . $post->user->avatar) }}" alt="{{ $post->user->username }}" class="d-block text-center icon-md rounded-circle">
+                @else
+                    <i class="fa-solid fa-circle-user text-secondary d-block"></i>
+                @endif
             </ul>
-            <ul class="col-3 user mt-4">
-                <p class="user-name">User Name</p>
-                <p class="posteddate">2024/04/15</p>
+            <ul class="col-4 user mt-4 text-start">
+                <p class="user-name">{{ $post->user->username}}</p>
+                <p class="posteddate">{{ $post->created_at}}</p>
             </ul>
-            <ul class="col-6">
+            <ul class="col-5">
 
             </ul>
-            <ul class="col-2 mt-4">
-                <button class="button edit edit-modal-btn" data-bs-toggle="modal" data-bs-target="#edit-post" id="modalOpen" ><i class="fa-solid fa-pen"></i></button>
-                <button class="delete" data-bs-toggle="modal" data-bs-target="#delete" id="modalOpen" ><i class="fa-solid fa-trash-can"></i></i></button>
-            </ul>
+            @if (Auth::user()->id === $post->user->id)
+                <ul class="col-2 mt-4">
+                    <button class="button edit edit-modal-btn" data-bs-toggle="modal" data-bs-target="#edit-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-pen"></i></button>
+                    <button class="delete" data-bs-toggle="modal" data-bs-target="#delete-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-trash-can"></i></i></button>
+                </ul>
+                {{-- include --}}
+                @include('posts.contents.modals.edit')
+                @include('posts.contents.modals.delete')
+            @else
+                <ul class="col-2">
+
+                </ul>
+            @endif
         </div>
         <div class="container col-10">
             <ul>
-                <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo esse inventore maiores. Tempore sed, eligendi nisi earum dolorum deleniti non.</h3>
+                <h3>{{ $post->title}}</h3>
             </ul>
             <ul>
-                <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quibusdam perferendis totam expedita, repellat, similique earum eos nisi quo unde excepturi repellendus, sapiente vel veritatis perspiciatis accusantium illum et explicabo hic nostrum asperiores placeat! Natus molestias nulla nobis sint, illo obcaecati quaerat distinctio autem. Totam distinctio adipisci ipsum itaque obcaecati, minus impedit laborum voluptatibus numquam odit asperiores sed vero cum labore saepe eveniet voluptas illo facere? Accusantium doloribus maxime earum ab quo quia, tempore ex distinctio ea fugiat aut sunt doloremque sint at officia unde blanditiis laborum vero sequi. Vel, praesentium. Asperiores accusantium hic dolor earum qui alias repudiandae dolorem.</h6>
+                <h6>{{ $post->content }}</h6>
             </ul>
             <div class="text-center">
-                <img src="{{asset('images/show-post-apple.jpeg')}}" alt="show_post" style="width: 500px; height: 600px; object-fit: cover;">
+                <img src="{{ $post->image }}" alt="show_post" style="width: 500px; height: 600px; object-fit: cover;">
             </div>
             <div class="post-bottom mt-4">
                 <i class="fa-regular fa-heart"><span>&ensp;24</span></i>
@@ -97,7 +110,7 @@
                 <ul class="col-4"></ul>
                 <ul class="col-3 post-bottom1">
                     <button class="button edit edit-modal-btn" data-bs-toggle="modal" data-bs-target="#edit-comment" id="modalOpen" ><i class="fa-solid fa-pen pen-1"></i></button>
-                    <button class="delete" data-bs-toggle="modal" data-bs-target="#delete" id="modalOpen" ><i class="fa-solid fa-trash-can trash-1"></i></i></button>
+                    <button class="delete" data-bs-toggle="modal" data-bs-target="#delete-comment" id="modalOpen" ><i class="fa-solid fa-trash-can trash-1"></i></i></button>
                 </ul>
             </div>
             @include('community.post.contents.comments.modals.edit-comment')

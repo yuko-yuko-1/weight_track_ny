@@ -29,7 +29,7 @@
                     {{-- アバター（なければアイコン） --}}
                     <td>
                         @if ($user->avatar)
-                            <img src="{{ $user->avatar }}" alt="{{ $user->username }}" class="rounded-circle d-block mx-auto avatar-md">
+                            <img src="{{ asset('images/Profile/' . $user->avatar) }}" alt="{{ $user->username }}" class="rounded-circle d-block mx-auto avatar-md">
                         @else
                             <i class="fa-solid fa-circle-user d-block text-center icon-md"></i>
                         @endif

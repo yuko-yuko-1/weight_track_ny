@@ -249,10 +249,10 @@
 
 }
 
-.add-content input{
+/* .add-content input{
     width: 200;
     height: 120;
-}
+} */
 
 .modal-body{
     display: block;
@@ -287,11 +287,11 @@
 
 }
 
-.add-image{
+/* .add-image{
     display: flex;
     flex-direction: column;
     object-fit: cover;
-}
+} */
 
 
 .fa-image-new {
@@ -371,4 +371,12 @@
 .icon-md {
     height: 100px;
     width: 100px;
+    object-fit: cover;
 }
+
+.icon-sm {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+}
+

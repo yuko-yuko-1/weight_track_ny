@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="community-top">
-    <h1>{{ $community->name }}</h1>
+    <h1 class="text-uppercase">{{ $community->name }}</h1>
 </div>
 
 <div class="container">
@@ -45,27 +45,48 @@
                 @forelse($all_posts as $post)  
                     <div class="row mb-2">
                         <div class="col-1 my-auto">
-                            <img src="{{ $post->image }}" class="d-block text-center icon-md  mx-auto my-auto">
+                            <a href="{{ route('post.show', $post->id)}}">
+                                <img src="{{ $post->image }}" class="d-block text-center icon-md  mx-auto my-auto">
+                            </a>
                         </div>
                         <div class="col-1">
                             @if($post->user->avatar)
-                                <img src="{{ $post->user->avatar }}" class="d-block text-center icon-sm">
+                                <img src="{{ asset('images/Profile/' . $post->user->avatar) }}" alt="{{ $post->user->username }}" class="d-block text-center icon-sm rounded-circle ms-auto">
                              @else
-                                <i class="fa-solid fa-circle-user text-secondary icon-lg d-block text-center"></i>
-                            @endif                        
+                                <i class="fa-solid fa-circle-user text-secondary d-block icon-sm"></i>
+                            @endif
                         </div>
                         <div class="col-10">
                             <div class="row">
                                 <div class="col">
-                                    <h3>{{ $post->title }}</h3>
-                               
-                                    <h6>{{ $post->content }}</h6>
-                                    <div>
-                                        <span>{{ $post->user->username }}</span>
-                                        &ensp;|&ensp;
-                                        <span>{{ $post->created_at }}</span>
-                                        &ensp;|&ensp;
-                                        <span>{{ $post->community->name }}</span>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3 class="float-start">
+                                                <a href="{{ route('post.show', $post->id)}}" class="text-decoration-none" style="color: #A8D2A2;">{{ $post->title }}</a>
+                                            </h3>
+                                            @if (Auth::user()->id === $post->user->id)
+                                                <div class="float-end">
+                                                    {{-- EDIT BUTTON --}}
+                                                    <button class="button edit edit-modal-btn" data-bs-toggle="modal" data-bs-target="#edit-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-pen"></i></button>
+                                                    {{-- DELETE BUTTON --}}
+                                                    <button class="delete" data-bs-toggle="modal" data-bs-target="#delete-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-trash-can"></i></i></button>   
+                                                </div>
+                                                @include('posts.contents.modals.edit')
+                                                @include('posts.contents.modals.delete')
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>{{ $post->content }}</h6>
+                                            <div>
+                                                <span>{{ $post->user->username }}</span>
+                                                &ensp;|&ensp;
+                                                <span>{{ $post->created_at }}</span>
+                                                &ensp;|&ensp;
+                                                <span>{{ $post->community->name }}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -76,20 +97,10 @@
                 @empty     
                     <p class="ms-4">No posts found.</p>
                 @endforelse
-           
-                          {{-- EDIT BUTTON --}}
-                          <div class="ml-auto">
-                              {{-- <button class="button edit edit-modal-btn" data-bs-toggle="modal" data-bs-target="#edit-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-pen"></i></button> --}}
-                          </div>
-                          {{-- @include('posts.contents.modals.edit') --}}
-                          
-                            {{-- DELETE BUTTON --}}
-                          <div class="ml-auto">
-                              {{-- <button class="delete" data-bs-toggle="modal" data-bs-target="#delete-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-trash-can"></i></i></button> --}}
-                          </div>
-                          {{-- @include('posts.contents.modals.delete') --}}
-                      </div>
-                  </div>             
+
+              </div> 
+                        
+                </div>             
           </div>
         </div>
     </div>
