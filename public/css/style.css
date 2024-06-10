@@ -8,11 +8,11 @@ html, body {
     height: 100%;
     margin: 0;
 }
-#app {
+/* #app {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
+} */
 main {
     flex: 1;
 }
@@ -51,6 +51,15 @@ main {
 
 
 /* Admin */
+.admin_image {
+    background-image: url('/images/admin-background-image.png');
+    /* background-color:rgba(0,0,0,0.1); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* height: 100vh; */
+}
+
 .icon-md {
     font-size: 3.5rem;
 }

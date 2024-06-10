@@ -27,10 +27,10 @@ $achievementPercentage = $user->achievement_percentage;
 </style> --}}
 
 
-<div class="container hashboard_image">
+<div class="container-fluid hashboard_image">
     <br>
     <div class="my-auto">
-        <div class="row justify-content-center position-relative">
+        <div class="row justify-content-center position-relative main_top">
             <div class="col-5 text-center record_btn">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#record_weight" class="btn btn_record w-75"><h6><i class="icon1 fa-solid fa-pencil"></i> Record your weight everyday!</h6></button>
             </div>
@@ -48,8 +48,8 @@ $achievementPercentage = $user->achievement_percentage;
     </div>
     
     <br>
-    <div class="row weightandmeals">
-        <div class="col-4 mb-3 dashboard_main">
+    <div class="row weightandmeals justify-content-center position-relative ">
+        <div class="col-4 dashboard_main">
             {{-- Calender --}}
             <div class="dashboard_cal">
            <div class="wrapper">
@@ -93,7 +93,7 @@ $achievementPercentage = $user->achievement_percentage;
         </div>
 
         </div>
-        <div class="col-8 mb-3 main">
+        <div class="col-6 main">
             <div class="row">
                 <div class="col-6 dashboard_main">
                     {{-- Post --}}
@@ -108,29 +108,37 @@ $achievementPercentage = $user->achievement_percentage;
                             <div class="col">
                                 <div class="row post_time">
                                     <div class="col-6">
-                                        <h6 class="">Post Time</h6>
+                                     @if($meal)
+                                        <h6 class=""><i class="fa-regular fa-clock"></i> {{ $meal->created_at->format('H:i') }}</h6>
+                                    @else
+                                        <h6></h6>
+                                    @endif
                                     </div>
-                                    <div class="col-6">
-                                        <button type="button" class="btn dropdown-item text-end" data-bs-toggle="modal" data-bs-target="#meals_delete"><i class="fa-regular fa-trash-can"></i></button>
+                                    <div class="col-6 text-end">
+                                        @if($meal)
+                                        <button type="button" class="btn text-end" data-bs-toggle="modal" data-bs-target="#meals_delete_{{$meal->id}}"><i class="fa-regular fa-trash-can"></i></button>
+                                        @endif
                                     </div>
                                     @include('weight_and_meals.modals.meals_delete')
                                 </div>
                                 <div class="row-7">
                                     <div class="post_meal">
-                                        <p class="">No Post Yet</p>
-                                        {{-- @forelse ($user->posts as $post)
-                                        <div class="col-lg-4 col-md-6 mb-4">
-                                           <a href="{{route('post.show',$post->id)}}">
-                                              <img src="{{$post->image}}" alt="" class="grid-img">
-                                          </a>
+                                        @if($meal)
+                                        <div class="my-4">
+                                              <img src="{{ asset('images/meal/' . $meal->image) }}" alt="Latest Meal" class="grid-img">
                                         </div>
-                                    @empty
-                                        <h4 class="text-center text-muted">No posts yet.</h4>
-                                    @endforelse --}}
+                                    @else
+                                        <h4 class="no_pic text-center text-muted">No posts yet.</h4>
+                                    @endif
                                     </div>
                                 </div>
-                                <div class="row-2 post_memo">
+                                <div class="row-2 post_memo my-2">
                                     <h6>Memo</h6>
+                                     @if($meal)
+                                       <span class="fw-light">{{ $meal->description }}</span>
+                                    @else
+                                    <span></span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -169,5 +177,5 @@ $achievementPercentage = $user->achievement_percentage;
         </div>
         </div> 
     </div>
-</div>
+
 @endsection

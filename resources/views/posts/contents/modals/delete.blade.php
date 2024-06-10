@@ -1,6 +1,6 @@
 
 
-<div class="modal fade delete-modal" id="delete">
+<div class="modal fade delete-modal" id="delete-post{{ $post->id }}">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -15,15 +15,15 @@
 
 
             <div class="modal-footer mx-auto mb-3">
-
-            <button type="button" class="delete-btn-cancel btn-sm" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="delete-btn-delete">Delete</button>
-
+                <form action="{{ route('post.destroy', $post->id) }}" method="post">
+                    @csrf 
+                    @method('DELETE')
+                    <button type="button" class="delete-btn-cancel btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="delete-btn-delete">Delete</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
-
-</div>
 

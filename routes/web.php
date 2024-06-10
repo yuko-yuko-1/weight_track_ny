@@ -9,6 +9,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\WeightController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 
@@ -26,6 +27,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     // Route::get('/weight_and_meals/today/create', [MealController::class, 'create'])->name('meal.today');
     Route::post('/weight_and_meals/today/meal_store', [MealController::class, 'store'])->name('meal.store');
+    Route::delete('/weight_and_meals/today/meal_destroy/{id}', [MealController::class, 'destroy'])->name('meal.destroy');
+
 
 
     Route::post('/weight_and_meals/today/weight_store', [WeightController::class, 'store'])->name('weight.store');
@@ -45,8 +48,23 @@ Route::group(['middleware' => 'auth'], function(){
 
     // Profile Log weight history
     Route::get('/log-weight-history/{id}/show', [LogWeightHistoryController::class,'show'])->name('log-weight-history');
+    Route::get('/log-weight-history/{id}/edit', [LogWeightHistoryController::class, 'edit'])->name('weight-edit');
+    Route::patch('/log-weight-history/{id}/update', [LogWeightHistoryController::class, 'update'])->name('weight-update');
+    Route::delete('/log-weight-history/{id}/delete', [LogWeightHistoryController::class, 'destroy'])->name('weight-destroy');
 
+
+    #Community
     Route::get('/community/top', [HomeController::class, 'community'])->name('community');
+    Route::get('/community/{id}/all_posts', [PostController::class, 'community_all_posts'])->name('community_all_posts');
+    Route::get('/community/post/{id}/show', [PostController::class, 'show'])->name('post.show');
+
+    ### POST
+    // Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+    Route::post('/post/{id}/store', [PostController::class, 'store'])->name('post.store');
+    // Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
+    Route::patch('/post/{id}/update', [PostController::class, 'update'])->name('post.update');
+    Route::delete('/post/{id}/destroy', [PostController::class, 'destroy'])->name('post.destroy');
+
 
     ### ADMIN
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function(){
@@ -63,17 +81,6 @@ Route::group(['middleware' => 'auth'], function(){
     });
 });
 
-Route::get('/community-all-posts', function(){
-     return view('community.community-all-posts');
-});
-
-Route::get('/create-new-posts', function(){
-    return view('community.modals.create-new-posts');
-});
-
-Route::get('/edit', function(){
-    return view('community.modals.edit');
-});
 
 // Route::get('/delete', function(){
 //     return view('community.modals.delete');

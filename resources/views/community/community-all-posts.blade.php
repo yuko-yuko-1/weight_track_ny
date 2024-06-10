@@ -10,18 +10,18 @@
 
 @section('content')
 <div class="community-top">
-    <h1>HEALTHY FOOD</h1>
+    <h1 class="text-uppercase">{{ $community->name }}</h1>
 </div>
 
 <div class="container">
     <div class="home">
         <ul class="#">
-            <a href="{{route('index')}}"><i class="fa-solid fa-house"></i></a>
+            {{-- <a href="{{route('index')}}"><i class="fa-solid fa-house"></i></a>
             <a href="{{route('index')}}"><p>&ensp;Home&ensp;</p></a>
             <p>></p>
             <a href="{{route('index')}}"><P>&ensp;Community&ensp;</P></a>
             <p>></p>
-            <a href="{{route('index')}}"><p>&ensp;Healthy Food&ensp;</p></a>
+            <a href="{{route('index')}}"><p>&ensp;Healthy Food&ensp;</p></a> --}}
         </ul>
     </div>
 
@@ -33,64 +33,76 @@
             </div>
         </div>
         <div class="posts col-6">
-            <button id="new-posts" class="new-posts" data-bs-toggle="modal" data-bs-target="#create-new-posts" id="modalOpen" ><i class="fa-solid fa-pen"></i>New Posts</button>
+            <button id="new-posts" class="new-posts" data-bs-toggle="modal" data-bs-target="#create-new-posts-{{ $community->id }}" id="modalOpen" ><i class="fa-solid fa-pen"></i>New Posts</button>
         </div>
-        @include('community.modals.create-new-posts')
-    </div>
-
-
-
-    <div class="container">
-        <div class="card">
-            <h2>All posts</h2>
-
-            <div class="row">
-              <ul class="col-1 post-image">
-               <i class="fa-regular fa-image text-secondary d-block text-center icon-md"></i>
-              </ul>
-
-              <ul class="col-1">
-                <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-sm"></i>
-              </ul>
-              <ul class="col-10 title">
-              <div class="row">
-                    <div class="d-flex justify-content-between align-items-center post">
-                        <h3 >
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo esse inventore maiores. Tempore sed, eligendi nisi earum dolorum deleniti non.
-                        </h3>
-                        <div class="ml-auto">
-                            <button class="button edit edit-modal-btn" data-bs-toggle="modal" data-bs-target="#edit-post" id="modalOpen" ><i class="fa-solid fa-pen"></i></button>
-                        </div>
-                        @include('community.modals.edit')
-                        <div class="ml-auto">
-                            <button class="delete" data-bs-toggle="modal" data-bs-target="#delete" id="modalOpen" ><i class="fa-solid fa-trash-can"></i></i></button>
-                        </div>
-                        @include('community.modals.delete')
-                    </div>
-                </div>
-                </ul>
-
-            <ul class="col-10">
-                <h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quibusdam perferendis totam expedita, repellat, similique earum eos nisi quo unde excepturi repellendus, sapiente vel veritatis perspiciatis accusantium illum et explicabo hic nostrum asperiores placeat! Natus molestias nulla nobis sint, illo obcaecati quaerat distinctio autem. Totam distinctio adipisci ipsum itaque obcaecati, minus impedit laborum voluptatibus numquam odit asperiores sed vero cum labore saepe eveniet voluptas illo facere? Accusantium doloribus maxime earum ab quo quia, tempore ex distinctio ea fugiat aut sunt doloremque sint at officia unde blanditiis laborum vero sequi. Vel, praesentium. Asperiores accusantium hic dolor earum qui alias repudiandae dolorem.</h6>
-            </ul>
-            <div class="row">
-                <ul class="post-bottom col-10">
-                    <i class="fa-regular fa-comment"><p>&ensp;14</p></i>
-
-                            {{-- count --}}
-                            <i class="fa-regular fa-heart"><p>&ensp;24</p></i>
-                            {{-- count --}}
-
-                            <p>Naoto &ensp;|</p><p> &ensp; 2024/4/19 &ensp;|</p><p>&ensp; Healthy Food</p>
-                </ul>
-            </div>
-        </div>
-
+        {{-- $communityという変数をcommunityという名前で現在のテンプレートからcreate-new-postsテンプレートにデータを渡す。 --}}
+        @include('posts.contents.modals.create-new-posts', ['community' => $community])
     </div>
 </div>
+    <div class="container">
+        <div class="card mt-2 mb-4">
+            <h2>All posts</h2>
+                @forelse($all_posts as $post)  
+                    <div class="row mb-2">
+                        <div class="col-1 my-auto">
+                            <a href="{{ route('post.show', $post->id)}}">
+                                <img src="{{ $post->image }}" class="d-block text-center icon-md  mx-auto my-auto">
+                            </a>
+                        </div>
+                        <div class="col-1">
+                            @if($post->user->avatar)
+                                <img src="{{ asset('images/Profile/' . $post->user->avatar) }}" alt="{{ $post->user->username }}" class="d-block text-center icon-sm rounded-circle ms-auto">
+                             @else
+                                <i class="fa-solid fa-circle-user text-secondary d-block icon-sm"></i>
+                            @endif
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h3 class="float-start">
+                                                <a href="{{ route('post.show', $post->id)}}" class="text-decoration-none" style="color: #A8D2A2;">{{ $post->title }}</a>
+                                            </h3>
+                                            @if (Auth::user()->id === $post->user->id)
+                                                <div class="float-end">
+                                                    {{-- EDIT BUTTON --}}
+                                                    <button class="button edit edit-modal-btn" data-bs-toggle="modal" data-bs-target="#edit-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-pen"></i></button>
+                                                    {{-- DELETE BUTTON --}}
+                                                    <button class="delete" data-bs-toggle="modal" data-bs-target="#delete-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-trash-can"></i></i></button>   
+                                                </div>
+                                                @include('posts.contents.modals.edit')
+                                                @include('posts.contents.modals.delete')
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>{{ $post->content }}</h6>
+                                            <div>
+                                                <span>{{ $post->user->username }}</span>
+                                                &ensp;|&ensp;
+                                                <span>{{ $post->created_at }}</span>
+                                                &ensp;|&ensp;
+                                                <span>{{ $post->community->name }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-0">            
+                    
+                @empty     
+                    <p class="ms-4">No posts found.</p>
+                @endforelse
 
-
-
-
+              </div> 
+                        
+                </div>             
+          </div>
+        </div>
+    </div>
 
 @endsection

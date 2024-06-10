@@ -17,7 +17,7 @@ class CommunitiesController extends Controller
 
     public function index()
     {
-        $all_communities = $this->community->orderBy('updated_at', 'desc')->paginate(5);
+        $all_communities = $this->community->orderBy('updated_at', 'desc')->paginate(10);
         // paginateでページ割り付けできる！
 
         return view('admin.communities.index')
@@ -55,7 +55,11 @@ class CommunitiesController extends Controller
         $community->name  = ucwords(strtolower($request->name));
         // 画像は更新しない可能性もあるので、ifに入れる。
         if ($request->image) {
-            $user->image = 'data:image/' . $request->image->extension() . ';base64,' . base64_encode(file_get_contents($request->image));
+            // $user->image = 'data:image/' . $request->image->extension() . ';base64,' . base64_encode(file_get_contents($request->image));
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('/images/community'), $filename);
+            $community->image = $filename;
         }
         $community->save();
 

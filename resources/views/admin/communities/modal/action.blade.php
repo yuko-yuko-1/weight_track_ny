@@ -19,7 +19,23 @@
                     {{-- Modal Body --}}
                     <div class="modal-body">
                         <div class="mt-3">
+                            <label for="name" class="form-label">Name</label>
                             <input type="text" name="name" value="{{ $community->name }}" class="form-control">
+                        </div>
+                        <div class="mt-3">
+                            <label for="image" class="form-label">Change Image</label>
+                            {{-- 登録済みのイメージの表示（あれば） --}}
+                            @if ($community->image)
+                                <img src="{{ asset('images/community/' . $community->image) }}" alt="{{ $community->name }}" class="img-thumbnail rounded-circle d-block mx-auto avatar-lg">
+                            @else
+                                <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-lg"></i>
+                            @endif
+                            {{-- イメージの登録・更新 --}}
+                            <input type="file" name="image" id="image" class="form-control form-control-sm mt-1" aria-describedby="image-info">
+                            {{-- Error --}}
+                            @error('image')
+                                <p class="text-danger small">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     {{-- Modal Footer --}}
