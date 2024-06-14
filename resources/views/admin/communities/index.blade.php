@@ -52,29 +52,37 @@
                         {{-- コミュニティのID --}}
                         <td>{{ $community->id }}</td>
                         {{-- コミュニティ名--}}
-                        <td class="text-dark">{{ $community->name }}</td>
+                        <td>
+                            <a href="{{ route('community_all_posts', $community->id )}}" class="text-decoration-none text-dark">{{ $community->name }}</a>
+                        </td>
                         {{-- イメージ --}}
                         <td>
                             @if ($community->image)
-                                <img src="{{ asset('images/community/' . $community->image) }}" alt="{{ $community->name }}" class="rounded-circle d-block mx-auto avatar-md">
+                                <a href="{{ route('community_all_posts', $community->id )}}" class="text-decoration-none text-dark">
+                                    <img src="{{ asset('images/community/' . $community->image) }}" alt="{{ $community->name }}" class="rounded-circle d-block mx-auto avatar-md">
+                                </a>
                             @else
-                                <i class="fa-solid fa-circle-user d-block text-center icon-md"></i>
+                                <a href="{{ route('community_all_posts', $community->id )}}" class="text-decoration-none text-dark">
+                                    <i class="fa-solid fa-circle-user d-block text-center icon-md"></i>
+                                </a>
                             @endif
                         </td>
                         {{-- 最終更新日 --}}
                         <td>{{ $community->updated_at }}</td>
                         {{-- ポスト数のカウント --}}
-                        <td></td>
+                        <td>{{ $community->posts->count() }}</td>
                         {{-- 編集モーダルへと削除モーダルへのボタン--}}
                         <td>
-                            {{-- Edit Button モーダル開く--}}
-                            <button class="btn btn-outline-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#edit-community-{{ $community->id }}" title="Edit">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            {{-- Delete Button モーダル開く--}}
-                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-community-{{ $community->id }}" title="Delete">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
+                            @if ($community->posts->count() == 0)
+                                {{-- Edit Button モーダル開く--}}
+                                <button class="btn btn-outline-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#edit-community-{{ $community->id }}" title="Edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                {{-- Delete Button モーダル開く--}}
+                                <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-community-{{ $community->id }}" title="Delete">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                     {{-- モーダルのインクルード　Include modal here --}}
