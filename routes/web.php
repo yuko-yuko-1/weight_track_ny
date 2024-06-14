@@ -10,6 +10,7 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\WeightController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserPostController;
 
 
 use App\Http\Controllers\Admin\UsersController;
@@ -50,6 +51,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/log-weight-history/{id}/update', [LogWeightHistoryController::class, 'update'])->name('weight-update');
     Route::delete('/log-weight-history/{id}/delete', [LogWeightHistoryController::class, 'destroy'])->name('weight-destroy');
 
+    #Profile Your Posts
+    Route::get('/profile-post/{id}/show',[UserPostController::class,'show'])->name('profile-post');
+
+    #Profile All Meal Posts
+    Route::get('/profile-meal-posts/{id}/show',[MealController::class,'show'])->name('profile-meal-post');
 
     #Community
     Route::get('/community/top', [HomeController::class, 'community'])->name('community');

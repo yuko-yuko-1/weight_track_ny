@@ -1,3 +1,4 @@
+<!-- resources/views/meals.blade.php -->
 @extends('layouts.app')
 
 @section('title', 'All-Your-Meals-Posts')
@@ -13,15 +14,13 @@
 <div class="profile-wrapper">
     <div class="background-photo"></div>
     <div class="profile-container">
-        <a href="{{ route('profile-main') }}">
-            @if($user->avatar)
-            <div class="profile-picture">
-                <img src="{{ $user->avatar }}" alt="{{ $user->username }}">
-            </div>
+        <a href="{{ route('profile-main',$user->id) }}">
+            @if ($user->avatar)
+                <img src="{{ asset('images/Profile/' . $user->avatar) }}" alt="{{ $user->username }}" class="img-thumbnail rounded-circle profile-picture">
             @else
-            <div class="default-profile-picture">
-                <i class="fas fa-user-circle"></i>
-            </div>
+                <div class="default-profile-picture fa-solid text-secondary icon-lg">
+                    <i class="fas fa-user-circle"></i>
+                </div>
             @endif
         </a>
         
@@ -34,43 +33,33 @@
     </div>
 
     <div class="meals-grid">
-        {{-- @foreach($mealPhotos as $photo) --}}
         <div class="meal-items">
-            {{-- <img src="{{ asset('storage/' . $photo->path) }}" alt="meal photo"> --}}
-            <div class="meal-item">
-                <div class="meal-photo"></div>
-                <div class="meal-date">2023-01-08</div>
-            </div>
-            <div class="meal-item">
-                <div class="meal-photo"></div>
-                <div class="meal-date">2023-01-07</div>
-            </div>
-            <div class="meal-item">
-                <div class="meal-photo"></div>
-                <div class="meal-date">2023-01-06</div>
-            </div>
-            <div class="meal-item">
-                <div class="meal-photo"></div>
-                <div class="meal-date">2023-01-05</div>
-            </div>
-            <div class="meal-item">
-                <div class="meal-photo"></div>
-                <div class="meal-date">2023-01-04</div>
-            </div>
-            <div class="meal-item">
-                <div class="meal-photo"></div>
-                <div class="meal-date">2023-01-03</div>
-            </div>
-            <div class="meal-item">
-                <div class="meal-photo"></div>
-                <div class="meal-date">2023-01-02</div>
-            </div>
-            <div class="meal-item">
-                <div class="meal-photo"></div>
-                <div class="meal-date">2023-01-01</div>
-            </div>
+            @foreach($user->meals->reverse() as $meal)
+                <div class="meal-item" data-bs-toggle="modal" data-bs-target="#deleteMealModal" data-id="{{ $meal->id }}" data-image="{{ asset('images/meal/' . $meal->image) }}">
+                    <img src="{{ asset('images/meal/' . $meal->image) }}" alt="Meal photo">
+                    <span class="meal-date">{{ $meal->record_date }}</span>
+                </div>
+            @endforeach
         </div>
-        {{-- @endforeach --}}
     </div>
 </div>
+
+@include('profile/modals/delete-meal-posts')
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var deleteMealModal = document.getElementById('deleteMealModal');
+        deleteMealModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var mealId = button.getAttribute('data-id');
+            var mealImage = button.getAttribute('data-image');
+
+            var form = deleteMealModal.querySelector('form');
+            var imageElement = deleteMealModal.querySelector('#mealToDeleteImage');
+
+            form.action = `/weight_and_meals/today/meal_destroy/${mealId}`;
+            imageElement.src = mealImage;
+        });
+    });
+</script>
 @endsection

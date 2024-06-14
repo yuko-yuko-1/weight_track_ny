@@ -83,10 +83,10 @@
       <div class="row">
         <div class="user-posts-count">
               <label for="posts_count" class="col-10">The number of your posts in Communities</label>
-              <input type="number" id="posts_count" name="posts_count" disabled>
+              <input class="text-center" type="number" id="posts_count" name="posts_count" disabled value="{{ $user->posts->count() }}">
         </div>
       </div>
-        <button class="check-posts-button" onclick="window.location='#'"> 
+        <button class="check-posts-button" onclick="window.location='{{ route('profile-post', ['id' => $user->id]) }}'"> 
             <i class="fas fa-check-circle"></i> Check all your posts 
         </button>
     </div>
@@ -147,19 +147,21 @@
     </div>
  </div>
 
-  <div class="latest-meal-container">
-      <p>Top 3 latest Meals</p>
-      <div class="latest-meal-list">
-        <div class="meal-item"></div>
-        <div class="meal-item"></div>
-        <div class="meal-item"></div>
-      </div>
-      <div class="view-meals-button">
-        <button onclick="window.location.href='#'">
+<div class="latest-meal-container">
+    <p>Top 3 latest Meals</p>
+    <div class="latest-meal-list">
+        @foreach($user->meals->reverse()->take(3) as $meal)
+            <div class="meal-item">
+                <img src="{{ asset('images/meal/' . $meal->image) }}" alt="Meal photo">
+            </div>
+        @endforeach
+    </div>
+    <div class="view-meals-button">
+        <a class="btn view-meals-button" href='{{ route('profile-meal-post', ['id' => $user->id]) }}'>
             <i class="fas fa-check-circle"></i> View all of your meals
-        </button>
-      </div> 
-  </div>
+        </a>
+    </div> 
+</div>
 @include('profile/modals/delete-account')
 </div>
 
