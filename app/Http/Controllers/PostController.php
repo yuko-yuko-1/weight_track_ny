@@ -84,24 +84,51 @@ class PostController extends Controller
         ]);
 
         //find the record to update
-        $post_a = $this->post->findOrFail($id);
+        $post = $this->post->findOrFail($id);
 
         //update the column data
-        $post_a->content = $request->content;
-        if($request->image){ //if the form has an image submitted
-            $post_a->image = 'data:image/'.$request->image->extension().
+        $post ->title = $request->title;
+        $post ->content = $request->content;
+
+        // if ($request->hasFile('image')) { 
+            
+        //     Log::info('Request data: ', $request->all());
+        //     $imagePath = $request->file('image'); 
+        //     Log::info('Imaged stored in:  ', ['path' => $imagePath]);
+        //     $imageName = time() . '_' . $imagePath->getClientOriginalName(); 
+        //     $imagePath->move(public_path('/images/post'), $imageName);
+            
+        //     // 古いpost画像のパスを取得
+        //     $oldImagePath = $post->image;
+
+        //     // 新しいpost画像のパスを保存
+        //     $post->image = $imageName;
+
+        //     // 古いpost画像を削除する
+        //     if ($oldImagePath) {
+        //         $oldImageFullPath = public_path('/images/post/') . $oldImagePath;
+        //         if (file_exists($oldImageFullPath)) {
+        //             unlink($oldImageFullPath);
+        //         }
+        //     }
+        // }
+
+        if($request->image){  //if the form has an image submitted
+            $post->image = 'data:image/'.$request->image->extension().
                             ';base64,'.base64_encode(file_get_contents($request->image));
         }
-        $post_a->save();
+
+        $post ->save();
 
         return redirect()->route('post.show', $id);
     }
 
     public function destroy($id){
        // $this->post->destroy($id);
-        $post_a = $this->post->findOrFail($id);
-        $post_a->forceDelete(); //-- forces a permanent delete
+        $post = $this->post->findOrFail($id);
+        $community_id = $post->community_id;
+        $post->forceDelete(); //-- forces a permanent delete
 
-        return redirect()->back();
+        return redirect()->route('community_all_posts', ['id' => $community_id]);
     }
 }

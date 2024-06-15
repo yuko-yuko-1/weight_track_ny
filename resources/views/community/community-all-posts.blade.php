@@ -46,12 +46,12 @@
                     <div class="row mb-2">
                         <div class="col-1 my-auto">
                             <a href="{{ route('post.show', $post->id)}}">
-                                <img src="{{ $post->image }}" class="d-block text-center icon-md  mx-auto my-auto">
+                                <img src="{{ $post->image }}" class="d-block text-center icon-md ps-2 mx-auto my-auto">
                             </a>
                         </div>
                         <div class="col-1">
                             @if($post->user->avatar)
-                                <img src="{{ asset('images/Profile/' . $post->user->avatar) }}" alt="{{ $post->user->username }}" class="d-block text-center icon-sm rounded-circle ms-auto">
+                                <img src="{{ asset('images/Profile/' . $post->user->avatar) }}" alt="{{ $post->user->username }}" class="d-block text-center icon-sm rounded-circle ms-auto mt-2">
                              @else
                                 <i class="fa-solid fa-circle-user text-secondary d-block icon-sm"></i>
                             @endif

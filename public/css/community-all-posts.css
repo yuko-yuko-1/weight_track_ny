@@ -282,10 +282,10 @@
 
 /* Create New Posts / Edit Modal */
 
-.add-title input{
+/* .add-title input{
     width: 400;
 
-}
+} */
 
 /* .add-image{
     display: flex;
@@ -347,6 +347,17 @@
     border-radius: 110px;
 }
 
+/* custom-modal-body の余白を最小化 */
+.custom-modal-body {
+    padding: 30px !important; /* 必要に応じて調整 */
+    margin: 0 !important;
+}
+
+/* custom-modal-header と custom-modal-footer の余白を最小化 */
+.custom-modal-header, .custom-modal-footer {
+    padding: 30px !important; /* 必要に応じて調整 */
+    margin: 0 !important;
+}
 
 
 /* Delete Modal */
