@@ -42,6 +42,12 @@ h1, h2, h3, h4, h5, h6, p {
     border: 3px solid #FDC268;
     background-color: white;
 }
+.count_btn{
+    position: relative;
+    width: 120px;
+    height: 90px;
+    margin-top: -20px;
+}
 
 .record_btn{
     display: flex;
@@ -204,9 +210,7 @@ h1, h2, h3, h4, h5, h6, p {
     background-position: center;
     background-size: cover;
 }
-.delete-body{
-    /* margin: -40px; */
-}
+
 .image-delete{
     width: 300px;
     height: 250px;

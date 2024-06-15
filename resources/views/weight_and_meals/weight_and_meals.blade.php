@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="{{ asset('css/calendar.css')}}">
 <link rel="stylesheet" href="{{ asset('css/chart.css')}}">
 <link rel="stylesheet" href="{{ asset('css/goalbar.css')}}">
+<link rel="stylesheet" href="{{ asset('css/Profile/profile.css')}}">
+
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 @endpush
@@ -14,7 +16,70 @@
 @section('content')
 
 <script type="text/javascript" src="{{ asset('js/loader.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/chart.js') }}"></script>
+
+<script type="text/javascript">
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+                
+function drawChart() {
+  var data = google.visualization.arrayToDataTable({!! json_encode($weightChartData) !!});
+  var options = {
+      title: 'Weight Chart',
+      curveType: 'function',
+      legend: { position: 'bottom' },
+      chartArea: { width: 250, height: 150 },
+      pointShape: 'circle',
+      pointSize: 7,
+      lineWidth: 2,
+      series: {
+          1: { lineDashStyle: [10, 2] },
+      },
+      colors: ['#FF2650', '#F67F96'],
+      hAxis: {
+          baselineColor: 'none',
+          gridlines: { color: 'transparent' },
+          textPosition: 'none'
+      }
+  };
+  var chart = new google.visualization.LineChart(document.getElementById('myFirstchart'));
+  chart.draw(data, options);
+}
+
+</script>
+{{-- Countdown --}}
+<script>
+    // ゴールの日付を設定
+var goalDate = new Date("{{ $user->goal_date }}");
+// ゴールの日付のミリ秒表現を取得
+var goalTime = goalDate.getTime();
+
+// 毎秒ごとにカウントを更新
+var x = setInterval(function() {
+  // 現在日時を取得
+  var now = new Date().getTime();
+    
+  // 現在日時とゴールの日時との差を計算
+  var distance = goalTime - now;
+    
+  // 日数、時間、分、秒の計算
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // HTML 要素の更新（残り日数を表示）
+  var goalDateIcon = document.getElementById("goal_date_icon");
+  if (goalDateIcon) {
+    goalDateIcon.innerHTML = days + " Days Left ";
+  }
+    
+  // カウントダウンが終了した場合は、テキストを変更
+  if (distance <= 0) { // ゼロまたはマイナスの場合も考慮
+    clearInterval(x);
+    document.getElementById("goal_date_icon").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
 
 {{-- @php
 $achievementPercentage = $user->achievement_percentage;
@@ -37,9 +102,10 @@ $achievementPercentage = $user->achievement_percentage;
             <div class="col-5 text-center post_btn">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#post_meal" class="btn btn_post w-75"><h6><i class="icon2 fa-solid fa-camera"></i> Post the photo of your meal!</h6></button>
             </div>
-            <div class="col-2 text-center count_btn position-absolute" style="right: 20px">
+            {{-- <div class="col-2 text-center count_btn position-absolute" style="right: 20px">
                 <a href="#" class="btn btn_post w-75 pull-right"><h6>#days left!</h6></a>
-               </div>
+               </div> --}}
+               <div class="goal_date_icon col-2 " id="goal_date_icon" style="width:100px;"></div>
         </div> 
         
         @include('weight_and_meals.modals.record')
@@ -78,12 +144,28 @@ $achievementPercentage = $user->achievement_percentage;
                     @php
                             $firstDayOfMonth = \Carbon\Carbon::parse("$year-$month-01")->dayOfWeek;
                             $daysInMonth = \Carbon\Carbon::parse("$year-$month-01")->daysInMonth;
+
+                             // 月のすべての画像データを取得する
+                        // $imagesByDay = \App\Models\Meal::whereYear('date', $year)
+                        //                 ->whereMonth('date', $month)
+                        //                 ->get()
+                        //                 ->keyBy(function($item) {
+                        //                     return \Carbon\Carbon::parse($item->date)->day;
+                        //                 });
                         @endphp
                         @for ($i = 0; $i < $firstDayOfMonth; $i++)
                             <li class="empty"></li>
                         @endfor
                         @for ($i = 1; $i <= $daysInMonth; $i++)
-                            <li class="{{ $i == $day ? 'active' : '' }}">{{ $i }}</li>
+                        {{-- @php
+                            $image = $imagesByDay->get($i);
+                        @endphp --}}
+                          <li class="{{ $i == $day ? 'active' : '' }}">{{ $i }}
+                            {{-- @if ($image)
+                            <div class="meal-image" style="background-image: url('{{ asset('images/meal/' . $meal->image) }}');"></div>
+                            @else
+                        @endif --}}
+                        </li>
                         @endfor
                 </ul>
 

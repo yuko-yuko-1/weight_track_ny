@@ -11,6 +11,8 @@ use App\Http\Controllers\WeightController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserPostController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 
 
 use App\Http\Controllers\Admin\UsersController;
@@ -85,4 +87,17 @@ Route::group(['middleware' => 'auth'], function(){
     });
 });
 
+
+// Route::get('/delete', function(){
+//     return view('community.modals.delete');
+// });
+
+
+#comment
+Route::post('/comment/store/{post_id}',[CommentController::class,'store'])->name('comment.store');
+Route::delete('/comment/delete/{comment_id}',[CommentController::class,'destroy'])->name('comment.delete');
+
+#Like
+Route::post('/like/{post_id}/store',[LikeController::class,'store'])->name('like.store');
+Route::delete('/like/{post_id}/delete',[LikeController::class,'destroy'])->name('like.delete');
 
