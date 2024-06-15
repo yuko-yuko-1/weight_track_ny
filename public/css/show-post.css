@@ -95,6 +95,8 @@ padding-right: 40px;
     text-align: left;
 
 }
+
+/* show-postの本人であれば、edit、deleteできるボタン */
 .edit{
     color: #F8DF88;
     border: none;
@@ -192,6 +194,81 @@ padding-right: 40px;
 
 }
 
+
+/* Edit Modal */
+
+.edit-modal-border {
+    border: 3px solid #FADE7E; /* edit modalの枠線の色を設定　*/
+}
+
+.edit-btn-cancel {
+    background-color: white;
+    border-radius: 110px;
+    border-color: #FADE7E;
+    color: #F8DF88;
+    width: 200px;
+    height: 35px;
+    /* margin-right: 10px; */
+    font-weight: bold;
+    text-align: center;
+}
+
+.edit-btn-post{
+    background-color: #FADE7E;
+    border-radius: 110px;
+    border-color: #FADE7E;
+    color: #fff;
+    width: 200px;
+    height: 35px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* custom-modal-body の余白を最小化 */
+.custom-modal-body {
+    padding: 30px !important; /* 必要に応じて調整 */
+    margin: 0 !important;
+}
+
+/* custom-modal-header と custom-modal-footer の余白を最小化 */
+.custom-modal-header, .custom-modal-footer {
+    padding: 30px !important; /* 必要に応じて調整 */
+    margin: 0 !important;
+}
+
+/* 追加の調整 */
+/* .add-title, .add-content, .add-image, .modal-title {
+    margin: 0 !important;
+    padding: 0 !important;
+} */
+
+/* Delete Modal */
+
+.delete-modal-border {
+    border: 3px solid #EB5E5E; /* delete modalの枠線の色を設定　*/
+}
+
+.delete-btn-cancel{
+    background-color: #fff;
+    border-radius: 110px;
+    border-color: #FD7168;
+    color: #FD7168;
+    width: 150px;
+    height: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.delete-btn-delete{
+    background-color: #FD7168;
+    border-radius: 110px;
+    border-color: #FD7168;
+    color: #fff;
+    width: 150px;
+    height: 30px;
+    font-weight: bold;
+    text-align: center;
+}
 
 /* Add-comment modal */
 .add-comments-btn-cancel{
