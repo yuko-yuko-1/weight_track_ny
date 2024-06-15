@@ -101,8 +101,8 @@ main {
 .meals-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* ギャップを調整 */
     justify-content: center;
+    gap: 20px; /* ギャップを調整 */
 }
 
 /* Meal Items */
@@ -110,32 +110,25 @@ main {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
-    width: 60%;
+    width: 80%;
 }
 
 /* Meal Item */
 .meal-item {
     flex: 1 1 calc(25% - 20px); /* 4つ並べる */
     max-width: calc(25% - 20px); /* 4つ並べる */
-    background-color: rgb(248, 244, 237); /* 仮の背景色 */
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-/* Meal Photo */
-.meal-photo {
+/* Meal Item Image */
+.meal-item img {
     width: 100%;
-    padding-bottom: 100%; /* 正方形にするためのトリック */
-    background-color: rgb(248, 205, 139);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    text-align: center;
+    height: auto;
+    aspect-ratio: 1 / 1; /* 正方形の比率を保つ */
+    object-fit: cover; /* 画像が正方形にフィットするように */
     border-radius: 10px;
 }
 
@@ -145,4 +138,15 @@ main {
     font-family: "Pridi", serif;
     font-size: 14px;
     color: rgb(18, 16, 59);
+    text-align: center; /* 日付を中央に配置 */
+}
+
+/* Modal meal image */
+.modal-meal-image {
+    width: 100%;
+    max-width: 300px; /* モーダル内の画像の最大幅を設定 */
+    height: auto;
+    aspect-ratio: 1 / 1; /* 正方形に保つ */
+    object-fit: cover; /* 画像をコンテナに合わせてトリミング */
+    margin: 0 auto; /* センタリング */
 }
