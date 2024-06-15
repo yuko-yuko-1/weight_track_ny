@@ -67,9 +67,33 @@
             <div class="text-center">
                 <img src="{{ $post->image }}" alt="show_post" style="width: 500px; height: 600px; object-fit: cover;">
             </div>
-            <div class="post-bottom mt-4">
-                <i class="fa-regular fa-heart"><span>&ensp;24</span></i>
-                <i class="fa-solid fa-share"></i>
+
+            <div class="post-bottom mt-4 d-flex align-items-center">
+                <div class="col-auto d-flex align-items-center me-3">
+                    {{-- heart button --}}
+                    @if ($post->isLiked())
+                         <form action="{{route('like.delete', $post->id)}}" method="post">
+                         @csrf
+                         @method('DELETE')
+                         <button type="submit" class="btn shadow-none icon-sm mt-3" >
+                             <i class="fa-solid fa-heart text-danger"></i>
+                         </button>
+                         </form>
+
+                    @else
+                         <form action="{{route('like.store', $post->id)}}" method="post">
+                         @csrf
+                         <button type="submit" class="btn shadow-none icon-sm mt-3">
+                          <i class="fa-regular fa-heart"></i>
+                         </button>
+                         </form>
+                    @endif
+                    <div class="col-auto heart-count px-0">
+                        {{-- counter --}}
+                        {{$post->likes->count()}}
+                    </div>
+                </div>
+                {{-- <i class="fa-solid fa-share"></i> --}}
             </div>
             <div class="comment-modal text-center mb-4">
                 <button class="button add-comment-btn" data-bs-toggle="modal" data-bs-target="#add-comment" id="modalOpen"><i class="fa-solid fa-pen"></i><span>Add your comment</span></button>
@@ -82,49 +106,45 @@
     {{-- Comments --}}
 
     <div class="comments">
-        <p class="mt-3">20 comments</p>
-        <div class="card mt-2 mb-3">
-            <div class="row post-top mt-4">
-                <ul class="col-1 user-img">
-                    <i class="fa-solid fa-circle-user text-secondary d-block text-center icon-sm"></i>
-                </ul>
-                <ul class="col-3 user mt-2">
-                    <p class="user-name">User Name</p>
-                    <p class="posteddate">2024/04/15</p>
-                </ul>
-            </div>
-            <div class="col-10 comment-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis et similique atque recusandae sapiente maiores dicta assumenda quisquam, nesciunt nobis necessitatibus deleniti quo odit fuga nostrum est quidem alias?</p>
-            </div>
-        </div>
+        <p class="mt-3">{{ $post->comments->count()}} comments</p>
+        @foreach($post->comments as $comment )
+        <div class="card posted-comments mt-3 mb-3">
+            <div class="row post-top mt-4 ">
+                    <div class="row comment-item mb-3">
+                        <div class="col-2 user-img2">
+                            @if ($comment->user->avatar)
+                                <img src="{{asset('images/Profile/' . $comment->user->avatar) }}" alt="{{$comment->user->username}}" class="d-block text-center icon-md rounded-circle">
 
-        <div class="card">
-            <div class="row post-top mt-4">
-                <ul class="col-3">
-                    <i class="fa-solid fa-circle-user text-secondary icon-sm user-1"></i>
-                </ul>
-                <ul class="col-2 users mt-3">
-                    <p class="your-name">User Name</p>
-                    <p class="your-posteddate">2024/04/15</p>
-                </ul>
-                <ul class="col-4"></ul>
-                <ul class="col-3 post-bottom1">
-                    <button class="button edit edit-modal-btn" data-bs-toggle="modal" data-bs-target="#edit-comment" id="modalOpen" ><i class="fa-solid fa-pen pen-1"></i></button>
-                    <button class="delete" data-bs-toggle="modal" data-bs-target="#delete-comment" id="modalOpen" ><i class="fa-solid fa-trash-can trash-1"></i></i></button>
-                </ul>
-            </div>
-            @include('community.post.contents.comments.modals.edit-comment')
-            <div class="col-10 comment-content w-95">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia odio cum odit delectus aliquam, quas voluptate non libero culpa similique quos tenetur maxime nam minus beatae aperiam distinctio saepe nobis?</p>
-            </div>
-            @include('community.post.contents.comments.modals.delete-comment')
+                            @else
+                                <i class="fa-solid fa-circle-user text-secondary icon-sm user-1"></i>
+                            @endif
+                        </div>
+                        <div class="col-6 users mt-3">
+                            <p class="your-name">{{$comment->user->username}}</p>
+                            <p class="your-posteddate">{{$comment->created_at}}</p>
+                        </div>
+                        <div class="col-1"></div>
 
-        </div>
+                    @if (Auth::user()->id === $comment->user->id)
+                        <div class="col-3 post-bottom1">
+                           <button class="button edit edit-modal-btn" data-bs-toggle="modal" data-bs-target="#edit-comment-{{$comment->id}}" id="modalOpen" ><i class="fa-solid fa-pen pen-1"></i></button>
+                           <button class="delete" data-bs-toggle="modal" data-bs-target="#delete-comment-{{$comment->id}}" id="modalOpen" ><i class="fa-solid fa-trash-can trash-1"></i></i></button>
+                        </div>
+                        @include('community.post.contents.comments.modals.edit-comment')
+                    @else
+                        <div class="col-3"></div>
+                    @endif
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-10 comment-content w-95">
+                            <p>{{$comment->comment_content}}</p>
+                        </div>
+                    </div>
+                </div>
+                    @include('community.post.contents.comments.modals.delete-comment')
+
+            </div>
+        @endforeach
     </div>
 </div>
-
-
-
-
-
 @endsection

@@ -19,36 +19,15 @@ text-shadow: #B3B3B3 0 2px;
 }
 
 
-
-/* .fa-house{
-padding-top: 20px;
-color: #B3B3B3;
-font-size: 20px;
-padding-bottom: 10px;
-margin: 0 -35px;
-padding-right: 40px;
-
-
-}
-
-.home{
-    font-size: 0;
-
-}
-
-.home p{
-    display: inline-block;
-    font-size: 18px;
-    color: #B3B3B3;
-
-} */
-
 .fa-circle-user{
     font-size: 70px;
-    padding-top: 35px;
     padding-left: 45px;
     text-align: center;
 
+}
+
+.user-img{
+    transform: translateY(-15%);
 }
 
 .user{
@@ -101,7 +80,6 @@ padding-right: 40px;
     padding-top: 35px;
     font-size: 40;
     background-color: transparent;
-    /* padding-left: 80px; */
     padding-left: 50px;
 }
 
@@ -120,24 +98,24 @@ padding-right: 40px;
 }
 .post-bottom{
     display: flex;
-    padding-left: 20px;
+    /* padding-left: 20px; */
 }
 
 .fa-heart{
     color: #B3B3B3;
-    margin-right: 20px;
-    font-size: 25px;
+    font-size: 30px;
     display: flex;
 }
 
-.fa-heart span{
-    font-size: 20px;
+.heart-count{
+    /* padding-left: none; */
+    font-size: 25px;
 }
 
 .fa-share{
     color: #B3B3B3;
     margin-right: 20px;
-    font-size: 25px;
+    font-size: 30px;
 }
 
 .add-comment-btn{
@@ -154,17 +132,34 @@ padding-right: 40px;
 /* Comments */
 .user{
     font-size: 18px;
+
+}
+
+.user-img2{
+    justify-content: right;
+    font-size: 70px;
+    padding-left: 45px;
+    float: right;
+}
+
+.user-img2 img{
+    width: 70;
+    height: 70;
+    margin-left: 90px;
+    margin-top: 10px;
+
 }
 
 .comment-content{
     font-size: 20px;
     margin: 0%;
-    padding-left: 150px;
+
 }
 
 .comments p{
     font-size: 20px;
 }
+
 
 .user-1{
     justify-content: right;
@@ -217,6 +212,16 @@ padding-right: 40px;
 
 
 /* Edit-comment modal */
+.icon-md a{
+    color: #B3B3B3;
+    font-size: 16px;
+}
+
+.modal-body{
+    justify-content: center;
+}
+
+
 .edit-comments-btn-cancel{
     color: #F8DF88;
     background-color: white;
@@ -234,12 +239,18 @@ padding-right: 40px;
 }
 
 /* Delete Comment Modal */
+
+.modal-footer{
+    justify-content: center;
+}
+
 .delete-comments-btn-cancel{
     color: #FD7168;
     background-color: white;
     border-color: #FD7168;
     border-radius: 110px;
     width: 100;
+
 }
 
 .delete-comments-btn-delete {
@@ -255,3 +266,5 @@ padding-right: 40px;
     width: 85px;
     object-fit: cover;
 }
+
+

@@ -13,7 +13,7 @@
         <div class="modal-body mx-auto">
             <div class="add-title">
                 <form action="{{ route('post.update', $post->id)}}" method="post" enctype="multipart/form-data">
-                    @csrf 
+                    @csrf
                     @method('PATCH')
 
                             <label for="title">Title</label><br>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div class="add-image col-6">
-                                <i class="fa-regular fa-image icon-md fa-image-edit"><span><a href="#" id="add-image">Change Image</a></span></i>
+                                <i class="fa-regular fa-image icon-md fa-image-edit"><span><a href="#" id="add-image" class="text-secondary">Change Image</a></span></i>
                             <div class="img-new">
                                 <img src="{{asset('images/apple.png')}}" width="190px" height="90px" alt="new_posts" >
                             </div>
@@ -36,8 +36,8 @@
 
                     </div>
                     <div class="modal-footer mx-auto">
-                        <button type="button" class="modalClose edit-btn-cancel btn-sm" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="edit-btn-post btn-sm" >Post</button>
+                        <button type="button" class="modalClose btn-cancel btn-sm" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn-post btn-sm" >Post</button>
                     </div>
                     </div>
 

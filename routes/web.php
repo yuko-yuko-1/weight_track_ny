@@ -81,17 +81,15 @@ Route::group(['middleware' => 'auth'], function(){
     });
 });
 
-
-// Route::get('/delete', function(){
-//     return view('community.modals.delete');
-// });
-
+// Comment and Like for Show-post page
 
 #comment
 Route::post('/comment/store/{post_id}',[CommentController::class,'store'])->name('comment.store');
-Route::delete('/comment/delete/{comment_id}',[CommentController::class,'destroy'])->name('comment.delete');
+Route::patch('/comment/update/{comment_id}',[CommentController::class,'update'])->name('comment.update');
+Route::delete('/comment/destroy/{comment_id}',[CommentController::class,'destroy'])->name('comment.destroy');
 
 #Like
 Route::post('/like/{post_id}/store',[LikeController::class,'store'])->name('like.store');
 Route::delete('/like/{post_id}/delete',[LikeController::class,'destroy'])->name('like.delete');
 
+Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
