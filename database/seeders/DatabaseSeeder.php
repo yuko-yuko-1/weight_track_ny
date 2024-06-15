@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class
         ]);
 
-        User::factory(50)->create();
+        User::factory(15)->create();
     }
 }

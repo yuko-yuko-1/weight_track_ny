@@ -13,9 +13,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 
-
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CommunitiesController;
+use App\Http\Controllers\Admin\PostsController;
 
 Auth::routes();
 
@@ -78,6 +78,11 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/categproes/store', [CommunitiesController::class, 'store'])->name('communities.store');
         Route::patch('/communities/{id}/update', [CommunitiesController::class, 'update'])->name('communities.update');
         Route::delete('/communities/{id}/destroy', [CommunitiesController::class, 'destroy'])->name('communities.destroy');
+        #POSTS
+        Route::get('/posts', [PostsController::class, 'index'])->name('posts');
+        Route::delete('/posts/{id}/hide', [PostsController::class, 'hide'])->name('posts.hide');
+        Route::patch('/posts/{id}/unhide', [PostsController::class, 'unhide'])->name('posts.unhide');
+        Route::delete('/post/{id}/destroy', [PostsController::class, 'destroy'])->name('posts.destroy');
     });
 });
 
