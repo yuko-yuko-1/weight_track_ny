@@ -110,7 +110,35 @@ header .icons span:last-child{
     background: #f2f2f2;
 }
 .days li.active::before{
+    position: absolute;
      background-color: orange;
+     content: "";
+     z-index: -1;
+     height: 50px;
+     width: 50px;
+     border-radius: 50%;
 } 
+ul.days li.selected::before{
+    position: absolute;
+    background-color: rgba(0, 255, 128, 0.802);
+    content: "";
+    z-index: -1;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    
+}
+.meal-image{
+    margin: -35px 35px 0 5px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    background-size: cover;
+    /* background-position: center; */
+}
+     
 
 

@@ -16,6 +16,8 @@
 @section('content')
 
 <script type="text/javascript" src="{{ asset('js/loader.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/selected_date.js') }}"></script>
+
 
 <script type="text/javascript">
 google.charts.load('current', {'packages':['corechart']});
@@ -81,17 +83,6 @@ var x = setInterval(function() {
 }, 1000);
 </script>
 
-{{-- @php
-$achievementPercentage = $user->achievement_percentage;
-@endphp
-
-<style>
-    .achievement-dynamic {
-        width: {{ $achievementPercentage }}%;
-    }
-</style> --}}
-
-
 <div class="container-fluid hashboard_image">
     <br>
     <div class="my-auto">
@@ -142,33 +133,29 @@ $achievementPercentage = $user->achievement_percentage;
                 </ul>
                 <ul class="days">
                     @php
-                            $firstDayOfMonth = \Carbon\Carbon::parse("$year-$month-01")->dayOfWeek;
-                            $daysInMonth = \Carbon\Carbon::parse("$year-$month-01")->daysInMonth;
-
-                             // 月のすべての画像データを取得する
-                        // $imagesByDay = \App\Models\Meal::whereYear('date', $year)
-                        //                 ->whereMonth('date', $month)
-                        //                 ->get()
-                        //                 ->keyBy(function($item) {
-                        //                     return \Carbon\Carbon::parse($item->date)->day;
-                        //                 });
-                        @endphp
-                        @for ($i = 0; $i < $firstDayOfMonth; $i++)
-                            <li class="empty"></li>
-                        @endfor
-                        @for ($i = 1; $i <= $daysInMonth; $i++)
-                        {{-- @php
-                            $image = $imagesByDay->get($i);
-                        @endphp --}}
-                          <li class="{{ $i == $day ? 'active' : '' }}">{{ $i }}
-                            {{-- @if ($image)
-                            <div class="meal-image" style="background-image: url('{{ asset('images/meal/' . $meal->image) }}');"></div>
-                            @else
-                        @endif --}}
-                        </li>
-                        @endfor
+                                $monthNumber = \Carbon\Carbon::parse("$year-$month-01")->format('m');
+                                $firstDayOfMonth = \Carbon\Carbon::parse("$year-$month-01")->dayOfWeek;
+                                $daysInMonth = \Carbon\Carbon::parse("$year-$month-01")->daysInMonth;
+                            @endphp
+                            @for ($i = 0; $i < $firstDayOfMonth; $i++)
+                                <li class="empty"></li>
+                            @endfor
+                            @for ($i = 1; $i <= $daysInMonth; $i++)
+                                @php
+                                    // Check if meals are available for this day
+                                    $dayMeals = $latestMealsByDay->get(str_pad($i, 2, '0', STR_PAD_LEFT));
+                                    $latestMeal = ($dayMeals && !$dayMeals->isEmpty()) ? $dayMeals->first() : null;
+                                @endphp
+                                <li class="{{ $i == $day ? 'active' : '' }}" data-day="{{ $i }}" data-year="{{ $year }}" data-month="{{ $month }}">
+                                    {{ $i }}
+                                    {{-- Debug output --}}
+                                    @if ($latestMeal)
+                                        <div class="meal-image" style="background-image: url('{{ asset('images/meal/' . $latestMeal->image) }}');"></div>
+                                    @else
+                                    @endif
+                                </li>
+                            @endfor
                 </ul>
-
             </div>
            </div>
         
@@ -183,7 +170,10 @@ $achievementPercentage = $user->achievement_percentage;
                         <div class="wrapper2">
                             <header>
                                 <div class="post_date1">
-                                    <h5 class="current-date2" style="">{{$day}} {{ $month }} {{ $year }}</h5>
+                                    @if($meal)
+                                    <h5 class="current-date2" style="">{{ $meal->record_date}}</h5>
+                                    @else
+                                    @endif
                                 </div>
                             </header>
                            
@@ -191,9 +181,9 @@ $achievementPercentage = $user->achievement_percentage;
                                 <div class="row post_time">
                                     <div class="col-6">
                                      @if($meal)
-                                        <h6 class=""><i class="fa-regular fa-clock"></i> {{ $meal->created_at->format('H:i') }}</h6>
+                                        <h6 class="" id="display_date"><i class="fa-regular fa-clock"></i> {{ $meal->created_at->format('H:i') }}</h6>
                                     @else
-                                        <h6></h6>
+                                        <i class="fa-regular fa-clock"></i>
                                     @endif
                                     </div>
                                     <div class="col-6 text-end">
@@ -207,7 +197,7 @@ $achievementPercentage = $user->achievement_percentage;
                                     <div class="post_meal">
                                         @if($meal)
                                         <div class="my-4">
-                                              <img src="{{ asset('images/meal/' . $meal->image) }}" alt="Latest Meal" class="grid-img">
+                                              <img id="post_meal" src="{{ asset('images/meal/' . $meal->image) }}" alt="Latest Meal" class="grid-img">
                                         </div>
                                     @else
                                         <h4 class="no_pic text-center text-muted">No posts yet.</h4>
@@ -222,10 +212,10 @@ $achievementPercentage = $user->achievement_percentage;
                                     <span></span>
                                     @endif
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
                 <div class="col-6 dashboard_main mychart">
                    {{-- Graph --}}
                         <div class="wrapper3">
@@ -234,8 +224,8 @@ $achievementPercentage = $user->achievement_percentage;
                                     <h6 class="current-date2" style=""><span class="circle">⚫︎</span>Selected <Span class="goalline">----</Span>Weight Goal</h6>
                                 </div>
                             </header>
-                            <div class="myfirstchart ">  
-                                <div id="myFirstchart"></div>
+                            <div class="myfirstchart flex-grow-1">  
+                                <div id="myFirstchart" class="myFirstchart flex-grow-1"></div>
                             </div>
                         </div>
                 </div>
@@ -257,6 +247,7 @@ $achievementPercentage = $user->achievement_percentage;
                 </div>
             </div>
         </div>
+        
         </div> 
     </div>
 
