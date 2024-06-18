@@ -32,7 +32,7 @@ class WeightController extends Controller
 
         $this->weight->save();
 
-        return redirect()->route('meal.today');
+        return redirect()->back();
     }
 }
 
