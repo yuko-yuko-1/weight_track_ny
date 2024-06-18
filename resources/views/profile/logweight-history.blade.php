@@ -25,7 +25,7 @@
           
           <div class="log-weight-container">
               <span class="log-weight-text">Log Weight History</span>
-              <button class="add-button" onclick="window.location.href = '#'">
+              <button class="add-button btn_record" data-bs-toggle="modal" data-bs-target="#record_weight">
                   <i class="fas fa-pencil-alt"></i> Add
               </button>
           </div>
@@ -71,6 +71,7 @@
   </div>
 @include('profile/modals/edit-weight-log')
 @include('profile/modals/delete-weight-log')
+@include('weight_and_meals.modals.record')
 
 <script src="{{ asset('js/weight-history_modal.js') }}"></script>
 <script src="{{ asset('js/weight-history_arrow.js') }}"></script>
