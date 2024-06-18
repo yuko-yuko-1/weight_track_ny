@@ -21,7 +21,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 // Middleware
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/weight_and_meals/today', [CalendarController::class, 'show'])->name('meal.today');
-    Route::get('/weight_and_meals/today/{year}/{month}/{day}', [CalendarController::class, 'getMealByDate']);
+    Route::get('/meals/{year}/{month}/{day}', [CalendarController::class, 'getMealByDate']);
 
 
 

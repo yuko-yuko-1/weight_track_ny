@@ -85,14 +85,14 @@ class CalendarController extends Controller
 
         // データをJSON形式で返す
         if ($meal) {
-            // return response()->json([
-            //     'id' => $meal->id,
-            //     'record_date' => $meal->record_date,
-            //     'created_at' => $meal->created_at->toDateTimeString(),
-            //     'image' => $meal->image,
-            //     'description' => $meal->description
-            // ]);
-            return response()->json($meal);
+            return response()->json([
+                'id' => $meal->id,
+                'record_date' => $meal->record_date,
+                'created_at' => $meal->created_at->toDateTimeString(),
+                'image' => $meal->image,
+                'description' => $meal->description
+            ]);
+            // return response()->json($meal);
         } else {
             return response()->json(null, 204); // データが見つからない場合は204 No Contentを返す
         }

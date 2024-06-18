@@ -16,8 +16,10 @@
 @section('content')
 
 <script type="text/javascript" src="{{ asset('js/loader.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/selected_date.js') }}"></script>
-
+<script type="text/javascript" src="{{ asset('js/selected_date.js') }}" defer></script>
+<script>
+    const baseImageUrl = "{{ asset('images/meal/') }}";
+</script>
 
 <script type="text/javascript">
 google.charts.load('current', {'packages':['corechart']});
@@ -170,52 +172,63 @@ var x = setInterval(function() {
                         <div class="wrapper2">
                             <header>
                                 <div class="post_date1">
-                                    @if($meal)
-                                    <h5 class="current-date2" style="">{{ $meal->record_date}}</h5>
-                                    @else
-                                    @endif
+                                    <h5 id="date_record" class="current-date2">{{ $meal ? $meal->record_date : 'No meal data available' }}</h5>
                                 </div>
                             </header>
-                           
                             <div class="col">
                                 <div class="row post_time">
                                     <div class="col-6">
-                                     @if($meal)
-                                        <h6 class="" id="display_date"><i class="fa-regular fa-clock"></i> {{ $meal->created_at->format('H:i') }}</h6>
-                                    @else
-                                        <i class="fa-regular fa-clock"></i>
-                                    @endif
+                                        <h6><i id="time_created" class="fa-regular fa-clock"></i> {{ $meal && $meal->created_at ? $meal->created_at->format('H:i') : '' }}</h6>
                                     </div>
                                     <div class="col-6 text-end">
                                         @if($meal)
-                                        <button type="button" class="btn text-end" data-bs-toggle="modal" data-bs-target="#meals_delete_{{$meal->id}}"><i class="fa-regular fa-trash-can"></i></button>
+                                            <button type="button" class="btn text-end" data-bs-toggle="modal" data-bs-target="#meals_delete_{{ $meal->id }}">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button>
+                                        @elseif(isset($meal_from_calendar) && $meal_from_calendar->id)
+                                            <button type="button" class="btn text-end" data-bs-toggle="modal" data-bs-target="#meals_delete_{{ $meal_from_calendar->id }}">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button>
                                         @endif
                                     </div>
-                                    @include('weight_and_meals.modals.meals_delete')
                                 </div>
                                 <div class="row-7">
                                     <div class="post_meal">
-                                        @if($meal)
                                         <div class="my-4">
-                                              <img id="post_meal" src="{{ asset('images/meal/' . $meal->image) }}" alt="Latest Meal" class="grid-img">
+                                            @if($meal && $meal->image)
+                                                <img id="post_meal_img" src="{{ asset('images/meal/' . $meal->image) }}" alt="Latest Meal" class="grid-img">
+                                            @elseif(isset($meal_from_calendar) && $meal_from_calendar->image)
+                                                <img id="post_meal_img" src="{{ asset('images/meal/' . $meal_from_calendar->image) }}" alt="Latest Meal" class="grid-img">
+                                            @else
+                                                <img id="post_meal_img" src="" alt="Latest Meal" class="grid-img" style="display: none;">
+                                                <h4 id="no_post_text" class="no_pic text-center text-muted">No posts yet.</h4>
+                                            @endif
                                         </div>
-                                    @else
-                                        <h4 class="no_pic text-center text-muted">No posts yet.</h4>
-                                    @endif
                                     </div>
                                 </div>
                                 <div class="row-2 post_memo my-2">
                                     <h6>Memo</h6>
-                                     @if($meal)
-                                       <span class="fw-light">{{ $meal->description }}</span>
-                                    @else
-                                    <span></span>
+                                    <span id="memo_desc" class="fw-light">
+                                        @if($meal)
+                                            {{ $meal->description ?: 'No description available' }}
+                                        @elseif(isset($meal_from_calendar) && $meal_from_calendar->description)
+                                            {{ $meal_from_calendar->description }}
+                                        @else
+                                            No meal available.
+                                        @endif
+                                    </span>
+                                    @if(!$meal && (!isset($meal_from_calendar) || !$meal_from_calendar->description))
+                                        <!-- <p id="no_description">No meal available.</p> -->
                                     @endif
                                 </div>
+                            </div>
                         </div>
                     </div>
+                    @include('weight_and_meals.modals.meals_delete')
                 </div>
-            </div>
+
+
+
                 <div class="col-6 dashboard_main mychart">
                    {{-- Graph --}}
                         <div class="wrapper3">
