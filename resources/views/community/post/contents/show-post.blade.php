@@ -31,7 +31,7 @@
         <div class="row post-top">
             <ul class="col-1 user-img mt-3 mx-auto mt-auto">
                 @if($post->user->avatar)
-                    <img src="{{ asset('images/Profile/' . $post->user->avatar) }}" alt="{{ $post->user->username }}" class="d-block text-center icon-md rounded-circle">
+                    <img src="{{ asset('images/Profile/' . $post->user->avatar) }}" alt="{{ $post->user->username }}" class="d-block text-center icon-md rounded-circle ms-4">
                 @else
                     <i class="fa-solid fa-circle-user text-secondary d-block"></i>
                 @endif
@@ -46,7 +46,7 @@
             @if (Auth::user()->id === $post->user->id)
                 <ul class="col-2 mt-4">
                     <button class="button edit edit-modal-btn" data-bs-toggle="modal" data-bs-target="#edit-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-pen"></i></button>
-                    <button class="delete" data-bs-toggle="modal" data-bs-target="#delete-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-trash-can"></i></i></button>
+                    <button class="submit delete" data-bs-toggle="modal" data-bs-target="#delete-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-trash-can"></i></button>
                 </ul>
                 {{-- include --}}
                 @include('posts.contents.modals.edit')

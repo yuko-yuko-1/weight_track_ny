@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Community extends Model
 {
     use HasFactory;
+
+    public function posts()
+    {
+        // return $this->hasMany(Post::class)->latest();
+        return $this->hasMany(Post::class);
+    }
 }

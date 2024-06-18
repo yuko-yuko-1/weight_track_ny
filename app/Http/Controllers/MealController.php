@@ -47,6 +47,16 @@ class MealController extends Controller
         return redirect()->route('meal.today');
     }
 
+public function show($id)
+{
+    $user = $this->user->findOrFail($id);
+    $meals = $user->meals()->orderBy('record_date', 'desc')->get();
+
+    return view('profile.all-meal-posts', [
+        'user' => $user,
+        'meals' => $meals,
+    ]);
+}
     public function destroy($id){
         $meal = $this->meal->findOrFail($id);
         // $meal = Meal::findOrFail($id);

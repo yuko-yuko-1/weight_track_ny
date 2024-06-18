@@ -10,12 +10,13 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\WeightController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 
-
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CommunitiesController;
+use App\Http\Controllers\Admin\PostsController;
 
 Auth::routes();
 
@@ -52,6 +53,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/log-weight-history/{id}/update', [LogWeightHistoryController::class, 'update'])->name('weight-update');
     Route::delete('/log-weight-history/{id}/delete', [LogWeightHistoryController::class, 'destroy'])->name('weight-destroy');
 
+    #Profile Your Posts
+    Route::get('/profile-post/{id}/show',[UserPostController::class,'show'])->name('profile-post');
+
+    #Profile All Meal Posts
+    Route::get('/profile-meal-posts/{id}/show',[MealController::class,'show'])->name('profile-meal-post');
 
     #Community
     Route::get('/community/top', [HomeController::class, 'community'])->name('community');
@@ -78,6 +84,11 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/categproes/store', [CommunitiesController::class, 'store'])->name('communities.store');
         Route::patch('/communities/{id}/update', [CommunitiesController::class, 'update'])->name('communities.update');
         Route::delete('/communities/{id}/destroy', [CommunitiesController::class, 'destroy'])->name('communities.destroy');
+        #POSTS
+        Route::get('/posts', [PostsController::class, 'index'])->name('posts');
+        Route::delete('/posts/{id}/hide', [PostsController::class, 'hide'])->name('posts.hide');
+        Route::patch('/posts/{id}/unhide', [PostsController::class, 'unhide'])->name('posts.unhide');
+        Route::delete('/post/{id}/destroy', [PostsController::class, 'destroy'])->name('posts.destroy');
     });
 });
 

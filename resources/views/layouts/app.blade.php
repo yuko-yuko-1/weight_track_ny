@@ -130,9 +130,9 @@
                                 <i class="fa-solid fa-newspaper"></i> Communities
                             </a>
 
-                            {{-- <a href="{{ route('admin.posts') }}" class="list-group-item {{ request()->is('admin/posts') ? 'active' : '' }}">
+                            <a href="{{ route('admin.posts') }}" class="list-group-item {{ request()->is('admin/posts') ? 'active' : '' }}">
                                 <i class="fa-solid fa-tags"></i> Community Posts
-                            </a> --}}
+                            </a>
 
                             {{-- <a href="{{ route('admin.suggestions') }}" class="list-group-item {{ request()->is('admin/suggestions') ? 'active' : '' }}">
                                 <i class="fa-solid fa-tags"></i> Suggestions
