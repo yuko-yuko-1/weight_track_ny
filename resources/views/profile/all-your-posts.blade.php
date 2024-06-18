@@ -16,8 +16,8 @@
 <div class="container">
     <div class="home">
         <ul class="#">
-            <a href="{{route('index')}}"><i class="fa-solid fa-house"></i></a>
-            <a href="{{route('index')}}"><p>&ensp;Home&ensp;</p></a>
+            <a href="{{route('meal.today')}}"><i class="fa-solid fa-house"></i></a>
+            <a href="{{route('meal.today')}}"><p>&ensp;Home&ensp;</p></a>
             <p>></p>
             <a href="{{route('profile-main', ['id' => $user->id])}}"><P>&ensp;Profile&ensp;</P></a>
             <p>></p>
@@ -66,6 +66,10 @@
                                     <div class="col">
                                         <h6>{{ $post->content }}</h6>
                                         <div>
+                                            <span><i class="fa-regular fa-comment me-0"></i>{{ $post->comments->count() }}</span>
+                                            <span><i class="fa-solid fa-heart me-0"></i>{{$post->likes->count() }}</span>
+                                            &ensp;
+                                            &ensp;
                                             <span>{{ $post->user->username }}</span>
                                             &ensp;|&ensp;
                                             <span>{{ $post->created_at }}</span>

@@ -80,6 +80,10 @@
                                         <div class="col">
                                             <h6>{{ $post->content }}</h6>
                                             <div>
+                                                <span><i class="fa-regular fa-comment me-0"></i>{{ $post->comments->count() }}</span>
+                                                <span><i class="fa-solid fa-heart me-0"></i>{{$post->likes->count() }}</span>
+                                                &ensp;
+                                                &ensp;
                                                 <span>{{ $post->user->username }}</span>
                                                 &ensp;|&ensp;
                                                 <span>{{ $post->created_at }}</span>

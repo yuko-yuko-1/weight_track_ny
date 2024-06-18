@@ -25,10 +25,11 @@
           
           <div class="log-weight-container">
               <span class="log-weight-text">Log Weight History</span>
-              <button class="add-button" onclick="window.location.href = '#'">
+              <button class="add-button btn_record" data-bs-toggle="modal" data-bs-target="#record_weight">
                   <i class="fas fa-pencil-alt"></i> Add
               </button>
           </div>
+          @include('weight_and_meals.modals.record')
     </div>
 
       <div class="table-wrapper">
