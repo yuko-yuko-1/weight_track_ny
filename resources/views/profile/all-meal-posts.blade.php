@@ -26,7 +26,7 @@
         
         <div class="all-meals-title-container">
             <span class="all-meals-text">All Meals Posts</span>
-            <button class="add-button" onclick="window.location.href ='#'">
+            <button class="add-button" data-bs-toggle="modal" data-bs-target="#post_meal">
                 <i class="fas fa-pencil-alt"></i> Add
             </button>
         </div>
@@ -45,6 +45,7 @@
 </div>
 
 @include('profile/modals/delete-meal-posts')
+@include('weight_and_meals.modals.post_meals')
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
