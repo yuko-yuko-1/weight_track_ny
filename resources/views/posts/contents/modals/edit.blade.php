@@ -11,7 +11,7 @@
             <div class="modal-body custom-modal-body mx-auto">
                 <div class="add-title">
                     <form action="{{ route('post.update', $post->id)}}" method="post" enctype="multipart/form-data">
-                        @csrf 
+                        @csrf
                         @method('PATCH')
 
                                 <label for="title"><h4>Title</h4></label><br>
@@ -56,7 +56,7 @@
                                     {{-- Error --}}
                                     @error('image')
                                     <p class="text-danger small">{{ $message }}</p>
-                                    @enderror                        
+                                    @enderror
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@
                 </form>
             </div>
           </div>
-                    
+
         </div>
     </div>
 

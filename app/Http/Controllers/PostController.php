@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Community;
+use App\Models\Comment;
+use App\Models\Like;
 // use App\Models\User;
 
 class PostController extends Controller
@@ -40,7 +42,7 @@ class PostController extends Controller
     public function store(Request $request, $id){
 
         $community = $this->community->findOrFail($id);
-        \Log::info('ID: ' . $id); 
+        \Log::info('ID: ' . $id);
         \Log::info('Request: ' . json_encode($request->all()));
 
         $request->validate([
@@ -57,14 +59,18 @@ class PostController extends Controller
         $this->post->title = $request->title;
         $this->post->content = $request->content;
         $this->post->save();
-       
+
         return redirect()->back();
     }
 
     public function show($id){
+        // ↓元々のコード
         $post = $this->post->findOrFail($id);
 
         return view('community.post.contents.show-post')->with('post', $post);
+
+        // $post = Post::with(['comments.user'])->findOrFail($id);
+        // return view('community.post.contents.show-post')->with('post', $post);
     }
 
     // public function edit($id){
@@ -131,4 +137,39 @@ class PostController extends Controller
 
         return redirect()->route('community_all_posts', ['id' => $community_id]);
     }
+
+    // Comment and Likes
+
+
+    public function Comment(Request $request, $postId)
+    {
+        $request->validate([
+            'comment' => 'required'
+        ]);
+
+        Comment::create([
+            'post_id' => $postId,
+            'user_id' => auth()->id(),
+            'comment_content' => $request->comment_content
+
+        ]);
+
+        return view('community.post.contents.show-post')->with('comment', $comment);
+    }
+
+    public function likePost($postId)
+    {
+        $like = Like::where('post_id', $postId)->where('user_id', auth()->id())->first();
+
+        if ($like) {
+            $like->delete();
+        } else {
+            Like::create([
+                'post_id' => $postId,
+                'user_id' => auth()->id()
+            ]);
+        }
+
+}
+
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Post;
 
 
 class CommentController extends Controller
@@ -16,16 +17,20 @@ class CommentController extends Controller
         $this->comment = $comment;
     }
 
-    public function store(Request $request,$id)
+    public function store(Request $request,$postId)
     {
-        //
-        $this->comment->user_id = Auth::user()->id;
-        $this->comment->post_id = $id;
-        $this->comment->comment_content = $request->comment_content;
-        $this->comment->save();
 
-        return redirect()->back();
+        $request->validate([
+            'add-comment' => 'required|string|max:255',
+        ]);
 
+        $comment = new Comment();
+        $comment->user_id = Auth::id();
+        $comment->post_id = $postId;
+        $comment->comment_content = $request->input('add-comment');
+        $comment->save();
+
+        return redirect()->route('post.show', $postId);
 
     }
 
@@ -49,17 +54,33 @@ class CommentController extends Controller
         //
     }
 
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, $comment_id)
     {
-        //
-    }
 
-    public function destroy($id)
+            $request->validate([
+                'comment_content' => 'required|string|max:255',
+            ]);
+
+            //find the record to update
+            $comment = Comment::findOrFail($comment_id);
+
+            //update the column data
+            $comment->comment_content = $request->input('comment_content');
+            $comment->save();
+
+            return redirect()->route('post.show', $comment->post_id);
+        }
+
+
+
+    public function destroy($comment_id)
     {
-        //
-        $this->comment->destroy($id);
 
-        return redirect()->back();
+        $comment = Comment::findOrFail($comment_id);
+        $post_id = $comment->post_id;
+        $comment->delete();
+        return redirect()->route('post.show', $post_id);
+
     }
 
 }
