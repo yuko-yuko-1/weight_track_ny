@@ -29,7 +29,6 @@
                   <i class="fas fa-pencil-alt"></i> Add
               </button>
           </div>
-          @include('weight_and_meals.modals.record')
     </div>
 
       <div class="table-wrapper">
