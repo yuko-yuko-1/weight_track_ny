@@ -8,17 +8,20 @@ use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Meal;
 use App\Models\Weight;
+use Illuminate\Support\Facades\Log;
 
 
 class CalendarController extends Controller
 {
     private $meal;
     private $user;
+    private $weight;
 
 
-    public function __construct(Meal $meal, User $user){
+    public function __construct(Meal $meal, User $user,Weight $weight){
         $this->meal = $meal;
         $this->user = $user;
+        $this->weight = $weight;
     }
 
     public function show()
@@ -48,11 +51,22 @@ class CalendarController extends Controller
             ->groupBy(function($date) {
                 return Carbon::parse($date->record_date)->format('d');
             });
-        \Log::info('Fetched meals:', $latestMealsByDay->toArray());
+
+        
+        // 最新のcurrent_weightを取得
+        $latestWeight = $this->weight->where('user_id', $user->id)
+                                    ->orderBy('record_date', 'desc')
+                                    ->first();
+        
+        // current_weightがnullの場合は0を設定
+        $currentWeight = $latestWeight->current_weight ?? 0;
+        $startWeight = $user->prime_weight;
+        $goalWeight = $user->goal_weight;
+        Log::info('Fetched meals:', $latestMealsByDay->toArray());
         if (!$user) {
             Log::error('Unable to find user');
         }
-        return view('weight_and_meals.weight_and_meals', compact('month', 'year', 'day', 'user','meal','weightChartData','latestMealsByDay'));
+        return view('weight_and_meals.weight_and_meals', compact('month', 'year', 'day', 'user','meal','weightChartData','latestMealsByDay','currentWeight','startWeight','goalWeight'));
     }
 
     public function displayWeightChart()

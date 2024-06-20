@@ -244,24 +244,52 @@ var x = setInterval(function() {
                 </div>
                 </div>
 
-            <div class="row">
+            <div class="row prog-bar">
                 <div class="col-1 my-auto">
                     <span class="start-goal">Start </span>
                 </div>
-                <div class="col-10">
-                    <div class="goalbar"> 
-                        <span class="bar">
-                            <span class="achievement"></span>
-                        </span>
-                    </div>
+                 <div class="tracking-goal goalbar col-9">
+                    <span class="bar">
+                        <span id="tracking-goal-bar" class="tracking-goal-bar"></span>
+                    </span>
                 </div>
                 <div class="col-1  my-auto">
-                    <span class=""> Goal</span>
+                    <span> Goal</span>
                 </div>
             </div>
         </div>
         
         </div> 
     </div>
+{{-- Goal Tracking Bar --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // スタートとゴールの重量を取得
+        var startWeight = parseFloat("{{ $startWeight }}");
+        var goalWeight = parseFloat("{{ $goalWeight }}");
+        
+        // 現在の重量
+        var currentWeight = parseFloat("{{ $currentWeight }}");
+
+        // 進捗を計算
+        var progress;
+        if (startWeight > goalWeight) {
+            // 減量の場合
+            progress = (currentWeight - startWeight) / (goalWeight - startWeight) * 100;
+        } else if (startWeight < goalWeight) {
+            // 増量の場合
+            progress = (currentWeight - startWeight) / (goalWeight - startWeight) * 100;
+        } else {
+            // スタートとゴールの重量が同じ場合は進捗を0に設定
+            progress = 0;
+        }
+        
+        // 進捗が0%未満や100%を超えないようにする
+        progress = Math.max(0, Math.min(100, progress));
+
+        // バロメーターの幅を更新
+        document.getElementById('tracking-goal-bar').style.width = progress + '%';
+    });
+</script>
 
 @endsection
