@@ -6,6 +6,10 @@
     border-radius: 30px;
 }
 
+.prog-bar{
+    flex-wrap: nowrap;
+}
+
 .bar{
     display: block;
     height: 30px;
@@ -22,7 +26,6 @@
 }
 
 .achievement{
-    width: 70%;
     animation: achievement 1.8s;
 }
 .achievement::after{
