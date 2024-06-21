@@ -114,10 +114,14 @@ text-shadow: #B3B3B3 0 2px;
     font-size: 25px;
 }
 
+.share-post-btn{
+    border: none;
+    background: none;
+}
+
 .fa-share{
     color: #B3B3B3;
-    margin-right: 20px;
-    font-size: 30px;
+    font-size: 33px;
 }
 
 .add-comment-btn{
@@ -344,4 +348,41 @@ text-shadow: #B3B3B3 0 2px;
     object-fit: cover;
 }
 
+/* Share buttone modal*/
+.share-post-modal-title{
+    font-size: 25px;
+    color: #B3B3B3;
 
+}
+
+.facebook_icon{
+    color: #1877F2
+}
+
+.x_icon{
+    color: #000000
+}
+.line_icon{
+    color:#06C757
+
+}
+
+.share-icons{
+    font-size: 40px;
+}
+
+.usrl{
+    padding-right: 1.5rem;
+    width: 120px;
+}
+
+.url-btn{
+
+    color:  #B3B3B3;
+    font-size: 25px;
+    position: absolute;
+    transform: translateX(160%);
+
+
+    /* font-weight: bold; */
+}

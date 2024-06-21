@@ -93,7 +93,8 @@
                         {{$post->likes->count()}}
                     </div>
                 </div>
-                {{-- <i class="fa-solid fa-share"></i> --}}
+                <button class="share-post-btn" data-bs-toggle="modal" data-bs-target="#share-post" id="modalOpen"> <i class="fa-solid fa-share"></i></button>
+                @include('community.post.contents.comments.modals.share-post')
             </div>
             <div class="comment-modal text-center mb-4">
                 <button class="button add-comment-btn" data-bs-toggle="modal" data-bs-target="#add-comment" id="modalOpen"><i class="fa-solid fa-pen"></i><span>Add your comment</span></button>
