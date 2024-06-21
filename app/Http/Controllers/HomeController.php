@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Community;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
     private $community;
+    private $post;
 
-    public function __construct(Community $community){
+    public function __construct(Community $community, Post $post){
         $this->community = $community;
+        $this->post = $post;
     }
     /**
      * Create a new controller instance.
@@ -74,6 +77,19 @@ class HomeController extends Controller
         $all_communities = $this->community->orderBy('id')->get();
 
         return view('community.community-top')->with('all_communities', $all_communities);
+    }
+
+    public function community_search(Request $request)
+    {
+        $search = $request->input('search');
+        
+        // 投稿のタイトルまたは内容に基づいて検索
+        $posts = Post::where('title', 'like', '%' . $search . '%')
+                    ->orWhere('content', 'like', '%' . $search . '%')
+                    ->latest()
+                    ->get();
+    
+        return view('community.search-results', compact('posts', 'search'));
     }
     
 }
