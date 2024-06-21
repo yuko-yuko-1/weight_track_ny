@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     #Community
     Route::get('/community/top', [HomeController::class, 'community'])->name('community');
+    Route::get('/community/search', [HomeController::class, 'community_search'])->name('community.search');
     Route::get('/community/{id}/all_posts', [PostController::class, 'community_all_posts'])->name('community_all_posts');
     Route::get('/community/post/{id}/show', [PostController::class, 'show'])->name('post.show');
 

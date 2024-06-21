@@ -22,14 +22,16 @@
             <h2 class="all-community-title mt-5 mb-3">All Community</h2>
         </div>
         <div class="col-4 mt-5">
-            <form action="#" method="get" class="py-3 ms-10">
+            <form action="{{ route('community.search') }}" method="get" class="py-3 ms-10">
                 <div class="row community-search-form">
                     <div class="col-11 community-search-bar">
                         <input type="text" name="search" value="{{ old('name')}}" placeholder="search....." class="form-control">
                     </div>
                     <div class="col-1 border-0 magnifying-glass">
-                        <i class="fa-solid fa-magnifying-glass py-3"></i>
-                    </div>
+                        <button type="submit" class="btn btn-link">
+                            <i class="fa-solid fa-magnifying-glass py-3"></i>
+                        </button>
+                    </div>               
                 </div>               
             </form> 
         </div>
@@ -51,4 +53,25 @@
         </div>
     </div>
 
+    <div class="all-posts mt-5">
+        <h2 class="all-posts-title">Search Results</h2>
+        @if(isset($posts))
+            <div class="row">
+                @forelse($posts as $post)
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $post->title }}</h5>
+                                <p class="card-text">{{ $post->content }}</p>
+                                <a href="{{ route('post.show', $post->id) }}" class="btn btn-primary">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <p>No posts found.</p>
+                @endforelse
+            </div>
+        @endif
+    </div>
+</div>
 @endsection
