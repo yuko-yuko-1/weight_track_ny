@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function __construct(Community $community, Post $post){
         $this->community = $community;
-        $this->post = $post;
+        // $this->post = $post;
     }
     /**
      * Create a new controller instance.
