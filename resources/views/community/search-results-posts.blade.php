@@ -1,17 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'Search Results')
+@section('title', 'Search Results Posts')
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('css/community-all-posts.css')}}">
 <link rel="stylesheet" href="{{ asset('css/community-top.css')}}">
 {{-- <link rel="stylesheet" href="{{ asset('css/show-post.css')}}"> --}}
-<link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet'>  
+<link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet'>
 @endpush
 
 @section('content')
 <div class="community-top-bg">          
-    <h1 class="community-top-title">COMMUNITY</h1>  
+    <a href="{{ route('community_all_posts', $community->id)}}" class="text-decoration-none">
+        <h1 class="text-uppercase community-top-title">{{ $community->name }}</h1>
+    </a>
 </div>
 
 
@@ -24,7 +26,7 @@
             <h4 class="mt-5 ms-1">Search Results</h4>
         </div>
         <div class="col-4 mt-5">
-            <form action="{{ route('community.search') }}" method="get" class="py-3 me-5">
+            <form action="{{ route('community.post.search', $community->id) }}" method="get" class="py-3 me-5">
                 <div class="row community-search-form">
                     <div class="col-11 community-search-bar">
                         <input type="text" name="search" value="{{ $search }}" placeholder="search....." class="form-control h1">
@@ -43,7 +45,7 @@
 
 <div class="container">
     <div class="card mt-2 mb-4">
-        <h2>Post containing "{{ $search }}"</h2>
+        <h2>Post containing "{{ $search }}" in "{{ $community->name }}" Community</h2>
                 
         @forelse($posts as $post)
             <div class="row mb-2">

@@ -25,7 +25,7 @@
             <form action="{{ route('community.search') }}" method="get" class="py-3 ms-10">
                 <div class="row community-search-form">
                     <div class="col-11 community-search-bar">
-                        <input type="text" name="search" value="{{ old('name')}}" placeholder="search....." class="form-control">
+                        <input type="text" name="search" placeholder="search....." class="form-control">
                     </div>
                     <div class="col-1 border-0 magnifying-glass">
                         <button type="submit" class="btn btn-link">

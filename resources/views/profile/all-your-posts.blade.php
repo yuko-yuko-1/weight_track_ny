@@ -24,7 +24,7 @@
             <a href="{{route('profile-post', ['id' => $user->id])}}"><p>&ensp;All Your Posts&ensp;</p></a>
         </ul>
     </div>
-
+</div>
     <div class="container">
         <div class="card mt-2 mb-4">
             <h2>All your posts in Community</h2>
@@ -52,10 +52,10 @@
                                         </h3>
                                         @if (Auth::user()->id === $post->user->id)
                                             <div class="float-end">
-                                                {{-- 編集ボタン --}}
+                                                {{-- EDIT BUTTON --}}
                                                 <button class="button edit edit-modal-btn" data-bs-toggle="modal" data-bs-target="#edit-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-pen"></i></button>
-                                                {{-- 削除ボタン --}}
-                                                <button class="delete" data-bs-toggle="modal" data-bs-target="#delete-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-trash-can"></i></button>   
+                                                {{-- DELETE BUTTON --}}
+                                                <button class="delete" data-bs-toggle="modal" data-bs-target="#delete-post{{ $post->id }}" id="modalOpen" ><i class="fa-solid fa-trash-can"></i></i></button>   
                                             </div>
                                             @include('posts.contents.modals.edit')
                                             @include('posts.contents.modals.delete')

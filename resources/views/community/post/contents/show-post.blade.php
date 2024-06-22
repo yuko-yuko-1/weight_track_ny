@@ -12,7 +12,9 @@
 
 @section('content')
 <div class="community-top">
-    <h1 class="text-uppercase">{{$post->community->name}}</h1>
+    <a href="{{ route('community_all_posts', $post->community->id)}}" class="text-decoration-none">
+        <h1 class="text-uppercase">{{ $post->community->name }}</h1>
+    </a>
 </div>
 
 <div class="container">

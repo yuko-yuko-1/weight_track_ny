@@ -10,7 +10,9 @@
 
 @section('content')
 <div class="community-top">
-    <h1 class="text-uppercase">{{ $community->name }}</h1>
+    <a href="{{ route('community_all_posts', $community->id)}}" class="text-decoration-none">
+        <h1 class="text-uppercase">{{ $community->name }}</h1>
+    </a>
 </div>
 
 <div class="container">
@@ -27,10 +29,12 @@
 
     <div class="row mb-3 mt-2">
         <div class="col-6">
-            <div class="search-bar">
-                <input class="search-input" type="search" id="search-input" placeholder="Search...">
-                <button class="search-btn" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+            <form action="{{ route('community.post.search', $community->id) }}" method="get">
+                <div class="search-bar">
+                    <input class="search-input" type="text" name="search" id="search-input" placeholder="Search...">
+                    <button type="submit" class="search-btn" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </form>
         </div>
         <div class="posts col-6">
             <button id="new-posts" class="new-posts" data-bs-toggle="modal" data-bs-target="#create-new-posts-{{ $community->id }}" id="modalOpen" ><i class="fa-solid fa-pen"></i>New Posts</button>
@@ -41,7 +45,7 @@
 </div>
     <div class="container">
         <div class="card mt-2 mb-4">
-            <h2>All posts</h2>
+            <h2>All posts in "{{ $community->name }}" Community</h2>
                 @forelse($all_posts as $post)  
                     <div class="row mb-2">
                         <div class="col-1 my-auto">

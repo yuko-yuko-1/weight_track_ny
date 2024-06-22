@@ -32,6 +32,7 @@ class PostController extends Controller
                                                     ->with('all_posts', $all_posts);
                                                     // ->with('all_users', $all_users);
     }
+    
     // public function create(){
     //     $all_communities = $this->community->all();
 

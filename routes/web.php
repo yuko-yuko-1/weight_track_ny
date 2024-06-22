@@ -27,22 +27,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/weight_and_meals/today', [CalendarController::class, 'show'])->name('meal.today');
     Route::get('/meals/{year}/{month}/{day}', [CalendarController::class, 'getMealByDate']);
 
-
-
     // Route::get('/weight_and_meals/today/create', [MealController::class, 'create'])->name('meal.today');
     Route::post('/weight_and_meals/today/meal_store', [MealController::class, 'store'])->name('meal.store');
     Route::delete('/weight_and_meals/today/meal_destroy/{id}', [MealController::class, 'destroy'])->name('meal.destroy');
 
-
-
     Route::post('/weight_and_meals/today/weight_store', [WeightController::class, 'store'])->name('weight.store');
 
-
-
-
     Route::get('/what-is-bmi', [HomeController::class, 'what_is_bmi'])->name('what-is-bmi');
-
-
 
    #Profile
     Route::get('/profile/{id}/show',[ProfileController::class,'show'])->name('profile-main');
@@ -65,6 +56,7 @@ Route::group(['middleware' => 'auth'], function(){
     #Community
     Route::get('/community/top', [HomeController::class, 'community'])->name('community');
     Route::get('/community/search', [HomeController::class, 'community_search'])->name('community.search');
+    Route::get('/community/{id}/post/search', [HomeController::class, 'community_post_search'])->name('community.post.search');
     Route::get('/community/{id}/all_posts', [PostController::class, 'community_all_posts'])->name('community_all_posts');
     Route::get('/community/post/{id}/show', [PostController::class, 'show'])->name('post.show');
 
@@ -75,6 +67,15 @@ Route::group(['middleware' => 'auth'], function(){
     Route::patch('/post/{id}/update', [PostController::class, 'update'])->name('post.update');
     Route::delete('/post/{id}/destroy', [PostController::class, 'destroy'])->name('post.destroy');
 
+    // Comment and Like for Show-post page
+    #comment
+    Route::post('/comment/store/{post_id}',[CommentController::class,'store'])->name('comment.store');
+    Route::patch('/comment/update/{comment_id}',[CommentController::class,'update'])->name('comment.update');
+    Route::delete('/comment/destroy/{comment_id}',[CommentController::class,'destroy'])->name('comment.destroy');
+
+    #Like
+    Route::post('/like/{post_id}/store',[LikeController::class,'store'])->name('like.store');
+    Route::delete('/like/{post_id}/delete',[LikeController::class,'destroy'])->name('like.delete');
 
     ### ADMIN
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function(){
@@ -95,16 +96,3 @@ Route::group(['middleware' => 'auth'], function(){
         Route::delete('/post/{id}/destroy', [PostsController::class, 'destroy'])->name('posts.destroy');
     });
 });
-
-// Comment and Like for Show-post page
-
-#comment
-Route::post('/comment/store/{post_id}',[CommentController::class,'store'])->name('comment.store');
-Route::patch('/comment/update/{comment_id}',[CommentController::class,'update'])->name('comment.update');
-Route::delete('/comment/destroy/{comment_id}',[CommentController::class,'destroy'])->name('comment.destroy');
-
-#Like
-Route::post('/like/{post_id}/store',[LikeController::class,'store'])->name('like.store');
-Route::delete('/like/{post_id}/delete',[LikeController::class,'destroy'])->name('like.delete');
-
-Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
