@@ -36,7 +36,7 @@
         <div class="meal-items">
             @foreach($user->meals->reverse() as $meal)
                 <div class="meal-item" data-bs-toggle="modal" data-bs-target="#deleteMealModal" data-id="{{ $meal->id }}" data-image="{{ asset('images/meal/' . $meal->image) }}">
-                    <img src="{{ asset('images/meal/' . $meal->image) }}" alt="Meal photo">
+                    <img src="{{ asset('images/meal/' . $meal->image) }}" alt="Meal photo" class="btn rounded-5">
                     <span class="meal-date">{{ $meal->record_date }}</span>
                 </div>
             @endforeach

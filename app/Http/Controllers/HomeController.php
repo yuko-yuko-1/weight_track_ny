@@ -91,5 +91,22 @@ class HomeController extends Controller
     
         return view('community.search-results', compact('posts', 'search'));
     }
+
+    public function community_post_search(Request $request, $id)
+    {
+        $community = $this->community->findOrFail($id);
+        $search = $request->input('search');
+
+        // 投稿のタイトルまたは内容に基づいて検索
+        $posts = Post::where('community_id', $id)
+                    ->where(function ($query) use ($search) {
+                        $query->where('title', 'like', '%' . $search . '%')
+                            ->orWhere('content', 'like', '%' . $search . '%');
+                    })
+                    ->latest()
+                    ->get();
+
+        return view('community.search-results-posts', compact('posts', 'search', 'community'));
+    }
     
 }

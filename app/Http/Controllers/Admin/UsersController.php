@@ -44,7 +44,7 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-        $user = $this->user->findOrFail($id);     
+        $user = $this->user->withTrashed()->findOrFail($id);     
         $user->forceDelete();
 
         return redirect()->back();
