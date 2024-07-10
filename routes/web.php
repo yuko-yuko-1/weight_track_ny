@@ -34,6 +34,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/weight_and_meals/today/weight_store', [WeightController::class, 'store'])->name('weight.store');
 
     Route::get('/what-is-bmi', [HomeController::class, 'what_is_bmi'])->name('what-is-bmi');
+    Route::get('/about_us', [HomeController::class, 'about_us'])->name('about_us');
+    Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
+
 
    #Profile
     Route::get('/profile/{id}/show',[ProfileController::class,'show'])->name('profile-main');

@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <div class="all-posts mt-5">
+    {{-- <div class="all-posts mt-5">
         <h2 class="all-posts-title">Search Results</h2>
         @if(isset($posts))
             <div class="row">
@@ -72,6 +72,6 @@
                 @endforelse
             </div>
         @endif
-    </div>
+    </div> --}}
 </div>
 @endsection

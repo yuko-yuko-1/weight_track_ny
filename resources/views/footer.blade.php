@@ -22,10 +22,10 @@
                     <div class="col-md-6">
                         <ul class="navbar-nav ms-auto d-flex flex-row mb-0 justify-content-end">
                             <li class="nav-item me-3">
-                                <a class="nav-link" href="#">{{ __('About us') }}</a>
+                                <a class="nav-link" href="{{ route('about_us') }}">{{ __('About us') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('FAQ') }}</a>
+                                <a class="nav-link" href="{{ route('faq') }}">{{ __('FAQ') }}</a>
                             </li>
                         </ul>
                         <div class="col-12"> 

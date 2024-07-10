@@ -1,0 +1,25 @@
+/* about_us.blade */
+
+.about_us_main{
+    padding-left: 200px;  
+    padding-right: 200px;
+  }
+
+.about_us {
+    position: relative;
+  }
+
+.about_us_image{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 500px;
+  }
+
+  .about_images{
+    width: 450px;
+    height: 300px;
+  }
+  

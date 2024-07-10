@@ -64,10 +64,10 @@
                             @endif
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('About us') }}</a>
+                                <a class="nav-link" href="{{ route('about_us') }}">{{ __('About us') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('FAQ') }}</a>
+                                <a class="nav-link" href="{{ route('faq') }}">{{ __('FAQ') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -79,10 +79,10 @@
                             <a class="nav-link" href="{{ route('what-is-bmi')}}">{{ __('What\'s BMI') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('About us') }}</a>
+                            <a class="nav-link" href="{{ route('about_us') }}">{{ __('About us') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('FAQ') }}</a>
+                            <a class="nav-link" href="{{ route('faq') }}">{{ __('FAQ') }}</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle nav-user-info" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

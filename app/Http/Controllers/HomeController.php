@@ -43,6 +43,15 @@ class HomeController extends Controller
         return view('what-is-bmi');
     }
 
+    public function about_us()
+    {
+        return view('about_us');
+    }
+
+    public function faq()
+    {
+        return view('faq');
+    }
     // public function weight_and_meals()
     // {
     //     return view('weight_and_meals.weight_and_meals');
