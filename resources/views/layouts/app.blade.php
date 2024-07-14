@@ -150,21 +150,21 @@
                 <header class="my-0">
                     <div class="container-fluid">
                         <div class="row text-center">
-                            <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('weight_and_meals/*') ? 'tab-action-color' : '' }}">
+                            <div class="col-6 border py-3 border-bottom-0 rounded-top {{ request()->is('weight_and_meals/*') ? 'tab-action-color' : '' }}">
                                 <a href="{{ route('meal.today')  }}" class=" h5 text-decoration-none text-dark">
                                     Weight & Meals
                                 </a>
                             </div>
-                            <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('community/*') ? 'tab-action-color' : '' }}">
+                            <div class="col-6 border py-3 border-bottom-0 rounded-top {{ request()->is('community/*') ? 'tab-action-color' : '' }}">
                                 <a href="{{ route('community') }}" class=" h5 text-decoration-none text-dark">
                                     Community
                                 </a>
                             </div>
-                            <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('suggestion/*') ? 'tab-action-color' : '' }}">
+                            {{-- <div class="col-4 border py-3 border-bottom-0 rounded-top {{ request()->is('suggestion/*') ? 'tab-action-color' : '' }}">
                                 <a href="" class=" h5 text-decoration-none text-dark">
                                     Suggestion
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </header> 
