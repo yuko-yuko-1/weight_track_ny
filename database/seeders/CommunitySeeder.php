@@ -71,6 +71,13 @@ class CommunitySeeder extends Seeder
             ]
         ];
 
-        $this->community->insert($communities);
+        foreach ($communities as $community) {
+            $this->community->updateOrCreate(
+                ['name' => $community['name']],
+                $community
+            );
+        }
+
+        // $this->community->insert($communities);
     }
 }
