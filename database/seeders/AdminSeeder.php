@@ -21,11 +21,11 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
+        DB::table('users')->insertOrIgnore([
             'firstname' => 'Admin',
             'lastname' => 'Admin',
             'username' => 'Admin',
-            'email' => 'admin2@gmail.com',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('11111111'),
             'gender' => 'Male',
             'height' => 170,
