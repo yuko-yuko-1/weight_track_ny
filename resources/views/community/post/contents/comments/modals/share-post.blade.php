@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form action="" method="">
-                {{-- @csrf --}}
+                @csrf
                 {{-- @method('PATCH') --}}
                 <div class="modal-header">
                     <h5 class="share-post-modal-title mx-auto" id="modalTitleId">

@@ -30,6 +30,7 @@
     <div class="row mb-3 mt-2">
         <div class="col-6">
             <form action="{{ route('community.post.search', $community->id) }}" method="get">
+                @csrf
                 <div class="search-bar">
                     <input class="search-input" type="text" name="search" id="search-input" placeholder="Search...">
                     <button type="submit" class="search-btn" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>

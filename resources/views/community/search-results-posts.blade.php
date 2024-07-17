@@ -27,6 +27,7 @@
         </div>
         <div class="col-4 mt-5">
             <form action="{{ route('community.post.search', $community->id) }}" method="get" class="py-3 me-5">
+                @csrf
                 <div class="row community-search-form">
                     <div class="col-11 community-search-bar">
                         <input type="text" name="search" value="{{ $search }}" placeholder="search....." class="form-control h1">

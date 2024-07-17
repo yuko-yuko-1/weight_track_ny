@@ -23,6 +23,7 @@
         </div>
         <div class="col-4 mt-5">
             <form action="{{ route('community.search') }}" method="get" class="py-3 ms-10">
+                @csrf
                 <div class="row community-search-form">
                     <div class="col-11 community-search-bar">
                         <input type="text" name="search" placeholder="search....." class="form-control">
